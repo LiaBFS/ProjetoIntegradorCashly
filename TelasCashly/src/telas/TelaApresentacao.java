@@ -68,7 +68,7 @@ public class TelaApresentacao extends JFrame {
 		JButton btnInicio = new JButton("");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro(); // <<< ADIÇÃO
+				
 			}
 		});
 		btnInicio.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnInicio.png")));
