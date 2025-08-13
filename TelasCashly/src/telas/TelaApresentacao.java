@@ -63,20 +63,25 @@ public class TelaApresentacao extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[365px][50,grow][grow][376px,grow][50,grow][180px][71px][126px]", "[48px][404px,grow,fill][235px,grow]"));
+		contentPane.setLayout(new MigLayout("", "[376px,grow][50,grow][grow][376px,grow][376px,grow]", "[grow][48px][404px,grow,fill][48px][235px,grow]"));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(216, 178, 184));
+		contentPane.add(panel, "cell 0 0 5 1,grow");
+		panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][grow 50]", "[]"));
 		
 		JLabel lblLogo = new JLabel("");
+		panel.add(lblLogo, "cell 1 0,alignx left");
 		lblLogo.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/LogoCashly.png")));
-		contentPane.add(lblLogo, "cell 0 0,alignx left,aligny bottom");
 		
 		JButton btnInicio = new JButton("");
+		panel.add(btnInicio, "cell 14 0");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro(); // <<< ADIÇÃO
+				
 			}
 		});
 		btnInicio.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnInicio.png")));
-		contentPane.add(btnInicio, "cell 3 0,alignx right,growy");
 		
 		btnInicio.setBorderPainted(false);
 		btnInicio.setContentAreaFilled(false);
@@ -84,12 +89,14 @@ public class TelaApresentacao extends JFrame {
 		btnInicio.setOpaque(false);
 		
 		JButton btnCadastrar = new JButton("");
+		panel.add(btnCadastrar, "cell 17 0,alignx right,growy");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				abrirTelaCadastro(); // <<< ADIÇÃO
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnCadastro.png")));
-		contentPane.add(btnCadastrar, "cell 5 0,alignx right,aligny center");
 		
 		btnCadastrar.setBorderPainted(false);
 		btnCadastrar.setContentAreaFilled(false);
@@ -97,45 +104,110 @@ public class TelaApresentacao extends JFrame {
 		btnCadastrar.setOpaque(false);
 		
 		JButton btnLogin = new JButton("");
+		panel.add(btnLogin, "cell 20 0,alignx right");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaLogin(); // <<< ADIÇÃO
 			}
 		});
 		btnLogin.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnLogin.png")));
-		contentPane.add(btnLogin, "cell 7 0,alignx left,aligny center");
 		
 		btnLogin.setBorderPainted(false);
 		btnLogin.setContentAreaFilled(false);
 		btnLogin.setFocusPainted(false);
 		btnLogin.setOpaque(false);
 		
+		
+		ImageIcon RecebaAvisos= new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/RecebaAvisos.png")
+			);
+		ImageIcon iconOriginal = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/RepresentacoesGraficas.png")
+			);
+		ImageIcon FacaProjetos = new ImageIcon(
+				TelaApresentacao.class.getResource("/imgs/FacaProjetos.png")
+			);
+				
+		
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaCadastro();
+			}
+		});
+		
+		
+		ImageIcon iconBemVindo= new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/SejaBemVindo.png")
+			);
+		btnNewButton.setIcon(iconBemVindo);
+		contentPane.add(btnNewButton, "cell 0 2 5 1,grow");
+		
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setOpaque(false);
+		
+		btnNewButton.setMinimumSize(new Dimension(30, 30)); // mínimo
+		btnNewButton.setPreferredSize(new Dimension(1000, 1000)); // inicial
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(216, 178, 184));
+		contentPane.add(panel_1, "cell 0 4 5 1,grow");
+		panel_1.setLayout(new MigLayout("", "[150px][grow][][grow][][grow][150px]", "[]"));
+		
 		JButton btnFacaProjetos = new JButton("");
+		panel_1.add(btnFacaProjetos, "cell 1 0,grow");
 		btnFacaProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaCadastro(); // <<< ADIÇÃO
 			}
 		});
-		btnFacaProjetos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/FacaProjetos.png")));
-		contentPane.add(btnFacaProjetos, "cell 0 2,grow");
+		
 		
 		btnFacaProjetos.setBorderPainted(false);
 		btnFacaProjetos.setContentAreaFilled(false);
 		btnFacaProjetos.setFocusPainted(false);
 		btnFacaProjetos.setOpaque(false);
 		
+		btnFacaProjetos.setMinimumSize(new Dimension(30, 30)); // mínimo
+		btnFacaProjetos.setPreferredSize(new Dimension(1000, 1000)); // inicial
+		
+		btnFacaProjetos.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e) {
+		        int largura = btnFacaProjetos.getWidth();
+		        int altura = btnFacaProjetos.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            // Mantém proporção original da imagem
+		            double proporcaoOriginal = (double) FacaProjetos.getIconWidth() / FacaProjetos.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = FacaProjetos.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            btnFacaProjetos.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
 		JButton btnRecebaAvisos = new JButton("");
+		panel_1.add(btnRecebaAvisos, "cell 3 0,grow");
 		btnRecebaAvisos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaCadastro(); // <<< ADIÇÃO
 			}
 		});
-		ImageIcon RecebaAvisos= new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/RecebaAvisos.png")
-			);
 		
 		btnRecebaAvisos.setIcon(RecebaAvisos);
-		contentPane.add(btnRecebaAvisos, "cell 3 2,grow");
 		
 		btnRecebaAvisos.setBorderPainted(false);
 		btnRecebaAvisos.setContentAreaFilled(false);
@@ -171,73 +243,50 @@ public class TelaApresentacao extends JFrame {
 		});
 		
 		JButton btnGrafica = new JButton("");
+		panel_1.add(btnGrafica, "cell 5 0,grow");
 		btnGrafica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaCadastro(); // <<< ADIÇÃO
 			}
 		});
-		ImageIcon iconOriginal = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/RepresentacoesGraficas.png")
-			);
+		
+				btnGrafica.setIcon(iconOriginal);
+				
+				btnGrafica.setMinimumSize(new Dimension(30, 30)); // mínimo
+				btnGrafica.setPreferredSize(new Dimension(1000, 1000)); // inicial
+				
+				btnGrafica.setBorderPainted(false);
+				btnGrafica.setContentAreaFilled(false);
+				btnGrafica.setFocusPainted(false);
+				btnGrafica.setOpaque(false);
+				
+				// Listener para redimensionar a imagem mantendo proporção
+				btnGrafica.addComponentListener(new ComponentAdapter() {
+				    @Override
+				    public void componentResized(ComponentEvent e) {
+				        int largura = btnGrafica.getWidth();
+				        int altura = btnGrafica.getHeight();
 
-		btnGrafica.setIcon(iconOriginal);
-		contentPane.add(btnGrafica, "cell 5 2 3 1,grow");
-		
-		btnGrafica.setMinimumSize(new Dimension(30, 30)); // mínimo
-		btnGrafica.setPreferredSize(new Dimension(1000, 1000)); // inicial
-		
-		btnGrafica.setBorderPainted(false);
-		btnGrafica.setContentAreaFilled(false);
-		btnGrafica.setFocusPainted(false);
-		btnGrafica.setOpaque(false);
-		
-		// Listener para redimensionar a imagem mantendo proporção
-		btnGrafica.addComponentListener(new ComponentAdapter() {
-		    @Override
-		    public void componentResized(ComponentEvent e) {
-		        int largura = btnGrafica.getWidth();
-		        int altura = btnGrafica.getHeight();
+				        if (largura > 0 && altura > 0) {
+				            // Mantém proporção original da imagem
+				            double proporcaoOriginal = (double) iconOriginal.getIconWidth() / iconOriginal.getIconHeight();
+				            int novaLargura = largura;
+				            int novaAltura = (int) (largura / proporcaoOriginal);
 
-		        if (largura > 0 && altura > 0) {
-		            // Mantém proporção original da imagem
-		            double proporcaoOriginal = (double) iconOriginal.getIconWidth() / iconOriginal.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
+				            if (novaAltura > altura) {
+				                novaAltura = altura;
+				                novaLargura = (int) (altura * proporcaoOriginal);
+				            }
 
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = iconOriginal.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            btnGrafica.setIcon(new ImageIcon(img));
-		        }
-		    }
-		});
+				            Image img = iconOriginal.getImage().getScaledInstance(
+				                novaLargura, novaAltura, Image.SCALE_SMOOTH
+				            );
+				            btnGrafica.setIcon(new ImageIcon(img));
+				        }
+				    }
+				});
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro();
-			}
-		});
-		
-		
-		ImageIcon iconBemVindo= new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/SejaBemVindo.png")
-			);
-		btnNewButton.setIcon(iconBemVindo);
-		contentPane.add(btnNewButton, "cell 0 1 8 1,grow");
-		
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setOpaque(false);
-		
-		btnNewButton.setMinimumSize(new Dimension(30, 30)); // mínimo
-		btnNewButton.setPreferredSize(new Dimension(1000, 1000)); // inicial
+	
 
 		
 		// Listener para redimensionar a imagem mantendo proporção
