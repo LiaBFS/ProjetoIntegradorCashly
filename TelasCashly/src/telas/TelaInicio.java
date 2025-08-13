@@ -16,16 +16,6 @@ public class TelaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
-	private void abrirTelaCadastro() {
-	    dispose(); // Fecha a tela atual
-	    new TelaCadastro().setVisible(true); // Abre a tela de cadastro
-	}
-	
-	private void abrirTelaApresentacao() {
-	    dispose(); // Fecha a tela atual
-	    new TelaApresentacao().setVisible(true); // Abre a tela de cadastro
-	}
 
 	/**
 	 * Launch the application.
@@ -57,100 +47,24 @@ public class TelaInicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly.png")));
-		lblLogo.setBounds(64, 50, 365, 32);
-		contentPane.add(lblLogo);
-		
-		JButton btnIrCadastro = new JButton("");
-		btnIrCadastro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro();
-			}
-		});
-		btnIrCadastro.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/btnIrCadastro.png")));
-		btnIrCadastro.setBounds(222, 437, 242, 68);
-		contentPane.add(btnIrCadastro);
-		
-		btnIrCadastro.setBorderPainted(false);
-		btnIrCadastro.setContentAreaFilled(false);
-		btnIrCadastro.setFocusPainted(false);
-		btnIrCadastro.setOpaque(false);
-		
-		JLabel lblAindaNCriouConta = new JLabel("");
-		lblAindaNCriouConta.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/AindaNaoCriouConta.png")));
-		lblAindaNCriouConta.setBounds(96, 140, 596, 557);
-		contentPane.add(lblAindaNCriouConta);
-		
-		JButton btnLogin = new JButton("");
-		btnLogin.addActionListener(new ActionListener() {
+		JButton btnFundoProjetos = new JButton("");
+		btnFundoProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnLogin.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/Login2.png")));
-		btnLogin.setBounds(1082, 46, 122, 40);
-		contentPane.add(btnLogin);
+		btnFundoProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/FundoBtn.png")));
+		btnFundoProjetos.setBounds(296, 145, 950, 211);
+		contentPane.add(btnFundoProjetos);
 		
-		btnLogin.setBorderPainted(false);
-		btnLogin.setContentAreaFilled(false);
-		btnLogin.setFocusPainted(false);
-		btnLogin.setOpaque(false);
+		btnFundoProjetos.setBorderPainted(false);
+		btnFundoProjetos.setContentAreaFilled(false);
+		btnFundoProjetos.setFocusPainted(false);
+		btnFundoProjetos.setOpaque(false);
 		
-		JButton btnCadastrar = new JButton("");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro();
-			}
-		});
-		btnCadastrar.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCadastro.png")));
-		btnCadastrar.setBounds(921, 54, 129, 23);
-		contentPane.add(btnCadastrar);
-		
-		btnCadastrar.setBorderPainted(false);
-		btnCadastrar.setContentAreaFilled(false);
-		btnCadastrar.setFocusPainted(false);
-		btnCadastrar.setOpaque(false);
-		
-		JButton btnInicio = new JButton("");
-		btnInicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				abrirTelaApresentacao();
-			}
-		});
-		btnInicio.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnInicio2.png")));
-		btnInicio.setBounds(784, 54, 89, 23);
-		contentPane.add(btnInicio);
-		
-		btnInicio.setBorderPainted(false);
-		btnInicio.setContentAreaFilled(false);
-		btnInicio.setFocusPainted(false);
-		btnInicio.setOpaque(false);
-		
-		JLabel lblFazerLogin = new JLabel("");
-		lblFazerLogin.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/FazerLogin.png")));
-		lblFazerLogin.setBounds(770, 198, 315, 53);
-		contentPane.add(lblFazerLogin);
-		
-		JLabel lblEmail = new JLabel("");
-		lblEmail.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/Email.png")));
-		lblEmail.setBounds(733, 275, 408, 68);
-		contentPane.add(lblEmail);
-		
-		JLabel lblSenha = new JLabel("");
-		lblSenha.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/Senha.png")));
-		lblSenha.setBounds(733, 368, 408, 68);
-		contentPane.add(lblSenha);
-		
-		JButton btnIniciarSessao = new JButton("");
-		btnIniciarSessao.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/btnIniciarSessao.png")));
-		btnIniciarSessao.setBounds(776, 473, 317, 69);
-		contentPane.add(btnIniciarSessao);
-		
-		btnIniciarSessao.setBorderPainted(false);
-		btnIniciarSessao.setContentAreaFilled(false);
-		btnIniciarSessao.setFocusPainted(false);
-		btnIniciarSessao.setOpaque(false);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BemVindoDeVolta.png")));
+		lblNewLabel.setBounds(296, 360, 958, 390);
+		contentPane.add(lblNewLabel);
 		
 		
 	}
