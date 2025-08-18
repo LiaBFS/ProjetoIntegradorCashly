@@ -1,13 +1,18 @@
 package telas;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -109,6 +114,12 @@ public class TelaCadastro extends JFrame {
 		panel_1.setBackground(new Color(216, 178, 184));
 		contentPane.add(panel_1, "cell 1 2,alignx right,growy");
 		panel_1.setLayout(new MigLayout("", "[100px]", "[grow 50][][grow 50]"));
+
+		ImageIcon IrProLogin2 = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/IrProLogin2 .png")
+
+			);
+		
 		
 		JButton btnIrProLogin = new JButton("");
 		panel_1.add(btnIrProLogin, "cell 0 1");
@@ -117,6 +128,33 @@ public class TelaCadastro extends JFrame {
 				abrirTelaLogin();
 			}
 		});
+		
+		btnIrProLogin.setMinimumSize(new Dimension(669, 549));
+		btnIrProLogin.setPreferredSize(new Dimension(1000, 1000));
+
+		
+
+		panel_1.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = panel_1.getWidth();
+		        int altura = panel_1.getHeight();
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) IrProLogin2.getIconWidth() /IrProLogin2.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = IrProLogin2.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            btnIrProLogin.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
 		btnIrProLogin.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/IrProLogin2.png")));
 		
 		btnIrProLogin.setBorderPainted(false);
