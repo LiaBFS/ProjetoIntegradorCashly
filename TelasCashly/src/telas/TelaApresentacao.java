@@ -139,6 +139,7 @@ public class TelaApresentacao extends JFrame {
         panel_1.setLayout(new MigLayout("", "[150px][grow][][grow][][grow][150px]", "[]"));
 
         JButton btnFacaProjetos = new JButton("");
+        btnFacaProjetos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/FacaProjetos.png")));
         panel_1.add(btnFacaProjetos, "cell 1 0,grow");
         btnFacaProjetos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
