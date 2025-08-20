@@ -118,8 +118,8 @@ public class TelaLogin extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(216, 178, 184));
-		contentPane.add(panel_1, "cell 1 2,alignx right,growy");
-		panel_1.setLayout(new MigLayout("", "[]", "[grow 50][][grow 50]"));
+		contentPane.add(panel_1, "cell 1 2,grow");
+		panel_1.setLayout(new MigLayout("", "[grow]", "[grow][][grow]"));
 		
 		ImageIcon IrProCadastro = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/IrProCadastro.png")
@@ -128,7 +128,7 @@ public class TelaLogin extends JFrame {
 	
 		
 		JButton btnIrCadastro = new JButton("");
-		panel_1.add(btnIrCadastro, "cell 0 1");
+		panel_1.add(btnIrCadastro, "cell 0 1,grow");
 		btnIrCadastro.setBackground(new Color(216, 178, 184));
 		btnIrCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,29 +172,152 @@ public class TelaLogin extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
-		contentPane.add(panel_2, "cell 3 2,alignx left,growy");
-		panel_2.setLayout(new MigLayout("", "[315px]", "[grow 50][][][grow 75][][5px][][grow][][][grow 50]"));
+		contentPane.add(panel_2, "cell 3 2,grow");
+		panel_2.setLayout(new MigLayout("", "[315px,grow]", "[grow 50][][][grow 75][][5px][][grow][][][grow 50]"));
 		
 		JLabel lblFazerLogin = new JLabel("");
-		panel_2.add(lblFazerLogin, "cell 0 3,alignx center,aligny center");
+		panel_2.add(lblFazerLogin, "cell 0 3,alignx center,growy");
 		lblFazerLogin.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/FazerLogin.png")));
 		
+//		ImageIcon FazerLogin = new ImageIcon(
+//			    TelaApresentacao.class.getResource("/imgs/FazerLogin.png")
+//			);	
+//		
+//		lblFazerLogin.setMinimumSize(new Dimension(30, 30));
+//		lblFazerLogin.setPreferredSize(new Dimension(1000, 1000));
+//		
+//		lblFazerLogin.addComponentListener(new ComponentAdapter() {
+//		    public void componentResized(ComponentEvent e) {
+//		        int largura = lblFazerLogin.getWidth();
+//		        int altura = lblFazerLogin.getHeight();
+//
+//		        if (largura > 0 && altura > 0) {
+//		            double proporcaoOriginal = (double) FazerLogin.getIconWidth() / FazerLogin.getIconHeight();
+//		            int novaLargura = largura;
+//		            int novaAltura = (int) (largura / proporcaoOriginal);
+//
+//		            if (novaAltura > altura) {
+//		                novaAltura = altura;
+//		                novaLargura = (int) (altura * proporcaoOriginal);
+//		            }
+//
+//		            Image img = FazerLogin.getImage().getScaledInstance(
+//		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+//		            );
+//		            lblFazerLogin.setIcon(new ImageIcon(img));
+//		        }
+//		    }
+//		});
+		
+		
 		JLabel lblEmail = new JLabel("");
-		panel_2.add(lblEmail, "cell 0 4,alignx center,aligny center");
+		panel_2.add(lblEmail, "cell 0 4,alignx center,growy");
 		lblEmail.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Email.png")));
 		
+
+		ImageIcon Email = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/Email.png")
+			);	
+		
+		lblEmail.setMinimumSize(new Dimension(10, 10));
+		lblEmail.setPreferredSize(new Dimension(1000, 1000));
+		
+		lblEmail.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = lblEmail.getWidth();
+		        int altura = lblEmail.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) Email.getIconWidth() / Email.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = Email.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            lblEmail.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
 		JLabel lblSenha = new JLabel("");
-		panel_2.add(lblSenha, "cell 0 6,alignx center,aligny center");
+		panel_2.add(lblSenha, "cell 0 6,alignx center,growy");
 		lblSenha.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Senha.png")));
 		
-		JButton btnIniciarSessao = new JButton("");
-		panel_2.add(btnIniciarSessao, "cell 0 7,alignx center,aligny center");
-		btnIniciarSessao.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnIniciarSessao.png")));
+		ImageIcon Senha = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/Senha.png")
+			);	
 		
-		btnIniciarSessao.setBorderPainted(false);
-		btnIniciarSessao.setContentAreaFilled(false);
-		btnIniciarSessao.setFocusPainted(false);
-		btnIniciarSessao.setOpaque(false);
+		lblSenha.setMinimumSize(new Dimension(10, 10));
+		lblSenha.setPreferredSize(new Dimension(1000, 1000));
+		
+		lblSenha.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = lblSenha.getWidth();
+		        int altura = lblSenha.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) Senha.getIconWidth() / Senha.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = Senha.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            lblSenha.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
+		JButton BtnIniciarSessao = new JButton("");
+		panel_2.add(BtnIniciarSessao, "cell 0 7,grow");
+		BtnIniciarSessao.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnIniciarSessao.png")));
+		
+		ImageIcon btnIniciarSessao = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/btnIniciarSessao.png")
+			);	
+		
+		BtnIniciarSessao.setMinimumSize(new Dimension(10, 10));
+		BtnIniciarSessao.setPreferredSize(new Dimension(1000, 1000));
+		
+		BtnIniciarSessao.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = BtnIniciarSessao.getWidth();
+		        int altura = BtnIniciarSessao.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) btnIniciarSessao.getIconWidth() / btnIniciarSessao.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = btnIniciarSessao.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            BtnIniciarSessao.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
+		
+		BtnIniciarSessao.setBorderPainted(false);
+		BtnIniciarSessao.setContentAreaFilled(false);
+		BtnIniciarSessao.setFocusPainted(false);
+		BtnIniciarSessao.setOpaque(false);
 		
 		
 		
