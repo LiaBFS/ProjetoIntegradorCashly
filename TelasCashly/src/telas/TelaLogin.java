@@ -33,6 +33,7 @@ public class TelaLogin extends JFrame {
 	    new TelaApresentacao().setVisible(true); // Abre a tela de cadastro
 	}
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -173,10 +174,10 @@ public class TelaLogin extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
 		contentPane.add(panel_2, "cell 3 2,grow");
-		panel_2.setLayout(new MigLayout("", "[315px,grow]", "[grow 50][][][grow 75][][5px][][grow][][][grow 50]"));
+		panel_2.setLayout(new MigLayout("", "[315px,grow]", "[][][][][][][grow 50][][][][][][grow 75][][5px][][grow][][][][grow 50][][][][][][][][][][][]"));
 		
 		JLabel lblFazerLogin = new JLabel("");
-		panel_2.add(lblFazerLogin, "cell 0 3,alignx center,growy");
+		panel_2.add(lblFazerLogin, "cell 0 12,alignx center,growy");
 		lblFazerLogin.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/FazerLogin.png")));
 		
 //		ImageIcon FazerLogin = new ImageIcon(
@@ -211,7 +212,7 @@ public class TelaLogin extends JFrame {
 		
 		
 		JLabel lblEmail = new JLabel("");
-		panel_2.add(lblEmail, "cell 0 4,alignx center,growy");
+		panel_2.add(lblEmail, "cell 0 13,alignx center,growy");
 		lblEmail.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Email.png")));
 		
 
@@ -246,7 +247,7 @@ public class TelaLogin extends JFrame {
 		});
 		
 		JLabel lblSenha = new JLabel("");
-		panel_2.add(lblSenha, "cell 0 6,alignx center,growy");
+		panel_2.add(lblSenha, "cell 0 15,alignx center,growy");
 		lblSenha.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Senha.png")));
 		
 		ImageIcon Senha = new ImageIcon(
@@ -279,13 +280,13 @@ public class TelaLogin extends JFrame {
 		    }
 		});
 		
-		JButton BtnIniciarSessao = new JButton("");
-		panel_2.add(BtnIniciarSessao, "cell 0 7,grow");
-		BtnIniciarSessao.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnIniciarSessao.png")));
-		
 		ImageIcon btnIniciarSessao = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/btnIniciarSessao.png")
 			);	
+		
+		JButton BtnIniciarSessao = new JButton("");
+		panel_2.add(BtnIniciarSessao, "cell 0 17,grow");
+		BtnIniciarSessao.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnIniciarSessao.png")));
 		
 		BtnIniciarSessao.setMinimumSize(new Dimension(10, 10));
 		BtnIniciarSessao.setPreferredSize(new Dimension(1000, 1000));
