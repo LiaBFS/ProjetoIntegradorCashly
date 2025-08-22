@@ -23,7 +23,7 @@ public class TelaInternaInicial extends JPanel {
 		add(lblNewLabel, "cell 1 1");
 		
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoBtn.png");
-		add(panel, "cell 1 3,grow");
+		add(panel, "cell 1 3,alignx left,growy");
 		panel.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][][]", "[100px]"));
 		
 		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/BemVindoDeVolta.png");
