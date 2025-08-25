@@ -3,6 +3,8 @@ package telas;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +17,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Insets;
+import java.awt.Dimension;
 
 public class TelaInicio extends JFrame {
 
@@ -39,6 +42,21 @@ public class TelaInicio extends JFrame {
 				try {
 					TelaInicio frame = new TelaInicio();
 					frame.setVisible(true);
+					
+//					frame.addComponentListener(new ComponentAdapter() {
+//						public void componentResized(ComponentEvent e) {
+//							Dimension d=frame.getSize();
+//							Dimension minD=frame.getMinimumSize();
+//							if(d.width<minD.width) {
+//								d.width=minD.width;
+//							}
+//							if(d.height<minD.height) {
+//								d.height=minD.height;
+//							}
+//							
+//							frame.setSize(d);
+//						}
+					//});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +71,8 @@ public class TelaInicio extends JFrame {
 		
 		setBackground(new Color(216, 178, 184));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+        setMinimumSize(new Dimension(950, 670)); // tamanho mínimo
+
 		// Faz abrir em tela cheia
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
         // setUndecorated(true); // Opcional: sem bordas e barra de título
@@ -73,7 +92,7 @@ public class TelaInicio extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(207, 114, 116));
 		contentPane.add(panel, "cell 0 0,grow");
-		panel.setLayout(new MigLayout("", "[5px,grow 5][60px][grow 10][][][][][][][][][][][][grow][][][][][][][][][][][][][][][][][][][][][][grow 50]", "[fill]"));
+		panel.setLayout(new MigLayout("", "[5px,grow 5][60px][grow 10][][][][][][][][][][][][grow][][][][][][][][][][][][][][][][][][][][][][5px,grow 5]", "[fill]"));
 		
 		JButton btnAbrirMenu = new JButton("");
 		btnAbrirMenu.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMenu.png")));
@@ -113,9 +132,22 @@ public class TelaInicio extends JFrame {
 		btnAbrirMenu.setOpaque(false);
 		panel.add(btnAbrirMenu, "cell 1 0,alignx left,aligny bottom");
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly2.png")));
-		panel.add(lblNewLabel_5, "cell 3 0,alignx center,growy");
+		JLabel lblLogoCashly = new JLabel("");
+		lblLogoCashly.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly2.png")));
+		panel.add(lblLogoCashly, "cell 3 0,alignx center,growy");
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setMargin(new Insets(1, 1, 1, 1));
+		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
+		
+		
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setOpaque(false);
+		panel.add(btnNewButton_1, "cell 35 0");
+		
+		
 		
 		panel_Central = new JPanel();
 		panel_Central.setBackground(new Color(255, 128, 128));
@@ -242,6 +274,10 @@ public class TelaInicio extends JFrame {
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setOpaque(false);
+		
+		
+		
+		
 		
 		
 	}
