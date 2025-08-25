@@ -1,6 +1,7 @@
 package telas;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,6 +23,8 @@ public class JPanelComBackground extends JPanel {
     public JPanelComBackground(String caminhoImagem) {
         backgroundImage = new ImageIcon(getClass().getResource(caminhoImagem)).getImage();
     }
+    
+    
 
     @Override
     protected void paintComponent(Graphics g) {

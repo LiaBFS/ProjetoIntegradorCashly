@@ -1,6 +1,7 @@
 package telas;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -71,7 +72,7 @@ public class TelaInicio extends JFrame {
 		
 		setBackground(new Color(216, 178, 184));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(950, 670)); // tamanho mínimo
+        setMinimumSize(new Dimension(950, 690)); // tamanho mínimo
 
 		// Faz abrir em tela cheia
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
@@ -160,6 +161,9 @@ public class TelaInicio extends JFrame {
 		panelMenu_expanded.setLayout(new MigLayout("", "[244px]", "[2px][grow 2][grow 2][grow 2][grow 2][][][][][grow][][][][][][]"));
 		panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
 		
+		
+//		ImageIcon iconMeusProjetos = new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png"));
+		
 		JButton btnMeusProjetos = new JButton("");
 		btnMeusProjetos.setMargin(new Insets(2, 2, 2, 2));
 		btnMeusProjetos.addActionListener(new ActionListener() {
@@ -179,6 +183,27 @@ public class TelaInicio extends JFrame {
 		btnMeusProjetos.setContentAreaFilled(false);
 		btnMeusProjetos.setFocusPainted(false);
 		btnMeusProjetos.setOpaque(false);
+		
+//		btnMeusProjetos.setMinimumSize(new Dimension(30, 30));
+//		btnMeusProjetos.setPreferredSize(new Dimension(70, 70));
+//		btnMeusProjetos.addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                int largura = btnMeusProjetos.getWidth();
+//                int altura = btnMeusProjetos.getHeight();
+//                if (largura > 0 && altura > 0) {
+//                    double proporcaoOriginal = (double) iconMeusProjetos.getIconWidth() / iconMeusProjetos.getIconHeight();
+//                    int novaLargura = largura;
+//                    int novaAltura = (int) (largura / proporcaoOriginal);
+//                    if (novaAltura > altura) {
+//                        novaAltura = altura;
+//                        novaLargura = (int) (altura * proporcaoOriginal);
+//                    }
+//                    Image img = iconMeusProjetos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
+//                    btnMeusProjetos.setIcon(new ImageIcon(img));
+//                }
+//            }
+//        });
 		
 		
 		
