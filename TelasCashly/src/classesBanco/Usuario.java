@@ -12,7 +12,7 @@ public class Usuario {
 	private List<Projeto> projetos;
 	
 	public Usuario(int id, String nome, String email, String senha, Date dataCadastro, List<Projeto> projetos) {
-		super();
+
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -21,8 +21,65 @@ public class Usuario {
 		this.projetos = projetos;
 	}
 	
-	public void cadastrar() {
-		System.out.print("Usuário cadastrado!");
+	
+	public int getId() {
+		return id;
 	}
-   
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+
+	public List<Projeto> getProjetos() {
+		return projetos;
+	}
+
+
+	public void setProjetos(List<Projeto> projetos) {
+		this.projetos = projetos;
+	}
+
+
 }
