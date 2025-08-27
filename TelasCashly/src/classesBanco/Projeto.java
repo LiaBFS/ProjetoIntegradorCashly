@@ -10,14 +10,33 @@ public class Projeto {
 	private List<LancamentoFinanceiro> fluxoRenda;
 	private double saldo;
 	private List<Usuario> colaboradores;
+	private String nome;
 	
 	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double saldo) {
 
 		this.id = id;
+		this.nome = nome;
 		this.dataCriacao = dataCriacao;
 		this.descricao = descricao;
 		this.fluxoRenda = fluxoRenda;
 		this.saldo = saldo;
+		this.colaboradores = colaboradores;
+	}
+	
+	
+	
+	
+	public List<Usuario> getColaboradores() {
+		return colaboradores;
+	}
+	public void setColaboradores(List<Usuario> colaboradores) {
+		this.colaboradores = colaboradores;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public int getId() {
 		return id;
