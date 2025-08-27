@@ -1,5 +1,8 @@
 package telas;
 
+import net.miginfocom.swing.MigLayout;
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,6 +13,7 @@ import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import net.miginfocom.swing.MigLayout;
 public class JPanelComBackground extends JPanel {
 
     private static final long serialVersionUID = 1L;
@@ -51,21 +55,52 @@ public class JPanelComBackground extends JPanel {
             drawWidth = getWidth();
             drawHeight = (int) (drawWidth / imgRatio);
         }
-        
-        
+        System.out.println(getWidth());
+        System.out.println(getHeight());
+        System.out.println(imgWidth);
+        System.out.println(imgHeight);
+        System.out.println(panelRatio);
+        System.out.println(imgRatio);
+        System.out.println(drawWidth);
+        System.out.println(drawHeight);
 
 
         int x = (getWidth() - drawWidth) / 2;
         int y = (getHeight() - drawHeight) / 2;
 
+        System.out.println(x);
+        System.out.println(y);
         // Renderização com qualidade
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        
+         int a = (getWidth()-drawWidth)/2;
+         
+        
         g2d.drawImage(backgroundImage, x, y, drawWidth, drawHeight, this);
         g2d.dispose();
+        
+        if( getLayout() instanceof MigLayout) {
+        	MigLayout layout = (MigLayout) getLayout();
+        
+        // Adicionando um componente com layout personalizado
+        // A primeira e a última coluna têm tamanho 'a'
+     //   layout.setColumnConstraints("[][grow 20][grow 20][][][grow 70][][grow 15][][grow][" + a + "px]");
+
+     //   String currentColConstraints = layout.getLayoutConstraints().getColumnConstraints().toString();
+        
+        // Verificando se há ao menos uma coluna
+     //   if (colConstraints.length > 0) {
+     //       ColumnConstraints primeiraColuna = colConstraints[0]; // A primeira coluna
+     //       System.out.println("Primeira coluna: " + primeiraColuna);
+     //   }
+        // O MigLayout permite o uso de colunas relativas e absolutas, então esse valor pode ser ajustado para se adaptar ao layout
+     //   layout.setColumnConstraints("[" + a + "][grow 20][grow 20][][][grow 70][][grow 15][][grow][]"); // Para definir a largura da primeira coluna
+        }
+
     }
     
 }
