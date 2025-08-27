@@ -213,6 +213,7 @@ public class TelaApresentacao extends JFrame {
         btnGrafica.setIcon(iconOriginal);
         btnGrafica.setMinimumSize(new Dimension(30, 30));
         btnGrafica.setPreferredSize(new Dimension(1000, 1000));
+        
         btnGrafica.setBorderPainted(false);
         btnGrafica.setContentAreaFilled(false);
         btnGrafica.setFocusPainted(false);
