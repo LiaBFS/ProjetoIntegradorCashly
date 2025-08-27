@@ -59,7 +59,7 @@ public class TelaApresentacao extends JFrame {
         contentPane.setBackground(new Color(216, 178, 184));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        contentPane.setLayout(new MigLayout("", "[376px,grow][50,grow][grow][376px,grow][376px,grow]", "[grow][48px][404px,grow,fill][48px][235px,grow]"));
+        contentPane.setLayout(new MigLayout("", "[376px,grow][50,grow][grow][376px,grow][376px,grow]", "[grow][48px][404px,grow,fill][48px][235px,grow][35px]"));
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(216, 178, 184));

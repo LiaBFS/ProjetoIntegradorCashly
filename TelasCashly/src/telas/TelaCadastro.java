@@ -1,16 +1,22 @@
 package telas;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import net.miginfocom.swing.MigLayout;
 
 public class TelaCadastro extends JFrame {
 
@@ -49,114 +55,142 @@ public class TelaCadastro extends JFrame {
 	 */
 	public TelaCadastro() {
 		setBackground(new Color(216, 178, 184));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Faz abrir em tela cheia
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
 		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(216, 178, 184));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new MigLayout("", "[100px,grow][35px,grow][100px,grow][35px,grow][100px,grow]", "[grow][75px][70px,grow][75px,grow]"));
 		
-		JButton btnCadastro = new JButton("");
-		btnCadastro.setOpaque(false);
-		btnCadastro.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BtnCadastroSel.png")));
-		btnCadastro.setFocusPainted(false);
-		btnCadastro.setContentAreaFilled(false);
-		btnCadastro.setBorderPainted(false);
-		btnCadastro.setBounds(908, 48, 161, 35);
-		contentPane.add(btnCadastro);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(216, 178, 184));
+		contentPane.add(panel, "cell 0 0 5 1,grow");
+		panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][grow 50]", "[]"));
 		
 		JLabel lblLogo = new JLabel("");
+		panel.add(lblLogo, "cell 1 0,alignx left");
 		lblLogo.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/LogoCashly.png")));
-		lblLogo.setBounds(64, 50, 365, 32);
-		contentPane.add(lblLogo);
-		
-		JButton btnLogin = new JButton("");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaLogin();
-			}
-		});
-		btnLogin.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BtnLogin.png")));
-		btnLogin.setBounds(1082, 53, 89, 23);
-		contentPane.add(btnLogin);
-		
-		btnLogin.setBorderPainted(false);
-		btnLogin.setContentAreaFilled(false);
-		btnLogin.setFocusPainted(false);
-		btnLogin.setOpaque(false);
 		
 		JButton btnInicio = new JButton("");
+		panel.add(btnInicio, "cell 14 0");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaApresentacao();
 			}
 		});
 		btnInicio.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BtnInicio2.png")));
-		btnInicio.setBounds(784, 54, 89, 23);
-		contentPane.add(btnInicio);
 		
 		btnInicio.setBorderPainted(false);
 		btnInicio.setContentAreaFilled(false);
 		btnInicio.setFocusPainted(false);
 		btnInicio.setOpaque(false);
 		
+		JButton btnCadastro = new JButton("");
+		panel.add(btnCadastro, "cell 17 0,alignx right,growy");
+		btnCadastro.setOpaque(false);
+		btnCadastro.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BtnCadastroSel.png")));
+		btnCadastro.setFocusPainted(false);
+		btnCadastro.setContentAreaFilled(false);
+		btnCadastro.setBorderPainted(false);
+		
+		JButton btnLogin = new JButton("");
+		panel.add(btnLogin, "cell 20 0,alignx right");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaLogin();
+			}
+		});
+		btnLogin.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BtnLogin.png")));
+		
+		btnLogin.setBorderPainted(false);
+		btnLogin.setContentAreaFilled(false);
+		btnLogin.setFocusPainted(false);
+		btnLogin.setOpaque(false);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(216, 178, 184));
+		contentPane.add(panel_1, "cell 1 2,alignx right,growy");
+		panel_1.setLayout(new MigLayout("", "[100px]", "[grow 50][][grow 50]"));
+
+		ImageIcon IrProLogin2 = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/IrProLogin2 .png")
+
+			);
+		
+		
 		JButton btnIrProLogin = new JButton("");
+		panel_1.add(btnIrProLogin, "cell 0 1");
 		btnIrProLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaLogin();
 			}
 		});
-		btnIrProLogin.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/IrProLogin.png")));
-		btnIrProLogin.setBounds(237, 410, 220, 70);
-		contentPane.add(btnIrProLogin);
+		
+		btnIrProLogin.setMinimumSize(new Dimension(669, 549));
+		btnIrProLogin.setPreferredSize(new Dimension(1000, 1000));
+
+		
+
+		panel_1.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = panel_1.getWidth();
+		        int altura = panel_1.getHeight();
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) IrProLogin2.getIconWidth() /IrProLogin2.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = IrProLogin2.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            btnIrProLogin.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
+		
+		btnIrProLogin.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/IrProLogin2.png")));
 		
 		btnIrProLogin.setBorderPainted(false);
 		btnIrProLogin.setContentAreaFilled(false);
 		btnIrProLogin.setFocusPainted(false);
 		btnIrProLogin.setOpaque(false);
 		
-		JLabel lblJaTemCadastro = new JLabel("");
-		lblJaTemCadastro.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/JaTemCadastro.png")));
-		lblJaTemCadastro.setBounds(96, 140, 571, 559);
-		contentPane.add(lblJaTemCadastro);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(216, 178, 184));
+		contentPane.add(panel_2, "cell 3 2,alignx left,growy");
+		panel_2.setLayout(new MigLayout("", "[100px]", "[grow 50][][grow 75][][5px][][5px][][grow 75][][grow 50]"));
 		
 		JLabel lblCriarConta = new JLabel("");
+		panel_2.add(lblCriarConta, "cell 0 1,alignx center,growy");
 		lblCriarConta.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/CriarConta.png")));
-		lblCriarConta.setBounds(755, 185, 340, 59);
-		contentPane.add(lblCriarConta);
-		
-		JButton btnConfirmaCadastro = new JButton("");
-		btnConfirmaCadastro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnConfirmaCadastro.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/ConfirmaCadastro.png")));
-		btnConfirmaCadastro.setBounds(802, 539, 274, 65);
-		contentPane.add(btnConfirmaCadastro);
-		
-		btnConfirmaCadastro.setBorderPainted(false);
-		btnConfirmaCadastro.setContentAreaFilled(false);
-		btnConfirmaCadastro.setFocusPainted(false);
-		btnConfirmaCadastro.setOpaque(false);
-		
-		JLabel lblSenha = new JLabel("");
-		lblSenha.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/Senha.png")));
-		lblSenha.setBounds(733, 435, 410, 70);
-		contentPane.add(lblSenha);
-		
-		JLabel lblEmail = new JLabel("");
-		lblEmail.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/Email.png")));
-		lblEmail.setBounds(733, 350, 410, 70);
-		contentPane.add(lblEmail);
 		
 		JLabel lblNome = new JLabel("");
+		panel_2.add(lblNome, "cell 0 3");
 		lblNome.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/Usuario.png")));
-		lblNome.setBounds(733, 265, 410, 70);
-		contentPane.add(lblNome);
 		
+		JLabel lblEmail = new JLabel("");
+		panel_2.add(lblEmail, "cell 0 5");
+		lblEmail.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/Email.png")));
 		
+		JLabel lblSenha = new JLabel("");
+		panel_2.add(lblSenha, "cell 0 7");
+		lblSenha.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/Senha.png")));
+		
+		JButton btnNewButton = new JButton("");
+		panel_2.add(btnNewButton, "cell 0 9,alignx center,aligny top");
+		btnNewButton.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/ConfirmaCadastro.png")));
+		
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setOpaque(false);
 		
 	}
 }
