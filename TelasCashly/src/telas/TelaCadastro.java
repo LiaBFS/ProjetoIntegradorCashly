@@ -116,7 +116,7 @@ public class TelaCadastro extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[100px]", "[grow 50][][grow 50]"));
 
 		ImageIcon IrProLogin2 = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/IrProLogin2 .png")
+			    TelaApresentacao.class.getResource("/imgs/IrProLogin2.png")
 
 			);
 		
