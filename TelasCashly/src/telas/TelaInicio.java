@@ -1,8 +1,11 @@
 package telas;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,11 +14,25 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import net.miginfocom.swing.MigLayout;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Insets;
+import java.awt.Dimension;
 
 public class TelaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	boolean menuAberto = true;
+	boolean meusProjetosAberto = true;
+	private JPanel panelMenu_expanded;
+	private JPanel panel_Central;
+	private JPanel panelMenuContracted;
+	private JPanel panelActual;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -26,6 +43,21 @@ public class TelaInicio extends JFrame {
 				try {
 					TelaInicio frame = new TelaInicio();
 					frame.setVisible(true);
+					
+//					frame.addComponentListener(new ComponentAdapter() {
+//						public void componentResized(ComponentEvent e) {
+//							Dimension d=frame.getSize();
+//							Dimension minD=frame.getMinimumSize();
+//							if(d.width<minD.width) {
+//								d.width=minD.width;
+//							}
+//							if(d.height<minD.height) {
+//								d.height=minD.height;
+//							}
+//							
+//							frame.setSize(d);
+//						}
+					//});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,34 +69,240 @@ public class TelaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicio() {
+		
 		setBackground(new Color(216, 178, 184));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(950, 690)); // tamanho mínimo
+
+		// Faz abrir em tela cheia
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
+        // setUndecorated(true); // Opcional: sem bordas e barra de título
+        // setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize()); // Opcional: força resolução exata
+
+        
 		setBounds(100, 100, 1280, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(216, 178, 184));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(180, 98, 100));
+		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		contentPane.setBorder(null);
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new MigLayout("insets 0", "[958px,grow,fill]", "[70px,fill][630px,grow,fill]"));
 		
-		JButton btnFundoProjetos = new JButton("");
-		btnFundoProjetos.addActionListener(new ActionListener() {
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(207, 114, 116));
+		contentPane.add(panel, "cell 0 0,grow");
+		panel.setLayout(new MigLayout("", "[5px,grow 5][60px][grow 10][][][][][][][][][][][][grow][][][][][][][][][][][][][][][][][][][][][][5px,grow 5]", "[fill]"));
+		
+		JButton btnAbrirMenu = new JButton("");
+		btnAbrirMenu.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMenu.png")));
+		btnAbrirMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (menuAberto == false) {
+					menuAberto  = true;
+					
+					panel_Central.remove(panelMenu_expanded);
+
+			        // Novo painel para o lado esquerdo
+			        			        // Adiciona o novo painel na mesma posição
+					panel_Central.add(panelMenuContracted, BorderLayout.WEST);
+
+					
+					
+				} else {
+					menuAberto = false; 
+					
+					panel_Central.remove(panelMenuContracted);
+
+			        // Novo painel para o lado esquerdo
+			        			        // Adiciona o novo painel na mesma posição
+					panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
+
+				}
+			    // Atualiza a interface
+		        revalidate();
+		        repaint();
+				
+			}
+		});
+		
+		btnAbrirMenu.setBorderPainted(false);
+		btnAbrirMenu.setContentAreaFilled(false);
+		btnAbrirMenu.setFocusPainted(false);
+		btnAbrirMenu.setOpaque(false);
+		panel.add(btnAbrirMenu, "cell 1 0,alignx left,aligny bottom");
+		
+		JLabel lblLogoCashly = new JLabel("");
+		lblLogoCashly.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly2.png")));
+		panel.add(lblLogoCashly, "cell 3 0,alignx center,growy");
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setMargin(new Insets(1, 1, 1, 1));
+		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
+		
+		
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setOpaque(false);
+		panel.add(btnNewButton_1, "cell 35 0");
+		
+		
+		
+		panel_Central = new JPanel();
+		panel_Central.setBackground(new Color(255, 128, 128));
+		contentPane.add(panel_Central, "cell 0 1,grow");
+		panel_Central.setLayout(new BorderLayout(0, 0));
+		
+		panelMenu_expanded = new JPanel();
+		panelMenu_expanded.setBackground(new Color(255, 245, 234));
+		//panel_1.add(panelMenu_expanded, BorderLayout.WEST);
+		panelMenu_expanded.setLayout(new MigLayout("", "[244px]", "[2px][grow 2][grow 2][grow 2][grow 2][][][][][grow][][][][][][]"));
+		panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
+		
+		
+//		ImageIcon iconMeusProjetos = new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png"));
+		
+		JButton btnMeusProjetos = new JButton("");
+		btnMeusProjetos.setMargin(new Insets(2, 2, 2, 2));
+		btnMeusProjetos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
+			}
+		});
+		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png")));
+		panelMenu_expanded.add(btnMeusProjetos, "cell 0 1,growx,aligny center");
+		
+		btnMeusProjetos.setBorderPainted(false);
+		btnMeusProjetos.setContentAreaFilled(false);
+		btnMeusProjetos.setFocusPainted(false);
+		btnMeusProjetos.setOpaque(false);
+		
+//		btnMeusProjetos.setMinimumSize(new Dimension(30, 30));
+//		btnMeusProjetos.setPreferredSize(new Dimension(70, 70));
+//		btnMeusProjetos.addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                int largura = btnMeusProjetos.getWidth();
+//                int altura = btnMeusProjetos.getHeight();
+//                if (largura > 0 && altura > 0) {
+//                    double proporcaoOriginal = (double) iconMeusProjetos.getIconWidth() / iconMeusProjetos.getIconHeight();
+//                    int novaLargura = largura;
+//                    int novaAltura = (int) (largura / proporcaoOriginal);
+//                    if (novaAltura > altura) {
+//                        novaAltura = altura;
+//                        novaLargura = (int) (altura * proporcaoOriginal);
+//                    }
+//                    Image img = iconMeusProjetos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
+//                    btnMeusProjetos.setIcon(new ImageIcon(img));
+//                }
+//            }
+//        });
+		
+		
+		
+		JButton btnCriarProjetos = new JButton("");
+		btnCriarProjetos.setMargin(new Insets(2, 2, 2, 2));
+		btnCriarProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnFundoProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/FundoBtn.png")));
-		btnFundoProjetos.setBounds(296, 145, 950, 211);
-		contentPane.add(btnFundoProjetos);
+		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
+		panelMenu_expanded.add(btnCriarProjetos, "cell 0 2,growx,aligny center");
 		
-		btnFundoProjetos.setBorderPainted(false);
-		btnFundoProjetos.setContentAreaFilled(false);
-		btnFundoProjetos.setFocusPainted(false);
-		btnFundoProjetos.setOpaque(false);
+		btnCriarProjetos.setBorderPainted(false);
+		btnCriarProjetos.setContentAreaFilled(false);
+		btnCriarProjetos.setFocusPainted(false);
+		btnCriarProjetos.setOpaque(false);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BemVindoDeVolta.png")));
-		lblNewLabel.setBounds(296, 360, 958, 390);
-		contentPane.add(lblNewLabel);
+		
+		
+		JButton btnNotificacoes = new JButton("");
+		btnNotificacoes.setMargin(new Insets(2, 2, 2, 2));
+		btnNotificacoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnNotificacoes.png")));
+		panelMenu_expanded.add(btnNotificacoes, "cell 0 3,growx,aligny center");
+		
+		btnNotificacoes.setBorderPainted(false);
+		btnNotificacoes.setContentAreaFilled(false);
+		btnNotificacoes.setFocusPainted(false);
+		btnNotificacoes.setOpaque(false);
+		
+		
+		
+		JButton btnColaboradores = new JButton("");
+		btnColaboradores.setMargin(new Insets(2, 2, 2, 2));
+		btnColaboradores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
+		panelMenu_expanded.add(btnColaboradores, "cell 0 4,growx,aligny center");
+		
+		btnColaboradores.setBorderPainted(false);
+		btnColaboradores.setContentAreaFilled(false);
+		btnColaboradores.setFocusPainted(false);
+		btnColaboradores.setOpaque(false);
+		
+		
+		
+		JButton btnPerfil = new JButton("");
+		btnPerfil.setMargin(new Insets(2, 2, 2, 2));
+		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPerfil.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfil.png")));
+		panelMenu_expanded.add(btnPerfil, "cell 0 14,alignx center,growy");
+		
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setContentAreaFilled(false);
+		btnPerfil.setFocusPainted(false);
+		btnPerfil.setOpaque(false);
+		
+		
+		JPanel panel_3 = new TelaInternaInicial();
+		panel_3.setBackground(new Color(216, 178, 184));
+		panelActual=panel_3;
+		panel_Central.add(panel_3, BorderLayout.CENTER);
+		//panel_3.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][]", "[fill][][][][][][][][][fill]"));
+		
+		
+		
+		panelMenuContracted = new JPanel();
+		panelMenuContracted.setBackground(new Color(255, 245, 234));
+		
+		panelMenuContracted.setLayout(new MigLayout("", "[42px]", "[][][][][][][][][][][][][][][][][][grow][][][][]"));
+		//panel_Central.add(panelMenuContracted, BorderLayout.WEST);
+		
+		
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfilRe.png")));
+		panelMenuContracted.add(btnNewButton, "cell 0 20,alignx center,growy");
+		
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setOpaque(false);
+		
+		
+		
+		
 		
 		
 	}
