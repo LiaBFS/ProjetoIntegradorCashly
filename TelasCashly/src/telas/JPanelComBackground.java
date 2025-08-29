@@ -83,14 +83,35 @@ public class JPanelComBackground extends JPanel {
         g2d.drawImage(backgroundImage, x, y, drawWidth, drawHeight, this);
         g2d.dispose();
         
-        if( getLayout() instanceof MigLayout) {
-        	MigLayout layout = (MigLayout) getLayout();
         
+        	 if( getLayout() instanceof MigLayout) {
+
+             	MigLayout layout = (MigLayout) getLayout();
+
+             
+
+             	MigLayout layoutMig = (MigLayout) getLayout();
+
+             	
+
+             	String colunas= (String) layoutMig.getColumnConstraints();
+
+             	int posPrimeira = colunas.indexOf("]");
+
+             	int posUltima = colunas.lastIndexOf("[");
+
+             	String novoConstraints = "[" + a + "]"+colunas.substring(posPrimeira+1, posUltima)+"[" + a + "]";
+
+             	layout.setColumnConstraints(novoConstraints); // Para definir a largura da primeira coluna
+
+
+
+             	
         // Adicionando um componente com layout personalizado
         // A primeira e a última coluna têm tamanho 'a'
-     //   layout.setColumnConstraints("[][grow 20][grow 20][][][grow 70][][grow 15][][grow][" + a + "px]");
+//        layout.setColumnConstraints("[][grow 20][grow 20][][][grow 70][][grow 15][][grow][" + a + "px]");
 
-     //   String currentColConstraints = layout.getLayoutConstraints().getColumnConstraints().toString();
+     //  String currentColConstraints = layout.getLayoutConstraints().getColumnConstraints().toString();
         
         // Verificando se há ao menos uma coluna
      //   if (colConstraints.length > 0) {
