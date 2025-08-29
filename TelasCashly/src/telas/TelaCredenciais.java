@@ -10,7 +10,7 @@ import java.awt.Color;
 public class TelaCredenciais extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private TelaLogin2 contentPane;
+	private TelaInternaLogin contentPane;
 
 	/**
 	 * Launch the application.
@@ -34,7 +34,7 @@ public class TelaCredenciais extends JFrame {
 	public TelaCredenciais() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new TelaLogin2();
+		contentPane = new TelaInternaLogin();
 		contentPane.setBackground(new Color(216, 178, 184));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

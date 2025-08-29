@@ -2,14 +2,14 @@ package telas;
 
 import javax.swing.JPanel;
 
-public class TelaLogin2 extends JPanel {
+public class TelaInternaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaLogin2() {
+	public TelaInternaLogin() {
 
 	}
 
