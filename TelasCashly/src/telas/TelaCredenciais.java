@@ -1,44 +1,37 @@
 package telas;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
+import java.awt.CardLayout;
+import javax.swing.*;
 
 public class TelaCredenciais extends JFrame {
+    private JPanel painelPrincipal;
+    private TelaInternaCadastro telaCadastro;
+    private TelaInternaLogin telaLogin;
+    private CardLayout card;
 
-	private static final long serialVersionUID = 1L;
-	private TelaInternaLogin contentPane;
+    public TelaCredenciais() {
+        setTitle("Tela de Credenciais");
+        setSize(500, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCredenciais frame = new TelaCredenciais();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+        // Layout de cartões
+        card = new CardLayout();
+        painelPrincipal = new JPanel(card);
 
-	/**
-	 * Create the frame.
-	 */
-	public TelaCredenciais() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new TelaInternaLogin();
-		contentPane.setBackground(new Color(216, 178, 184));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        // Cria os painéis internos
+        telaCadastro = new TelaInternaCadastro(this);
+        telaLogin = new TelaInternaLogin(this);
 
-		setContentPane(contentPane);
-	}
+        // Adiciona ao CardLayout
+        painelPrincipal.add(telaCadastro, "cadastro");
+        painelPrincipal.add(telaLogin, "login");
 
+        add(painelPrincipal);
+    }
+
+    // Método para trocar entre telas
+    public void mostrarTela(String nomeTela) {
+        card.show(painelPrincipal, nomeTela);
+    }
 }
