@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -12,10 +13,20 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Font;
 
 public class TelaInternaCadastro extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField txtSenha;
+	private String placeholderUsuario = "Usuário";
+	private String placeholderEmail = "Email";
+	private String placeholderSenha = "Senha";
 
 	/**
 	 * Create the panel.
@@ -139,7 +150,7 @@ public class TelaInternaCadastro extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
 		add(panel_2, "cell 4 2 1 2,grow");
-		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 50][][grow 75][][5px][][5px][][grow 75][][grow 50]"));
+		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 50][][grow 30][grow][5px][grow][5px][grow][grow 30][][grow 50]"));
 		
 		JLabel lblCriarConta = new JLabel("");
 		lblCriarConta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -178,116 +189,101 @@ public class TelaInternaCadastro extends JPanel {
 		    }
 		});
 		
-		JLabel lblNome = new JLabel("");
-		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setPreferredSize(new Dimension(500, 100));
-		lblNome.setMinimumSize(new Dimension(300, 100));
-		lblNome.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Usuario.png")));
-		panel_2.add(lblNome, "cell 0 3,grow");
-		
 		ImageIcon Usuario = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Usuario.png")
-			);	
-		
-		lblNome.setMinimumSize(new Dimension(300, 100));
-		lblNome.setPreferredSize(new Dimension(500, 100));
-		
-		lblNome.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        int largura = lblNome.getWidth();
-		        int altura = lblNome.getHeight();
-
-		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Usuario.getIconWidth() / Usuario.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
-
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = Usuario.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            lblNome.setIcon(new ImageIcon(img));
-		        }
-		    }
-		});
-		
-		JLabel lblEmail = new JLabel("");
-		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEmail.setPreferredSize(new Dimension(500, 100));
-		lblEmail.setMinimumSize(new Dimension(300, 100));
-		lblEmail.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Email.png")));
-		panel_2.add(lblEmail, "cell 0 5,grow");
+			);
 		
 		ImageIcon Email = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Email.png")
-			);	
-		
-		lblEmail.setMinimumSize(new Dimension(300, 100));
-		lblEmail.setPreferredSize(new Dimension(500, 100));
-		
-		lblEmail.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        int largura = lblEmail.getWidth();
-		        int altura = lblEmail.getHeight();
-
-		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Email.getIconWidth() / Email.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
-
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = Email.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            lblEmail.setIcon(new ImageIcon(img));
-		        }
-		    }
-		});
-		
-		JLabel lblSenha = new JLabel("");
-		lblSenha.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSenha.setPreferredSize(new Dimension(500, 100));
-		lblSenha.setMinimumSize(new Dimension(300, 100));
-		lblSenha.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Senha.png")));
-		panel_2.add(lblSenha, "cell 0 7,grow");
+			);
 		
 		ImageIcon Senha = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Senha.png")
-			);	
+			);
 		
-		lblSenha.setMinimumSize(new Dimension(300, 100));
-		lblSenha.setPreferredSize(new Dimension(500, 100));
+		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/Usuario.png");
+		panel_2.add(panel_3, "cell 0 3,grow");
+		panel_3.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		lblSenha.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        int largura = lblSenha.getWidth();
-		        int altura = lblSenha.getHeight();
-
-		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Senha.getIconWidth() / Senha.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
-
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = Senha.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            lblSenha.setIcon(new ImageIcon(img));
-		        }
-		    }
+		textField = new JTextField();
+		textField.setForeground(new Color(255, 245, 234));
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField.setText(placeholderUsuario);
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (textField.getText().equals(placeholderUsuario)) {
+					textField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().isEmpty()) {
+					textField.setText(placeholderUsuario);
+				}
+			}
 		});
+		
+		textField.setBackground(new Color(207, 114, 116));
+		panel_3.add(textField, "cell 2 1,growx");
+		textField.setColumns(10);
+		textField.setBorder(BorderFactory.createEmptyBorder());
+		
+		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/Email.png");
+		panel_2.add(panel_4, "cell 0 5,grow");
+		panel_4.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
+		
+		textField_1 = new JTextField();
+		textField_1.setForeground(new Color(255, 245, 234));
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField_1.setText(placeholderEmail);
+		textField_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (textField_1.getText().equals(placeholderEmail)) {
+					textField_1.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField_1.getText().isEmpty()) {
+					textField_1.setText(placeholderEmail);
+				}
+			}
+		});
+		textField_1.setBackground(new Color(207, 114, 116));
+		panel_4.add(textField_1, "cell 2 1,growx");
+		textField_1.setColumns(10);
+		textField_1.setBorder(BorderFactory.createEmptyBorder());
+		
+		
+		JPanelComBackground panel_5 = new JPanelComBackground("/imgs/Senha.png");
+		panel_2.add(panel_5, "cell 0 7,grow");
+		panel_5.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
+		
+		txtSenha = new JTextField();
+		txtSenha.setForeground(new Color(255, 245, 234));
+		txtSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtSenha.setText(placeholderSenha);
+		txtSenha.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtSenha.getText().equals(placeholderSenha)) {
+					txtSenha.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtSenha.getText().isEmpty()) {
+					txtSenha.setText(placeholderSenha);
+				}
+			}
+		});
+		txtSenha.setBackground(new Color(207, 114, 116));
+		panel_5.add(txtSenha, "cell 2 1,growx");
+		txtSenha.setColumns(10);
+		txtSenha.setBorder(BorderFactory.createEmptyBorder());
+		
 		
 		JButton btnCadastrar = new JButton("");
 		btnCadastrar.setPreferredSize(new Dimension(500, 100));
