@@ -70,48 +70,47 @@ public class TelaLogin extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
-		contentPane.add(panel, "cell 1 0 5 1,grow");
+		contentPane.add(panel, "cell 0 0 6 1,grow");
 		panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][grow 50]", "[70]"));
 		
 		JLabel lblLogo = new JLabel("");
 		panel.add(lblLogo, "cell 1 0,growx,aligny center");
 		lblLogo.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/LogoCashly.png")));
 		
-//		ImageIcon LogoCashly = new ImageIcon(
-//			    TelaApresentacao.class.getResource("/imgs/LogoCashly.png")
-//			);	
-//		
-//		lblLogo.setMinimumSize(new Dimension(10, 5));
-//		lblLogo.setPreferredSize(new Dimension(500, 500));
-//		
-//		lblLogo.addComponentListener(new ComponentAdapter() {
-//		    public void componentResized(ComponentEvent e) {
-//		        int largura = lblLogo.getWidth();
-//		        int altura = lblLogo.getHeight();
-//
-//		        if (largura > 0 && altura > 0) {
-//		            double proporcaoOriginal = (double) LogoCashly.getIconWidth() / LogoCashly.getIconHeight();
-//		            int novaLargura = largura;
-//		            int novaAltura = (int) (largura / proporcaoOriginal);
-//
-//		            if (novaAltura > altura) {
-//		                novaAltura = altura;
-//		                novaLargura = (int) (altura * proporcaoOriginal);
-//		            }
-//
-//		            Image img = LogoCashly.getImage().getScaledInstance(
-//		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-//		            );
-//		            lblLogo.setIcon(new ImageIcon(img));
-//		        }
-//		    }
-//		});
+		ImageIcon LogoCashly = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/LogoCashly.png")
+			);	
+		
+		lblLogo.setMinimumSize(new Dimension(10, 5));
+		lblLogo.setPreferredSize(new Dimension(500, 100));
+		
+		lblLogo.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = lblLogo.getWidth();
+		        int altura = lblLogo.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) LogoCashly.getIconWidth() / LogoCashly.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = LogoCashly.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            lblLogo.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
 		
 		JButton btnInicio = new JButton("");
 		panel.add(btnInicio, "cell 14 0,growx,aligny center");
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				abrirTelaApresentacao();
 			}
 		});
@@ -244,7 +243,7 @@ public class TelaLogin extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(216, 178, 184));
-		contentPane.add(panel_1, "cell 1 2 2 2,alignx right,growy");
+		contentPane.add(panel_1, "cell 0 2 3 2,alignx right,growy");
 		panel_1.setLayout(new MigLayout("", "[grow]", "[grow][][grow]"));
 		
 		JButton btnIrCadastro = new JButton("");
@@ -297,11 +296,11 @@ public class TelaLogin extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
 		contentPane.add(panel_2, "cell 4 3,grow");
-		panel_2.setLayout(new MigLayout("", "[grow]", "[][][][][][grow 75][][5px][][][][][][grow 50][100px]"));
+		panel_2.setLayout(new MigLayout("", "[grow]", "[100px][grow 25][][][grow 5][][][grow 25][100px]"));
 		
 		JLabel lblFazerLogin = new JLabel("");
 		lblFazerLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblFazerLogin, "cell 0 5,grow");
+		panel_2.add(lblFazerLogin, "cell 0 1,grow");
 		lblFazerLogin.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/FazerLogin.png")));
 		
 		ImageIcon FazerLogin = new ImageIcon(
@@ -337,7 +336,7 @@ public class TelaLogin extends JFrame {
 		
 		JLabel lblEmail = new JLabel("");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblEmail, "cell 0 6,grow");
+		panel_2.add(lblEmail, "cell 0 3,grow");
 		lblEmail.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Email.png")));
 		
 
@@ -373,7 +372,7 @@ public class TelaLogin extends JFrame {
 		
 		JLabel lblSenha = new JLabel("");
 		lblSenha.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblSenha, "cell 0 8,grow");
+		panel_2.add(lblSenha, "cell 0 5,grow");
 		lblSenha.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/Senha.png")));
 		
 		ImageIcon Senha = new ImageIcon(
@@ -409,7 +408,7 @@ public class TelaLogin extends JFrame {
 
 		
 		JButton BtnIniciarSessao = new JButton("");
-		panel_2.add(BtnIniciarSessao, "cell 0 9,grow");
+		panel_2.add(BtnIniciarSessao, "cell 0 7,grow");
 		BtnIniciarSessao.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnIniciarSessao.png")));
 		
 		ImageIcon btnIniciarSessao = new ImageIcon(
