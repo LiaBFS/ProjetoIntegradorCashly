@@ -14,8 +14,9 @@ public class TelaInternaCadastro extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param telaCredenciais 
 	 */
-	public TelaInternaCadastro() {
+	public TelaInternaCadastro(TelaCredenciais telaCredenciais) {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][75px,grow][70px,grow][75px,grow]"));
 		
@@ -79,25 +80,25 @@ public class TelaInternaCadastro extends JPanel {
 		lblCriarConta.setPreferredSize(new Dimension(500, 100));
 		lblCriarConta.setMinimumSize(new Dimension(200, 100));
 		lblCriarConta.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/CriarConta.png")));
-		panel_2.add(lblCriarConta, "cell 0 1");
+		panel_2.add(lblCriarConta, "cell 0 1,grow");
 		
 		JLabel lblNome = new JLabel("");
 		lblNome.setPreferredSize(new Dimension(500, 100));
 		lblNome.setMinimumSize(new Dimension(300, 100));
 		lblNome.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Usuario.png")));
-		panel_2.add(lblNome, "cell 0 3");
+		panel_2.add(lblNome, "cell 0 3,growx");
 		
 		JLabel lblEmail = new JLabel("");
 		lblEmail.setPreferredSize(new Dimension(500, 100));
 		lblEmail.setMinimumSize(new Dimension(300, 100));
 		lblEmail.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Email.png")));
-		panel_2.add(lblEmail, "cell 0 5");
+		panel_2.add(lblEmail, "cell 0 5,growx");
 		
 		JLabel lblSenha = new JLabel("");
 		lblSenha.setPreferredSize(new Dimension(500, 100));
 		lblSenha.setMinimumSize(new Dimension(300, 100));
 		lblSenha.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/Senha.png")));
-		panel_2.add(lblSenha, "cell 0 7");
+		panel_2.add(lblSenha, "cell 0 7,growx");
 		
 		JButton btnCadastrar = new JButton("");
 		btnCadastrar.setPreferredSize(new Dimension(500, 100));
@@ -107,7 +108,7 @@ public class TelaInternaCadastro extends JPanel {
 		btnCadastrar.setFocusPainted(false);
 		btnCadastrar.setContentAreaFilled(false);
 		btnCadastrar.setBorderPainted(false);
-		panel_2.add(btnCadastrar, "cell 0 9");
+		panel_2.add(btnCadastrar, "cell 0 9,growx");
 
 	}
 
