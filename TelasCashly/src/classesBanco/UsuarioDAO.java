@@ -103,6 +103,41 @@ package classesBanco;
 	        	BancoDeDados.desconectar(conexao);
 	        }
 	    }
+	    
+	    
+
+	    // READ - Listar todos os usuários
+	    public Usuario pesquisarUsuariosPorEmailSenha(Usuario usuario) {
+	        String sql = "SELECT * FROM usuario where usuario.email = ? and usuario.senha = ?";
+	        Connection conexao = null;
+	        PreparedStatement pstm = null;
+	        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+
+	        try {
+	            conexao = BancoDeDados.conectar();
+	            pstm = conexao.prepareStatement(sql);
+	            pstm.setString(1, usuario.getEmail());
+	            pstm.setString(2, usuario.getSenha());
+
+	            rset = pstm.executeQuery();
+
+	            if (rset.next()) {
+	                usuario.setId(rset.getInt("id"));
+	                usuario.setNome(rset.getString("nome"));
+	                	        return usuario;
+
+	            }
+	            else {
+	            	return null;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	        	BancoDeDados.desconectar(conexao);
+	            // Fechar recursos
+	        }
+			return null;
+	    }
 	}
 
 

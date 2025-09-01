@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -15,17 +16,24 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Font;
 
 public class TelaInternaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JTextField txtEmail;
+	private String placeholderEmail = "Email";
 	private JTextField textField;
+	private String placeholderSenha = "Senha";
 
 	/**
 	 * Create the panel.
 	 * @param telaCredenciais 
 	 */
 	public TelaInternaLogin(TelaCredenciais telaCredenciais) {
+		setForeground(new Color(255, 245, 234));
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][grow][75px][70px,grow][75px,grow]"));
 		
@@ -192,12 +200,32 @@ public class TelaInternaLogin extends JPanel {
 		
 		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/Email.png");
 		panel_2.add(panel_3, "cell 0 3,grow");
-		panel_3.setLayout(new MigLayout("", "[0][][100px,grow,left][0]", "[][][]"));
+		panel_3.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		textField = new JTextField();
-		panel_3.add(textField, "cell 2 1,growx");
-		textField.setColumns(10);
-		//panel_3.setLayout(new MigLayout("", "[]", "[]"));
+		txtEmail = new JTextField();
+		txtEmail.setForeground(new Color(255, 245, 234));
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEmail.setText(placeholderEmail);
+		txtEmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtEmail.getText().equals(placeholderEmail)){
+					txtEmail.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtEmail.getText().isEmpty()){
+					txtEmail.setText(placeholderEmail);
+				}
+			}
+		});
+		txtEmail.setBackground(new Color(207, 114, 116));
+		txtEmail.setToolTipText("");
+		panel_3.add(txtEmail, "cell 2 1,growx");
+		txtEmail.setColumns(10);
+		txtEmail.setBorder(BorderFactory.createEmptyBorder()); 
+		
 		
 		ImageIcon Senha = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Senha.png")
@@ -205,9 +233,47 @@ public class TelaInternaLogin extends JPanel {
 		
 		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/Senha.png");
 		panel_2.add(panel_4, "cell 0 5,grow");
-		panel_4.setLayout(null);
+		panel_4.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
+		
+		textField = new JTextField();
+		textField.setForeground(new Color(255, 245, 234));
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField.setText(placeholderSenha);
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(textField.getText().equals(placeholderSenha)){
+					textField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(textField.getText().isEmpty()){
+					textField.setText(placeholderSenha);
+				}
+			}
+		});
+		textField.setBackground(new Color(207, 114, 116));
+		panel_4.add(textField, "cell 2 1,growx");
+		textField.setColumns(10);
+		textField.setBorder(BorderFactory.createEmptyBorder());
 		
 		JButton BtnIniciarSessao = new JButton("");
+		BtnIniciarSessao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				// pegar texto email
+				// pegar texto senha
+				
+				// criar objeto usuario com dados
+				
+				// criar objeto dao --- chamar metodo buscaruausrio...
+				
+				// avaliar retorno
+				
+			}
+		});
 		BtnIniciarSessao.setPreferredSize(new Dimension(500, 100));
 		BtnIniciarSessao.setOpaque(false);
 		BtnIniciarSessao.setMinimumSize(new Dimension(300, 100));

@@ -35,7 +35,7 @@ public class TelaCredenciais extends JFrame {
 
         add(painelPrincipal);
         
-        
+        mostrarTela("login");
     }
 
     // Método para trocar entre telas
