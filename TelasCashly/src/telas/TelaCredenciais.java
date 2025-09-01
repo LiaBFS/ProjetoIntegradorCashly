@@ -29,8 +29,9 @@ public class TelaCredenciais extends JFrame {
         TelaInternaLogin  telaLogin = new TelaInternaLogin(this);
 
         // Adiciona ao CardLayout
-        painelPrincipal.add(telaCadastro, "cadastro");
         painelPrincipal.add(telaLogin, "login");
+        painelPrincipal.add(telaCadastro, "cadastro");
+        
 
         add(painelPrincipal);
         

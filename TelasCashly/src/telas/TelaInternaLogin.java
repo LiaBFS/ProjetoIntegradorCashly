@@ -14,10 +14,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class TelaInternaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -37,6 +39,36 @@ public class TelaInternaLogin extends JPanel {
 		lblLogo.setMinimumSize(new Dimension(10, 5));
 		lblLogo.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/LogoCashly.png")));
 		panel.add(lblLogo, "cell 1 0");
+		
+		ImageIcon LogoCashly = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/LogoCashly.png")
+			);	
+		
+		lblLogo.setMinimumSize(new Dimension(10, 5));
+		lblLogo.setPreferredSize(new Dimension(500, 100));
+		
+		lblLogo.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent e) {
+		        int largura = lblLogo.getWidth();
+		        int altura = lblLogo.getHeight();
+
+		        if (largura > 0 && altura > 0) {
+		            double proporcaoOriginal = (double) LogoCashly.getIconWidth() / LogoCashly.getIconHeight();
+		            int novaLargura = largura;
+		            int novaAltura = (int) (largura / proporcaoOriginal);
+
+		            if (novaAltura > altura) {
+		                novaAltura = altura;
+		                novaLargura = (int) (altura * proporcaoOriginal);
+		            }
+
+		            Image img = LogoCashly.getImage().getScaledInstance(
+		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+		            );
+		            lblLogo.setIcon(new ImageIcon(img));
+		        }
+		    }
+		});
 		
 		JButton btnInicio = new JButton("");
 		btnInicio.setOpaque(false);
@@ -115,7 +147,7 @@ public class TelaInternaLogin extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
 		add(panel_2, "cell 4 2 1 2,grow");
-		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 50][][grow 30][][5px][][grow 30][][grow 50]"));
+		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 50][][grow 30][20px,grow][5px][15px,grow][grow 30][][grow 50]"));
 		
 		JLabel lblFazerLogin = new JLabel("");
 		lblFazerLogin.setPreferredSize(new Dimension(500, 100));
@@ -154,79 +186,26 @@ public class TelaInternaLogin extends JPanel {
 		    }
 		});
 		
-		JLabel lblEmail = new JLabel("");
-		lblEmail.setPreferredSize(new Dimension(500, 100));
-		lblEmail.setMinimumSize(new Dimension(300, 100));
-		lblEmail.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/Email.png")));
-		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblEmail, "cell 0 3");
-		
 		ImageIcon Email = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Email.png")
-			);	
+			);
 		
-		lblEmail.setMinimumSize(new Dimension(300, 100));
-		lblEmail.setPreferredSize(new Dimension(500, 100));
+		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/Email.png");
+		panel_2.add(panel_3, "cell 0 3,grow");
+		panel_3.setLayout(new MigLayout("", "[0][][100px,grow,left][0]", "[][][]"));
 		
-		lblEmail.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        int largura = lblEmail.getWidth();
-		        int altura = lblEmail.getHeight();
-
-		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Email.getIconWidth() / Email.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
-
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = Email.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            lblEmail.setIcon(new ImageIcon(img));
-		        }
-		    }
-		});
-		
-		JLabel lblSenha = new JLabel("");
-		lblSenha.setPreferredSize(new Dimension(500, 100));
-		lblSenha.setMinimumSize(new Dimension(300, 100));
-		lblSenha.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/Senha.png")));
-		lblSenha.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblSenha, "cell 0 5");
+		textField = new JTextField();
+		panel_3.add(textField, "cell 2 1,growx");
+		textField.setColumns(10);
+		//panel_3.setLayout(new MigLayout("", "[]", "[]"));
 		
 		ImageIcon Senha = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Senha.png")
-			);	
+			);
 		
-		lblSenha.setMinimumSize(new Dimension(300, 100));
-		lblSenha.setPreferredSize(new Dimension(500, 100));
-		
-		lblSenha.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent e) {
-		        int largura = lblSenha.getWidth();
-		        int altura = lblSenha.getHeight();
-
-		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Senha.getIconWidth() / Senha.getIconHeight();
-		            int novaLargura = largura;
-		            int novaAltura = (int) (largura / proporcaoOriginal);
-
-		            if (novaAltura > altura) {
-		                novaAltura = altura;
-		                novaLargura = (int) (altura * proporcaoOriginal);
-		            }
-
-		            Image img = Senha.getImage().getScaledInstance(
-		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-		            );
-		            lblSenha.setIcon(new ImageIcon(img));
-		        }
-		    }
-		});
+		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/Senha.png");
+		panel_2.add(panel_4, "cell 0 5,grow");
+		panel_4.setLayout(null);
 		
 		JButton BtnIniciarSessao = new JButton("");
 		BtnIniciarSessao.setPreferredSize(new Dimension(500, 100));
@@ -269,5 +248,4 @@ public class TelaInternaLogin extends JPanel {
 		});		
 
 	}
-
 }

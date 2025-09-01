@@ -99,10 +99,13 @@ public class JPanelComBackground extends JPanel {
              	int posPrimeira = colunas.indexOf("]");
 
              	int posUltima = colunas.lastIndexOf("[");
+             	if(posUltima>posPrimeira) {
 
-             	String novoConstraints = "[" + a + "]"+colunas.substring(posPrimeira+1, posUltima)+"[" + a + "]";
+                 	String novoConstraints = "[" + a + "]"+colunas.substring(posPrimeira+1, posUltima)+"[" + a + "]";
 
-             	layout.setColumnConstraints(novoConstraints); // Para definir a largura da primeira coluna
+                 	layout.setColumnConstraints(novoConstraints); // Para definir a largura da primeira coluna
+             		
+             	}
 
 
 
