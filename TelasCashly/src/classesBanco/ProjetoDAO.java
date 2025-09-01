@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ProjetoDAO {
 	
 	public void adicionarProjeto(Projeto projeto) {
-        String sql = "INSERT INTO Projeto (nome, descricao) VALUES (?, ?)";
+        String sql = "INSERT INTO Projeto (nome, descricao, saldo) VALUES (?, ?,?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -18,6 +18,7 @@ public class ProjetoDAO {
             pstm = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, projeto.getNome());
             pstm.setString(2, projeto.getDescricao());
+            pstm.setDouble(3, projeto.getSaldo());
          
             pstm.executeUpdate();
             

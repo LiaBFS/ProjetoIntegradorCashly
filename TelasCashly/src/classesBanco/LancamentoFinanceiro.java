@@ -57,8 +57,7 @@ public class LancamentoFinanceiro {
 	}
 	public void setCategoria(CategoriaGasto categoria) {
 		this.categoria = categoria;
-	}
-	
+	}	
 	
 	
 
