@@ -27,26 +27,45 @@ public class TelaInternaLogin extends JPanel {
 	private String placeholderEmail = "Email";
 	private JTextField textField;
 	private String placeholderSenha = "Senha";
+	
+	private void abrirTelaApresentacao() {
+	    dispose(); // Fecha a tela atual
+	    new TelaApresentacao().setVisible(true); // Abre a tela de cadastro
+	}
+	
+	private void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void abrirTelaCadastro() {
+        dispose(); // Fecha a tela atual
+        new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
+    }
 
 	/**
 	 * Create the panel.
 	 * @param telaCredenciais 
 	 */
+	
+	
 	public TelaInternaLogin(TelaCredenciais telaCredenciais) {
 		setForeground(new Color(255, 245, 234));
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][grow][75px][70px,grow][75px,grow]"));
 		
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
-		add(panel, "cell 0 0 6 1,grow");
+		add(panel, "cell 0 0 6 1,growx,aligny center");
 		panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][][grow 50]", "[70px]"));
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setPreferredSize(new Dimension(500, 100));
 		lblLogo.setMinimumSize(new Dimension(10, 5));
 		lblLogo.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/LogoCashly.png")));
-		panel.add(lblLogo, "cell 1 0");
+		panel.add(lblLogo, "cell 1 0,growx,aligny center");
 		
 		ImageIcon LogoCashly = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/LogoCashly.png")
@@ -79,20 +98,34 @@ public class TelaInternaLogin extends JPanel {
 		});
 		
 		JButton btnInicio = new JButton("");
-		btnInicio.setOpaque(false);
+		panel.add(btnInicio, "cell 14 0,growx,aligny center");
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaApresentacao();
+			}
+		});
 		btnInicio.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/BtnInicio2.png")));
-		btnInicio.setFocusPainted(false);
-		btnInicio.setContentAreaFilled(false);
+		
 		btnInicio.setBorderPainted(false);
-		panel.add(btnInicio, "cell 14 0");
+		btnInicio.setContentAreaFilled(false);
+		btnInicio.setFocusPainted(false);
+		btnInicio.setOpaque(false);
 		
 		JButton btnCadastrar = new JButton("");
-		btnCadastrar.setOpaque(false);
+		panel.add(btnCadastrar, "cell 17 0,grow");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirTelaCadastro();
+			}
+		});
+		
 		btnCadastrar.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/BtnCadastro.png")));
-		btnCadastrar.setFocusPainted(false);
-		btnCadastrar.setContentAreaFilled(false);
+		
 		btnCadastrar.setBorderPainted(false);
-		panel.add(btnCadastrar, "cell 17 0");
+		btnCadastrar.setContentAreaFilled(false);
+		btnCadastrar.setFocusPainted(false);
+		btnCadastrar.setOpaque(false);
+		
 		
 		JButton btnLogin = new JButton("");
 		btnLogin.setOpaque(false);
@@ -100,7 +133,7 @@ public class TelaInternaLogin extends JPanel {
 		btnLogin.setFocusPainted(false);
 		btnLogin.setContentAreaFilled(false);
 		btnLogin.setBorderPainted(false);
-		panel.add(btnLogin, "cell 20 0");
+		panel.add(btnLogin, "cell 20 0,alignx left,aligny center");
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(216, 178, 184));
@@ -110,6 +143,7 @@ public class TelaInternaLogin extends JPanel {
 		JButton btnIrCadastro = new JButton("");
 		btnIrCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				abrirTelaCadastro();
 			}
 		});
 		btnIrCadastro.setPreferredSize(new Dimension(1000, 1000));
@@ -155,7 +189,7 @@ public class TelaInternaLogin extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(216, 178, 184));
 		add(panel_2, "cell 4 2 1 2,grow");
-		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 50][][grow 30][20px,grow][5px][15px,grow][grow 30][][grow 50]"));
+		panel_2.setLayout(new MigLayout("", "[grow]", "[grow 150][][grow 30][20px,grow][5px][15px,grow][grow 30][][grow 150]"));
 		
 		JLabel lblFazerLogin = new JLabel("");
 		lblFazerLogin.setPreferredSize(new Dimension(500, 100));

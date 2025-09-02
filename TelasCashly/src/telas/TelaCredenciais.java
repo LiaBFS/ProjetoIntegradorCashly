@@ -3,7 +3,8 @@ package telas;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class TelaCredenciais extends JFrame {
     private JPanel painelPrincipal;
@@ -11,7 +12,7 @@ public class TelaCredenciais extends JFrame {
     private TelaInternaLogin telaLogin;
     private CardLayout card;
 
-    public TelaCredenciais() {
+    public TelaCredenciais(String telaInicial) { // << ADICIONADO
         setTitle("Tela de Credenciais");
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -25,29 +26,26 @@ public class TelaCredenciais extends JFrame {
         painelPrincipal = new JPanel(card);
 
         // Cria os painéis internos
-        TelaInternaCadastro telaCadastro = new TelaInternaCadastro(this);
-        TelaInternaLogin  telaLogin = new TelaInternaLogin(this);
+        telaCadastro = new TelaInternaCadastro(this);
+        telaLogin = new TelaInternaLogin(this);
 
         // Adiciona ao CardLayout
         painelPrincipal.add(telaLogin, "login");
         painelPrincipal.add(telaCadastro, "cadastro");
-        
 
         add(painelPrincipal);
-        
-        mostrarTela("login");
+
+        // Mostra a tela inicial passada no construtor
+        mostrarTela(telaInicial);
     }
 
     // Método para trocar entre telas
     public void mostrarTela(String nomeTela) {
         card.show(painelPrincipal, nomeTela);
     }
-    
-   public static void main(String[] args) {
-	
-	   
-	   TelaCredenciais tela = new TelaCredenciais();
-	   tela.setVisible(true);
-	   
-   } 
+
+    public static void main(String[] args) {
+        TelaCredenciais tela = new TelaCredenciais("login"); // default
+        tela.setVisible(true);
+    }
 }

@@ -21,15 +21,14 @@ public class TelaApresentacao extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    // >>> ADIÇÃO: método para abrir a TelaCadastro <<<
     private void abrirTelaCadastro() {
         dispose(); // Fecha a tela atual
-        new TelaCadastro().setVisible(true); // Abre a tela de cadastro
+        new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
     }
 
     private void abrirTelaLogin() {
         dispose(); // Fecha a tela atual
-        new TelaLogin().setVisible(true); // Abre a tela de login
+        new TelaCredenciais("login").setVisible(true); // Abre direto no login
     }
 
     public static void main(String[] args) {
