@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -15,21 +16,35 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import classesBanco.UsuarioDAO;
+
 import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInternaCadastro extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNome;
+	private JTextField txtEmail;
 	private JTextField txtSenha;
 	private String placeholderUsuario = "Usuário";
 	private String placeholderEmail = "Email";
 	private String placeholderSenha = "Senha";
+	
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
+	
+	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
+		telaCredenciais.dispose(); // Fecha a tela atual
+        new TelaInicio().setVisible(true); // Abre a tela de cadastro
+    }
 
+
+	
 	/**
 	 * Create the panel.
 	 * @param telaCredenciais 
@@ -241,56 +256,56 @@ public class TelaInternaCadastro extends JPanel {
 		panel_2.add(panel_3, "cell 0 3,grow");
 		panel_3.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		textField = new JTextField();
-		textField.setForeground(new Color(255, 245, 234));
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setText(placeholderUsuario);
-		textField.addFocusListener(new FocusAdapter() {
+		txtNome = new JTextField();
+		txtNome.setForeground(new Color(255, 245, 234));
+		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtNome.setText(placeholderUsuario);
+		txtNome.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textField.getText().equals(placeholderUsuario)) {
-					textField.setText("");
+				if (txtNome.getText().equals(placeholderUsuario)) {
+					txtNome.setText("");
 				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (textField.getText().isEmpty()) {
-					textField.setText(placeholderUsuario);
+				if (txtNome.getText().isEmpty()) {
+					txtNome.setText(placeholderUsuario);
 				}
 			}
 		});
 		
-		textField.setBackground(new Color(207, 114, 116));
-		panel_3.add(textField, "cell 2 1,growx");
-		textField.setColumns(10);
-		textField.setBorder(BorderFactory.createEmptyBorder());
+		txtNome.setBackground(new Color(207, 114, 116));
+		panel_3.add(txtNome, "cell 2 1,growx");
+		txtNome.setColumns(10);
+		txtNome.setBorder(BorderFactory.createEmptyBorder());
 		
 		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/Email.png");
 		panel_2.add(panel_4, "cell 0 5,grow");
 		panel_4.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		textField_1 = new JTextField();
-		textField_1.setForeground(new Color(255, 245, 234));
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_1.setText(placeholderEmail);
-		textField_1.addFocusListener(new FocusAdapter() {
+		txtEmail = new JTextField();
+		txtEmail.setForeground(new Color(255, 245, 234));
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEmail.setText(placeholderEmail);
+		txtEmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (textField_1.getText().equals(placeholderEmail)) {
-					textField_1.setText("");
+				if (txtEmail.getText().equals(placeholderEmail)) {
+					txtEmail.setText("");
 				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (textField_1.getText().isEmpty()) {
-					textField_1.setText(placeholderEmail);
+				if (txtEmail.getText().isEmpty()) {
+					txtEmail.setText(placeholderEmail);
 				}
 			}
 		});
-		textField_1.setBackground(new Color(207, 114, 116));
-		panel_4.add(textField_1, "cell 2 1,growx");
-		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createEmptyBorder());
+		txtEmail.setBackground(new Color(207, 114, 116));
+		panel_4.add(txtEmail, "cell 2 1,growx");
+		txtEmail.setColumns(10);
+		txtEmail.setBorder(BorderFactory.createEmptyBorder());
 		
 		
 		JPanelComBackground panel_5 = new JPanelComBackground("/imgs/Senha.png");
@@ -321,11 +336,50 @@ public class TelaInternaCadastro extends JPanel {
 		txtSenha.setBorder(BorderFactory.createEmptyBorder());
 		
 		
+		
+	
+		
+		
 		JButton btnCadastrar = new JButton("");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String nome = txtNome.getText();
+				String email = txtEmail.getText();
+				String senha = txtSenha.getText();
+				
+				
+				if (nome.equals(placeholderUsuario) || email.equals(placeholderEmail) || senha.equals(placeholderSenha)|| nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Todos os campos do Cadastro são obrigatórios.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
+			        return;
+			    }
+				
+				if(nome.length() < 3) {
+					JOptionPane.showMessageDialog(null, "Crie um usuário contendo no mínimo 3 dígitos.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
+					txtNome.setText(placeholderUsuario);
+					return;
+				}
+				
+				if(senha.length() < 8 || senha.length() > 30) {
+					JOptionPane.showMessageDialog(null, "Crie uma senha contendo de 8 a 30 dígitos.", "Erro de Senha", JOptionPane.ERROR_MESSAGE);
+					txtSenha.setText(placeholderSenha);
+					return;
+				}
+				
+				
+				classesBanco.Usuario novoUsuario = new classesBanco.Usuario();
+                novoUsuario.setNome(txtNome.getText());
+                novoUsuario.setEmail(txtEmail.getText());
+                novoUsuario.setSenha(txtSenha.getText());
+
+                usuarioDAO.adicionarUsuario(novoUsuario);
+                
+                abrirTelaInicial(telaCredenciais);
+				
 			}
 		});
+		
+		
 		btnCadastrar.setPreferredSize(new Dimension(500, 100));
 		btnCadastrar.setOpaque(false);
 		btnCadastrar.setMinimumSize(new Dimension(300, 100));

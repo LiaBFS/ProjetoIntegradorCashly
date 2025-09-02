@@ -20,7 +20,8 @@ public class TelaApresentacao extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-
+    
+	
     private void abrirTelaCadastro() {
         dispose(); // Fecha a tela atual
         new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
