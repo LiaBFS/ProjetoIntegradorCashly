@@ -1,17 +1,20 @@
 package classesBanco;
 
 	import java.sql.Connection;
-	import java.sql.PreparedStatement;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
-	import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 	import java.util.List;
 
 	public class UsuarioDAO {
 
 	    // CREATE - Adicionar um novo usuário
 	    public void adicionarUsuario(Usuario usuario) {
-	        String sql = "INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)";
+	        String sql = "INSERT INTO usuario (nome, email, senha, dataCadastro) VALUES (?, ?, ?, ?)";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
 
@@ -21,6 +24,10 @@ package classesBanco;
 	            pstm.setString(1, usuario.getNome());
 	            pstm.setString(2, usuario.getEmail());
 	            pstm.setString(3, usuario.getSenha());
+	            
+	            Date dataUtil = new Date(1, 4, 26);
+	            pstm.setDate(4, dataUtil);
+	            
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -102,6 +109,41 @@ package classesBanco;
 	        } finally {
 	        	BancoDeDados.desconectar(conexao);
 	        }
+	    }
+	    
+	    
+
+	    // READ - Listar todos os usuários
+	    public Usuario pesquisarUsuariosPorEmailSenha(Usuario usuario) {
+	        String sql = "SELECT * FROM usuario where usuario.email = ? and usuario.senha = ?";
+	        Connection conexao = null;
+	        PreparedStatement pstm = null;
+	        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+
+	        try {
+	            conexao = BancoDeDados.conectar();
+	            pstm = conexao.prepareStatement(sql);
+	            pstm.setString(1, usuario.getEmail());
+	            pstm.setString(2, usuario.getSenha());
+
+	            rset = pstm.executeQuery();
+
+	            if (rset.next()) {
+	                usuario.setId(rset.getInt("id"));
+	                usuario.setNome(rset.getString("nome"));
+	                	        return usuario;
+
+	            }
+	            else {
+	            	return null;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	        	BancoDeDados.desconectar(conexao);
+	            // Fechar recursos
+	        }
+			return null;
 	    }
 	}
 

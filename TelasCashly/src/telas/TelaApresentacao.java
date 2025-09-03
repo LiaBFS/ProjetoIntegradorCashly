@@ -20,24 +20,25 @@ public class TelaApresentacao extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-
-    // >>> ADIÇÃO: método para abrir a TelaCadastro <<<
+    
+	
     private void abrirTelaCadastro() {
         dispose(); // Fecha a tela atual
-        new TelaCadastro().setVisible(true); // Abre a tela de cadastro
+        new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
     }
 
     private void abrirTelaLogin() {
         dispose(); // Fecha a tela atual
-        new TelaLogin().setVisible(true); // Abre a tela de login
+        new TelaCredenciais("login").setVisible(true); // Abre direto no login
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    TelaApresentacao frame = new TelaApresentacao();
-                    frame.setVisible(true);
+           TelaApresentacao frame = new TelaApresentacao();
+                   frame.setVisible(true);
+                	System.out.println("nfjiiad");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -64,14 +65,44 @@ public class TelaApresentacao extends JFrame {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(216, 178, 184));
         contentPane.add(panel, "cell 0 0 5 1,grow");
-        panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][grow 50]", "[]"));
+        panel.setLayout(new MigLayout("", "[grow 50][][][][][][][grow][][][][grow][][][][][][][][][][grow 50]", "[58]"));
 
         JLabel lblLogo = new JLabel("");
-        panel.add(lblLogo, "cell 1 0,alignx left");
+        panel.add(lblLogo, "cell 1 0,growx,aligny center");
         lblLogo.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/LogoCashly.png")));
 
+        ImageIcon LogoCashly = new ImageIcon(
+        	    TelaApresentacao.class.getResource("/imgs/LogoCashly.png")
+        	);	
+
+        lblLogo.setMinimumSize(new Dimension(10, 5));
+        lblLogo.setPreferredSize(new Dimension(500, 500));
+
+        lblLogo.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                int largura = lblLogo.getWidth();
+                int altura = lblLogo.getHeight();
+
+                if (largura > 0 && altura > 0) {
+                    double proporcaoOriginal = (double) LogoCashly.getIconWidth() / LogoCashly.getIconHeight();
+                    int novaLargura = largura;
+                    int novaAltura = (int) (largura / proporcaoOriginal);
+
+                    if (novaAltura > altura) {
+                        novaAltura = altura;
+                        novaLargura = (int) (altura * proporcaoOriginal);
+                    }
+
+                    Image img = LogoCashly.getImage().getScaledInstance(
+                        novaLargura, novaAltura, Image.SCALE_SMOOTH
+                    );
+                    lblLogo.setIcon(new ImageIcon(img));
+                }
+            }
+        });
+        
         JButton btnInicio = new JButton("");
-        panel.add(btnInicio, "cell 14 0");
+        panel.add(btnInicio, "cell 14 0,growx,aligny center");
         btnInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
@@ -83,7 +114,7 @@ public class TelaApresentacao extends JFrame {
         btnInicio.setOpaque(false);
 
         JButton btnCadastrar = new JButton("");
-        panel.add(btnCadastrar, "cell 17 0,alignx right,growy");
+        panel.add(btnCadastrar, "cell 17 0,grow");
         btnCadastrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirTelaCadastro();
@@ -96,7 +127,7 @@ public class TelaApresentacao extends JFrame {
         btnCadastrar.setOpaque(false);
 
         JButton btnLogin = new JButton("");
-        panel.add(btnLogin, "cell 20 0,alignx right");
+        panel.add(btnLogin, "cell 20 0,alignx left,aligny center");
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 abrirTelaLogin();
