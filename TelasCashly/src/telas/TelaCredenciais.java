@@ -6,11 +6,15 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import classesBanco.UsuarioDAO;
+
 public class TelaCredenciais extends JFrame {
     private JPanel painelPrincipal;
     private TelaInternaCadastro telaCadastro;
     private TelaInternaLogin telaLogin;
     private CardLayout card;
+    
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public TelaCredenciais(String telaInicial) { // << ADICIONADO
         setTitle("Tela de Credenciais");
@@ -26,8 +30,8 @@ public class TelaCredenciais extends JFrame {
         painelPrincipal = new JPanel(card);
 
         // Cria os painéis internos
-        telaCadastro = new TelaInternaCadastro(this);
-        telaLogin = new TelaInternaLogin(this);
+        telaCadastro = new TelaInternaCadastro(this, usuarioDAO);
+        telaLogin = new TelaInternaLogin(this, usuarioDAO);
 
         // Adiciona ao CardLayout
         painelPrincipal.add(telaLogin, "login");

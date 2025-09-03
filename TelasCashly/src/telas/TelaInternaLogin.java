@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -11,6 +12,10 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import classesBanco.Usuario;
+import classesBanco.UsuarioDAO;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -25,8 +30,15 @@ public class TelaInternaLogin extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtEmail;
 	private String placeholderEmail = "Email";
-	private JTextField textField;
+	private JTextField txtSenha;
 	private String placeholderSenha = "Senha";
+	
+	private UsuarioDAO usuarioDAO;
+	
+	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
+		telaCredenciais.dispose(); // Fecha a tela atual
+        new TelaInicio().setVisible(true); // Abre a tela de cadastro
+    }
 	
 	private void abrirTelaApresentacao() {
 	    dispose(); // Fecha a tela atual
@@ -46,15 +58,16 @@ public class TelaInternaLogin extends JPanel {
 	/**
 	 * Create the panel.
 	 * @param telaCredenciais 
+	 * @param usuarioDAO 
 	 */
 	
 	
-	public TelaInternaLogin(TelaCredenciais telaCredenciais) {
+	public TelaInternaLogin(TelaCredenciais telaCredenciais, UsuarioDAO usuarioDAO) {
 		setForeground(new Color(255, 245, 234));
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][grow][75px][70px,grow][75px,grow]"));
 		
-		
+		this.usuarioDAO = usuarioDAO;
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
@@ -269,42 +282,62 @@ public class TelaInternaLogin extends JPanel {
 		panel_2.add(panel_4, "cell 0 5,grow");
 		panel_4.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		textField = new JTextField();
-		textField.setForeground(new Color(255, 245, 234));
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setText(placeholderSenha);
-		textField.addFocusListener(new FocusAdapter() {
+		txtSenha = new JTextField();
+		txtSenha.setForeground(new Color(255, 245, 234));
+		txtSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtSenha.setText(placeholderSenha);
+		txtSenha.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(textField.getText().equals(placeholderSenha)){
-					textField.setText("");
+				if(txtSenha.getText().equals(placeholderSenha)){
+					txtSenha.setText("");
 				}
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(textField.getText().isEmpty()){
-					textField.setText(placeholderSenha);
+				if(txtSenha.getText().isEmpty()){
+					txtSenha.setText(placeholderSenha);
 				}
 			}
 		});
-		textField.setBackground(new Color(207, 114, 116));
-		panel_4.add(textField, "cell 2 1,growx");
-		textField.setColumns(10);
-		textField.setBorder(BorderFactory.createEmptyBorder());
+		txtSenha.setBackground(new Color(207, 114, 116));
+		panel_4.add(txtSenha, "cell 2 1,growx");
+		txtSenha.setColumns(10);
+		txtSenha.setBorder(BorderFactory.createEmptyBorder());
 		
 		JButton BtnIniciarSessao = new JButton("");
 		BtnIniciarSessao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				// pegar texto email
-				// pegar texto senha
-				
-				// criar objeto usuario com dados
-				
-				// criar objeto dao --- chamar metodo buscaruausrio...
-				
-				// avaliar retorno
+				 String email = txtEmail.getText().trim();
+			        String senha = txtSenha.getText().trim();
+
+			      
+			        if (email.isEmpty() || email.equals(placeholderEmail) ||
+			            senha.isEmpty() || senha.equals(placeholderSenha)) {
+			            
+			        	JOptionPane.showMessageDialog(null, "Todos os campos do Cadastro são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+			            return;
+			        }
+
+			        // cria objeto usuario com email e senha
+			        Usuario usuarioLogin = new Usuario(0, null, email, senha, null, null);
+
+			        
+			        UsuarioDAO usuarioDAO = new UsuarioDAO();
+			        Usuario usuarioAutenticado = usuarioDAO.pesquisarUsuariosPorEmailSenha(usuarioLogin);
+
+			        // avalia retorno
+			        if (usuarioAutenticado != null) {
+			        	
+			            abrirTelaInicial(telaCredenciais);
+
+			        } else {
+			            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+			            txtEmail.setText(placeholderEmail);
+			            txtSenha.setText(placeholderSenha);
+			        }
 				
 			}
 		});

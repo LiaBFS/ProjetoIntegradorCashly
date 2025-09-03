@@ -39,7 +39,7 @@ public class TelaInternaCadastro extends JPanel {
 	private String placeholderEmail = "Email";
 	private String placeholderSenha = "Senha";
 	
-	private UsuarioDAO usuarioDAO = new UsuarioDAO();
+	private UsuarioDAO usuarioDAO;
 	
 	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
 		telaCredenciais.dispose(); // Fecha a tela atual
@@ -67,9 +67,11 @@ public class TelaInternaCadastro extends JPanel {
 	        new TelaCredenciais("login").setVisible(true); // Abre direto no login
 	    }
 
-	public TelaInternaCadastro(TelaCredenciais telaCredenciais) {
+	public TelaInternaCadastro(TelaCredenciais telaCredenciais, UsuarioDAO usuarioDAO) {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][75px,grow][70px,grow][75px,grow]"));
+		
+		this.usuarioDAO = usuarioDAO;
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
@@ -381,10 +383,8 @@ public class TelaInternaCadastro extends JPanel {
 				}
 				
 				if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-				    JOptionPane.showMessageDialog(null, 
-				        "Formato de email inválido. Exemplo: usuario@dominio.com", 
-				        "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
-				    txtEmail.setText("");
+				    JOptionPane.showMessageDialog(null, "Formato de email inválido. Exemplo: usuario@dominio.com", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
+				    txtEmail.setText(placeholderEmail);
 				    return;
 				}
 				
@@ -402,7 +402,7 @@ public class TelaInternaCadastro extends JPanel {
                 
                 usuarioDAO.adicionarUsuario(novoUsuario);
                 
-                abrirTelaInicial(telaCredenciais);
+                abrirTelaLogin();
 				
 			}
 		});
