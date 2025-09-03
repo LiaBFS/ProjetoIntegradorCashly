@@ -317,7 +317,7 @@ public class TelaInternaLogin extends JPanel {
 			        if (email.isEmpty() || email.equals(placeholderEmail) ||
 			            senha.isEmpty() || senha.equals(placeholderSenha)) {
 			            
-			        	JOptionPane.showMessageDialog(null, "Todos os campos do Cadastro são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+			        	JOptionPane.showMessageDialog(null, "Todos os campos do Login são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
 			            return;
 			        }
 
