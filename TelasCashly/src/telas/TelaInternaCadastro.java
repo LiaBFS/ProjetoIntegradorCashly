@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.InputVerifier;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
 import classesBanco.UsuarioDAO;
@@ -302,6 +305,23 @@ public class TelaInternaCadastro extends JPanel {
 				}
 			}
 		});
+		
+		txtEmail.setInputVerifier(new InputVerifier() {
+		    @Override
+		    public boolean verify(JComponent input) {
+		        String email = ((JTextField) input).getText();
+		        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+		        if (!email.matches(regex)) {
+		            JOptionPane.showMessageDialog(null, 
+		                "Digite um email válido (exemplo: usuario@dominio.com)", 
+		                "Email Inválido", JOptionPane.ERROR_MESSAGE);
+		            return false; // impede o foco de sair se o email for inválido
+		        }
+		        return true;
+		    }
+		});
+		
 		txtEmail.setBackground(new Color(207, 114, 116));
 		panel_4.add(txtEmail, "cell 2 1,growx");
 		txtEmail.setColumns(10);
@@ -358,6 +378,14 @@ public class TelaInternaCadastro extends JPanel {
 					JOptionPane.showMessageDialog(null, "Crie um usuário contendo no mínimo 3 dígitos.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
 					txtNome.setText(placeholderUsuario);
 					return;
+				}
+				
+				if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+				    JOptionPane.showMessageDialog(null, 
+				        "Formato de email inválido. Exemplo: usuario@dominio.com", 
+				        "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
+				    txtEmail.setText("");
+				    return;
 				}
 				
 				if(senha.length() < 8 || senha.length() > 30) {
