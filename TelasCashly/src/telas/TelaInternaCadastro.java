@@ -371,7 +371,7 @@ public class TelaInternaCadastro extends JPanel {
                 novoUsuario.setNome(txtNome.getText());
                 novoUsuario.setEmail(txtEmail.getText());
                 novoUsuario.setSenha(txtSenha.getText());
-
+                
                 usuarioDAO.adicionarUsuario(novoUsuario);
                 
                 abrirTelaInicial(telaCredenciais);

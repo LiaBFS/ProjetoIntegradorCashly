@@ -36,8 +36,9 @@ public class TelaApresentacao extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    TelaApresentacao frame = new TelaApresentacao();
-                    frame.setVisible(true);
+           TelaApresentacao frame = new TelaApresentacao();
+                   frame.setVisible(true);
+                	System.out.println("nfjiiad");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

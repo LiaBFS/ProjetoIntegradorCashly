@@ -17,6 +17,7 @@ public class BancoDeDados {
         try {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
+            
         } catch (ClassNotFoundException e) {
             System.err.println("Driver JDBC não encontrado: " + e.getMessage());
         } catch (SQLException e) {
