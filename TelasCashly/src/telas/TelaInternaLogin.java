@@ -1,6 +1,8 @@
 package telas;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -30,7 +32,7 @@ public class TelaInternaLogin extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtEmail;
 	private String placeholderEmail = "Email";
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 	private String placeholderSenha = "Senha";
 	
 	private UsuarioDAO usuarioDAO;
@@ -282,24 +284,31 @@ public class TelaInternaLogin extends JPanel {
 		panel_2.add(panel_4, "cell 0 5,grow");
 		panel_4.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
 		txtSenha.setForeground(new Color(255, 245, 234));
 		txtSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSenha.setText(placeholderSenha);
+
+		// 🔹 enquanto for placeholder, não censura
+		txtSenha.setEchoChar((char)0);
+
 		txtSenha.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(txtSenha.getText().equals(placeholderSenha)){
-					txtSenha.setText("");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtSenha.getText().isEmpty()){
-					txtSenha.setText(placeholderSenha);
-				}
-			}
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if(new String(txtSenha.getPassword()).equals(placeholderSenha)){
+		            txtSenha.setText("");
+		            txtSenha.setEchoChar('•'); // ativa censura só quando usuário digitar
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if(txtSenha.getPassword().length == 0){
+		            txtSenha.setText(placeholderSenha);
+		            txtSenha.setEchoChar((char)0); // volta a mostrar texto normal
+		        }
+		    }
 		});
+
 		txtSenha.setBackground(new Color(207, 114, 116));
 		panel_4.add(txtSenha, "cell 2 1,growx");
 		txtSenha.setColumns(10);
