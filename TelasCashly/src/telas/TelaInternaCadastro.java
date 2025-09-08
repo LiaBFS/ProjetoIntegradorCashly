@@ -1,6 +1,8 @@
 package telas;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -34,7 +36,7 @@ public class TelaInternaCadastro extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtEmail;
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 	private String placeholderUsuario = "Usuário";
 	private String placeholderEmail = "Email";
 	private String placeholderSenha = "Senha";
@@ -334,24 +336,32 @@ public class TelaInternaCadastro extends JPanel {
 		panel_2.add(panel_5, "cell 0 7,grow");
 		panel_5.setLayout(new MigLayout("", "[0][grow 20][100px,grow,left][0]", "[grow][grow][grow]"));
 		
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
 		txtSenha.setForeground(new Color(255, 245, 234));
 		txtSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtSenha.setEchoChar('•'); // aqui define o símbolo da senha
+
+		// Placeholder para senha
 		txtSenha.setText(placeholderSenha);
+		txtSenha.setEchoChar((char) 0); // mostra texto normal enquanto placeholder
+
 		txtSenha.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtSenha.getText().equals(placeholderSenha)) {
-					txtSenha.setText("");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtSenha.getText().isEmpty()) {
-					txtSenha.setText(placeholderSenha);
-				}
-			}
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (String.valueOf(txtSenha.getPassword()).equals(placeholderSenha)) {
+		            txtSenha.setText("");
+		            txtSenha.setEchoChar('•'); // volta a esconder
+		        }
+		    }
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (String.valueOf(txtSenha.getPassword()).isEmpty()) {
+		            txtSenha.setText(placeholderSenha);
+		            txtSenha.setEchoChar((char) 0); // mostra texto normal de placeholder
+		        }
+		    }
 		});
+
 		txtSenha.setBackground(new Color(207, 114, 116));
 		panel_5.add(txtSenha, "cell 2 1,growx");
 		txtSenha.setColumns(10);
@@ -368,7 +378,7 @@ public class TelaInternaCadastro extends JPanel {
 				
 				String nome = txtNome.getText();
 				String email = txtEmail.getText();
-				String senha = txtSenha.getText();
+				String senha = String.valueOf(txtSenha.getPassword());
 				
 				
 				if (nome.equals(placeholderUsuario) || email.equals(placeholderEmail) || senha.equals(placeholderSenha)|| nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
