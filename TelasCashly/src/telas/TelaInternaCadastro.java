@@ -398,7 +398,12 @@ public class TelaInternaCadastro extends JPanel {
 				classesBanco.Usuario novoUsuario = new classesBanco.Usuario();
                 novoUsuario.setNome(txtNome.getText());
                 novoUsuario.setEmail(txtEmail.getText());
-                novoUsuario.setSenha(txtSenha.getText());
+                try {
+					novoUsuario.setSenha(txtSenha.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 
                 usuarioDAO.adicionarUsuario(novoUsuario);
                 

@@ -322,7 +322,13 @@ public class TelaInternaLogin extends JPanel {
 			        }
 
 			        // cria objeto usuario com email e senha
-			        Usuario usuarioLogin = new Usuario(0, null, email, senha, null, null);
+			        Usuario usuarioLogin=null;
+					try {
+						usuarioLogin = new Usuario(0, null, email, senha, null, null);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 			        
 			        UsuarioDAO usuarioDAO = new UsuarioDAO();
