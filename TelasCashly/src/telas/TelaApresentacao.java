@@ -48,6 +48,7 @@ public class TelaApresentacao extends JFrame {
 
     public TelaApresentacao() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(1000, 700));
 
         // Faz abrir em tela cheia
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
