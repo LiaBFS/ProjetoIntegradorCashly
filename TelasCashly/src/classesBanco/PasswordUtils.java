@@ -2,11 +2,27 @@ package classesBanco;
 	
 	import javax.crypto.SecretKeyFactory;
 	import javax.crypto.spec.PBEKeySpec;
-	import java.security.SecureRandom;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 	import java.util.Base64;
 
 	public class PasswordUtils {
-
+		
+		public static String md5(String input) {
+		    try {
+		        MessageDigest md = MessageDigest.getInstance("MD5");
+		        byte[] messageDigest = md.digest(input.getBytes());
+		        StringBuilder sb = new StringBuilder();
+		        for (byte b : messageDigest) {
+		            sb.append(String.format("%02x", b));
+		        }
+		        return sb.toString();
+		    } catch (NoSuchAlgorithmException e) {
+		        throw new RuntimeException(e);
+		    }
+		}
 
 	    public static String gerarHash(String senha) throws Exception {
 	        SecureRandom sr = new SecureRandom();

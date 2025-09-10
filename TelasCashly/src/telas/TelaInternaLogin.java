@@ -15,6 +15,7 @@ import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import classesBanco.PasswordUtils;
 import classesBanco.Usuario;
 import classesBanco.UsuarioDAO;
 
@@ -320,7 +321,10 @@ public class TelaInternaLogin extends JPanel {
 				
 				
 				 String email = txtEmail.getText().trim();
-			        String senha = txtSenha.getText().trim();
+			        //String senha = txtSenha.getPassword().toString()
+			        char[] senhaChars = txtSenha.getPassword();
+			        String senha = new String(senhaChars);
+			        System.out.println("SENHA DIGITADA NO LOGIN:" + senha);
 
 			      
 			        if (email.isEmpty() || email.equals(placeholderEmail) ||
@@ -334,6 +338,7 @@ public class TelaInternaLogin extends JPanel {
 			        Usuario usuarioLogin=null;
 					try {
 						usuarioLogin = new Usuario(0, null, email, senha, null, null);
+						System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Senha hash usuario:" + usuarioLogin.getSenhaHash());
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
