@@ -7,25 +7,25 @@ public class Usuario {
 	private int id;
 	private String nome;
 	private String email;
-	private String senha;
+	private String senhaHash;
 	private Date dataCadastro;
 	private List<Projeto> projetos;
 	
-	public Usuario(int id, String nome, String email, String senha, Date dataCadastro, List<Projeto> projetos) {
+	public Usuario(int id, String nome, String email, String senha, Date dataCadastro, List<Projeto> projetos) throws Exception {
 
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.senha = senha;
+		this.senhaHash = PasswordUtils.gerarHash(senha);
 		this.dataCadastro = dataCadastro;
 		this.projetos = projetos;
 	}
 	
 	
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(String nome, String email, String senha) throws Exception {
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
+        this.senhaHash = PasswordUtils.gerarHash(senha);
     }
 	
 	public Usuario() {}
@@ -63,15 +63,12 @@ public class Usuario {
 	}
 
 
-	public String getSenha() {
-		return senha;
-	}
+	public String getSenhaHash() { return senhaHash; }
 
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
+   
+    public void setSenha(String senha) throws Exception {
+        this.senhaHash = PasswordUtils.gerarHash(senha);
+    }
 
 	public Date getDataCadastro() {
 		return dataCadastro;
@@ -94,3 +91,4 @@ public class Usuario {
 
 
 }
+

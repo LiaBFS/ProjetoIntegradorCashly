@@ -23,7 +23,7 @@ import java.util.ArrayList;
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, usuario.getNome());
 	            pstm.setString(2, usuario.getEmail());
-	            pstm.setString(3, usuario.getSenha());
+	            pstm.setString(3, usuario.getSenhaHash());
 	            
 	            Date dataUtil = new Date(1, 4, 26);
 	            pstm.setDate(4, dataUtil);
@@ -83,7 +83,7 @@ import java.util.ArrayList;
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, usuario.getNome());
 	            pstm.setString(2, usuario.getEmail());
-	            pstm.setString(3, usuario.getSenha());
+	            pstm.setString(3, usuario.getSenhaHash());
 	            pstm.setInt(4, usuario.getId());
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {
@@ -118,13 +118,13 @@ import java.util.ArrayList;
 	        String sql = "SELECT * FROM usuario where usuario.email = ? and usuario.senha = ?";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
-	        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+	        ResultSet rset = null; // Objeto que guarda o resultado da consulta 
 
 	        try {
 	            conexao = BancoDeDados.conectar();
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, usuario.getEmail());
-	            pstm.setString(2, usuario.getSenha());
+	            pstm.setString(2, usuario.getSenhaHash());
 
 	            rset = pstm.executeQuery();
 
