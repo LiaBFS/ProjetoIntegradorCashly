@@ -32,7 +32,48 @@ public class TelaInicio extends JFrame {
 	private JPanel panelMenuContracted;
 	private JPanel panelActual;
 	
-	
+	private JButton btnMeusProjetos;
+	private JButton btnCriarProjetos;
+	private JButton btnNotificacoes;
+	private JButton btnColaboradores;
+	private JButton btnPerfil;
+
+	private ImageIcon iconMeusProjetos = new ImageIcon(getClass().getResource("/imgs/BtnMeusProjetos.png"));
+	private ImageIcon iconMeusProjetosSel = new ImageIcon(getClass().getResource("/imgs/btnMeusProjetosSEL.png"));
+
+	private ImageIcon iconCriarProjetos = new ImageIcon(getClass().getResource("/imgs/BtnCriarProjetos.png"));
+	private ImageIcon iconCriarProjetosSel = new ImageIcon(getClass().getResource("/imgs/btnCriarProjetoSEL.png"));
+
+	private ImageIcon iconNotificacoes = new ImageIcon(getClass().getResource("/imgs/BtnNotificacoes.png"));
+	private ImageIcon iconNotificacoesSel = new ImageIcon(getClass().getResource("/imgs/btnNotificacoesSEL.png"));
+
+	private ImageIcon iconColaboradores = new ImageIcon(getClass().getResource("/imgs/BtnColaboradores.png"));
+	private ImageIcon iconColaboradoresSel = new ImageIcon(getClass().getResource("/imgs/btnColaboradoresSEL.png"));
+
+	private ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/imgs/BtnPerfil.png"));
+	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/imgs/btnPerfilSEL.png"));
+
+	private void selecionarBotao(JButton botaoSelecionado) {
+	    // Reseta todos os ícones
+	    btnMeusProjetos.setIcon(iconMeusProjetos);
+	    btnCriarProjetos.setIcon(iconCriarProjetos);
+	    btnNotificacoes.setIcon(iconNotificacoes);
+	    btnColaboradores.setIcon(iconColaboradores);
+	    btnPerfil.setIcon(iconPerfil);
+
+	    // Ativa o ícone selecionado do botão clicado
+	    if (botaoSelecionado == btnMeusProjetos) {
+	        botaoSelecionado.setIcon(iconMeusProjetosSel);
+	    } else if (botaoSelecionado == btnCriarProjetos) {
+	        botaoSelecionado.setIcon(iconCriarProjetosSel);
+	    } else if (botaoSelecionado == btnNotificacoes) {
+	        botaoSelecionado.setIcon(iconNotificacoesSel);
+	    } else if (botaoSelecionado == btnColaboradores) {
+	        botaoSelecionado.setIcon(iconColaboradoresSel);
+	    } else if (botaoSelecionado == btnPerfil) {
+	        botaoSelecionado.setIcon(iconPerfilSel);
+	    }
+	}
 
 	/**
 	 * Launch the application.
@@ -68,6 +109,10 @@ public class TelaInicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	
+	
+	
 	public TelaInicio() {
 		
 		setBackground(new Color(216, 178, 184));
@@ -127,6 +172,10 @@ public class TelaInicio extends JFrame {
 			}
 		});
 		
+		
+		
+		
+		
 		btnAbrirMenu.setBorderPainted(false);
 		btnAbrirMenu.setContentAreaFilled(false);
 		btnAbrirMenu.setFocusPainted(false);
@@ -164,16 +213,21 @@ public class TelaInicio extends JFrame {
 		
 //		ImageIcon iconMeusProjetos = new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png"));
 		
-		JButton btnMeusProjetos = new JButton("");
+		btnMeusProjetos = new JButton("");
 		btnMeusProjetos.setMargin(new Insets(2, 2, 2, 2));
 		btnMeusProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
-				
+				selecionarBotao(btnMeusProjetos);
+
+//		        panel_Central.remove(panelActual);
+	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
+		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
+		        
 			}
 		});
 		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png")));
@@ -207,10 +261,21 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		JButton btnCriarProjetos = new JButton("");
+		btnCriarProjetos = new JButton("");
 		btnCriarProjetos.setMargin(new Insets(2, 2, 2, 2));
 		btnCriarProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				selecionarBotao(btnCriarProjetos);
+
+//		        panel_Central.remove(panelActual);
+	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
+		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
 			}
 		});
 		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
@@ -223,10 +288,21 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		JButton btnNotificacoes = new JButton("");
+		 btnNotificacoes = new JButton("");
 		btnNotificacoes.setMargin(new Insets(2, 2, 2, 2));
 		btnNotificacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				selecionarBotao(btnNotificacoes);
+
+//		        panel_Central.remove(panelActual);
+	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
+		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
 			}
 		});
 		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnNotificacoes.png")));
@@ -239,10 +315,21 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		JButton btnColaboradores = new JButton("");
+		 btnColaboradores = new JButton("");
 		btnColaboradores.setMargin(new Insets(2, 2, 2, 2));
 		btnColaboradores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				selecionarBotao(btnColaboradores);
+
+//		        panel_Central.remove(panelActual);
+	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
+		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
 			}
 		});
 		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
@@ -255,10 +342,21 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		JButton btnPerfil = new JButton("");
+		 btnPerfil = new JButton("");
 		btnPerfil.setMargin(new Insets(2, 2, 2, 2));
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				selecionarBotao(btnPerfil);
+
+//		        panel_Central.remove(panelActual);
+	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
+		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
 			}
 		});
 		btnPerfil.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfil.png")));
