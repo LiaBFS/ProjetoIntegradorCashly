@@ -23,7 +23,7 @@ public class TelaCredenciais extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(950, 690));
+        setMinimumSize(new Dimension(1000, 700));
 
         // Layout de cartões
         card = new CardLayout();
