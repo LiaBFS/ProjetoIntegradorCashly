@@ -352,7 +352,8 @@ public class TelaInternaLogin extends JPanel {
 			            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
 			            txtEmail.setText(placeholderEmail);
 			            txtSenha.setText(placeholderSenha);
-			        }
+			            txtSenha.setEchoChar((char)0); // volta a mostrar texto normal
+				            }
 				
 			}
 		});
