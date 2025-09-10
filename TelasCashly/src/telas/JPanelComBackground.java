@@ -18,6 +18,7 @@ public class JPanelComBackground extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private Image backgroundImage;
+    private Color cor = new Color(216, 178, 184);
 
     /**
      * Create the panel.
@@ -28,14 +29,16 @@ public class JPanelComBackground extends JPanel {
         backgroundImage = new ImageIcon(getClass().getResource(caminhoImagem)).getImage();
     }
     
-    
+    public void setBackground(Color cor) {
+    	this.cor=cor;
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         // Preenche fundo com a cor desejada (#d8b2b8)
-        g.setColor(new Color(216, 178, 184));
+        g.setColor(cor);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int imgWidth = backgroundImage.getWidth(this);
