@@ -9,7 +9,7 @@ public class Projeto {
 	private String descricao;
 	private List<LancamentoFinanceiro> fluxoRenda;
 	private double saldo;
-	private List<Usuario> colaboradores;
+	//private List<Usuario> colaboradores;
 	private String nome;
 	
 	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double saldo) {
@@ -20,18 +20,20 @@ public class Projeto {
 		this.descricao = descricao;
 		this.fluxoRenda = fluxoRenda;
 		this.saldo = saldo;
-		this.colaboradores = colaboradores;
+		//this.colaboradores = colaboradores;
+	}
+	
+	public Projeto() {
+		
 	}
 	
 	
-	
-	
-	public List<Usuario> getColaboradores() {
-		return colaboradores;
-	}
-	public void setColaboradores(List<Usuario> colaboradores) {
-		this.colaboradores = colaboradores;
-	}
+//	public List<Usuario> getColaboradores() {
+//		return colaboradores;
+//	}
+//	public void setColaboradores(List<Usuario> colaboradores) {
+//		this.colaboradores = colaboradores;
+//	}
 	public String getNome() {
 		return nome;
 	}

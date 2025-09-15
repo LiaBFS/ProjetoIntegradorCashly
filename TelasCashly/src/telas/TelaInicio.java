@@ -259,24 +259,7 @@ public class TelaInicio extends JFrame {
 		
 		btnMeusProjetos.setMinimumSize(new Dimension(30, 30));
 		btnMeusProjetos.setPreferredSize(new Dimension(70, 70));
-		btnMeusProjetos.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                int largura = btnMeusProjetos.getWidth();
-                int altura = btnMeusProjetos.getHeight();
-                if (largura > 0 && altura > 0) {
-                    double proporcaoOriginal = (double) iconMeusProjetos.getIconWidth() / iconMeusProjetos.getIconHeight();
-                    int novaLargura = largura;
-                    int novaAltura = (int) (largura / proporcaoOriginal);
-                    if (novaAltura > altura) {
-                        novaAltura = altura;
-                        novaLargura = (int) (altura * proporcaoOriginal);
-                    }
-                    Image img = iconMeusProjetos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
-                    btnMeusProjetos.setIcon(new ImageIcon(img));
-                }
-            }
-        });
+		
 		
 		
 		
@@ -287,9 +270,9 @@ public class TelaInicio extends JFrame {
 				
 				selecionarBotao(btnCriarProjetos);
 
-//		        panel_Central.remove(panelActual);
-	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
-		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+		        panel_Central.remove(panelActual);
+		        panelActual = new TelaInternaCriar(); // <- seu JPanel de projetos
+		        panel_Central.add(panelActual, BorderLayout.CENTER);
 
 		        panelMenu_expanded.revalidate();
 		        panelMenu_expanded.repaint();
