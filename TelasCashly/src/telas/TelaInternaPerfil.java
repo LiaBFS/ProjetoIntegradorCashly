@@ -22,12 +22,13 @@ public class TelaInternaPerfil extends JPanel {
 		
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoPerfil.png");
 		add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[0][grow][][][][][0]", "[90px][100px][grow][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[0][grow][][][][][0]", "[90px][100px][grow][][][][][][75px]"));
 		
 		JPanelComBackground panelFundoIcone = new JPanelComBackground("/imgs/FundoIcone.png");
 		panelFundoIcone.setBackground(new Color(255, 245, 234));
 		panelFundoIcone.repaint();
 		panel.add(panelFundoIcone, "cell 1 2,grow");
+		panelFundoIcone.setLayout(new MigLayout("", "[][][][][][][][][][]", "[][][]"));
 		
 		JButton btnNewButton_4 = new JButton("New button");
 		panel.add(btnNewButton_4, "cell 4 2");

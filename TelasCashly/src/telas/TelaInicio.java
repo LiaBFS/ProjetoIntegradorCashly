@@ -187,6 +187,25 @@ public class TelaInicio extends JFrame {
 		panel.add(lblLogoCashly, "cell 3 0,alignx center,growy");
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				panel_Central.remove(panelActual);
+	  	        panelActual = new TelaInternaInicial(); // <- seu JPanel de projetos
+		        panel_Central.add(panelActual, BorderLayout.CENTER);
+		        
+				selecionarBotao(null);
+
+
+		        panelMenu_expanded.revalidate();
+		        panelMenu_expanded.repaint();
+
+
+		        panel_Central.revalidate();
+		        panel_Central.repaint();
+				
+			}
+		});
 		btnNewButton_1.setMargin(new Insets(1, 1, 1, 1));
 		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
 		
@@ -349,9 +368,9 @@ public class TelaInicio extends JFrame {
 				
 				selecionarBotao(btnPerfil);
 
-//		        panel_Central.remove(panelActual);
-	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
-		//        panel_Central.add(panelActual, BorderLayout.CENTER);
+ 		        panel_Central.remove(panelActual);
+	  	        panelActual = new TelaInternaPerfil(); // <- seu JPanel de projetos
+		        panel_Central.add(panelActual, BorderLayout.CENTER);
 
 		        panelMenu_expanded.revalidate();
 		        panelMenu_expanded.repaint();
