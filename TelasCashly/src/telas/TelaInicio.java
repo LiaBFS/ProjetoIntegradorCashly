@@ -85,20 +85,20 @@ public class TelaInicio extends JFrame {
 					TelaInicio frame = new TelaInicio();
 					frame.setVisible(true);
 					
-//					frame.addComponentListener(new ComponentAdapter() {
-//						public void componentResized(ComponentEvent e) {
-//							Dimension d=frame.getSize();
-//							Dimension minD=frame.getMinimumSize();
-//							if(d.width<minD.width) {
-//								d.width=minD.width;
-//							}
-//							if(d.height<minD.height) {
-//								d.height=minD.height;
-//							}
-//							
-//							frame.setSize(d);
-//						}
-					//});
+					frame.addComponentListener(new ComponentAdapter() {
+						public void componentResized(ComponentEvent e) {
+							Dimension d=frame.getSize();
+							Dimension minD=frame.getMinimumSize();
+							if(d.width<minD.width) {
+								d.width=minD.width;
+							}
+							if(d.height<minD.height) {
+								d.height=minD.height;
+							}
+							
+							frame.setSize(d);
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -257,26 +257,26 @@ public class TelaInicio extends JFrame {
 		btnMeusProjetos.setFocusPainted(false);
 		btnMeusProjetos.setOpaque(false);
 		
-//		btnMeusProjetos.setMinimumSize(new Dimension(30, 30));
-//		btnMeusProjetos.setPreferredSize(new Dimension(70, 70));
-//		btnMeusProjetos.addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                int largura = btnMeusProjetos.getWidth();
-//                int altura = btnMeusProjetos.getHeight();
-//                if (largura > 0 && altura > 0) {
-//                    double proporcaoOriginal = (double) iconMeusProjetos.getIconWidth() / iconMeusProjetos.getIconHeight();
-//                    int novaLargura = largura;
-//                    int novaAltura = (int) (largura / proporcaoOriginal);
-//                    if (novaAltura > altura) {
-//                        novaAltura = altura;
-//                        novaLargura = (int) (altura * proporcaoOriginal);
-//                    }
-//                    Image img = iconMeusProjetos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
-//                    btnMeusProjetos.setIcon(new ImageIcon(img));
-//                }
-//            }
-//        });
+		btnMeusProjetos.setMinimumSize(new Dimension(30, 30));
+		btnMeusProjetos.setPreferredSize(new Dimension(70, 70));
+		btnMeusProjetos.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int largura = btnMeusProjetos.getWidth();
+                int altura = btnMeusProjetos.getHeight();
+                if (largura > 0 && altura > 0) {
+                    double proporcaoOriginal = (double) iconMeusProjetos.getIconWidth() / iconMeusProjetos.getIconHeight();
+                    int novaLargura = largura;
+                    int novaAltura = (int) (largura / proporcaoOriginal);
+                    if (novaAltura > altura) {
+                        novaAltura = altura;
+                        novaLargura = (int) (altura * proporcaoOriginal);
+                    }
+                    Image img = iconMeusProjetos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
+                    btnMeusProjetos.setIcon(new ImageIcon(img));
+                }
+            }
+        });
 		
 		
 		

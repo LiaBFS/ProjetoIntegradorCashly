@@ -59,6 +59,11 @@ public class TelaInternaInicial extends JPanel {
 		JButton btnNomeProjeto = new JButton("Nome do Projeto Criado");
 		btnNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 29));
 		
+		btnNomeProjeto.setBorderPainted(false);
+		btnNomeProjeto.setContentAreaFilled(false);
+		btnNomeProjeto.setFocusPainted(false);
+        btnNomeProjeto.setOpaque(false);
+		
 		panel.addComponentListener(new ComponentAdapter() {
 		    @Override
 		    public void componentResized(ComponentEvent e) {
@@ -82,23 +87,21 @@ public class TelaInternaInicial extends JPanel {
 		btnNomeProjeto.setForeground(new Color(255, 245, 234));
 		btnNomeProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnNomeProjeto.setBorderPainted(false);
-				btnNomeProjeto.setContentAreaFilled(false);
-				btnNomeProjeto.setFocusPainted(false);
-		        btnNomeProjeto.setOpaque(false);
+				
 			}
 		});
 		
 		
-		panel.add(btnNomeProjeto, "cell 2 1,alignx right,growy");
+		panel.add(btnNomeProjeto, "cell 2 1,alignx left,growy");
 		
 		JButton btnData = new JButton("dd/mm/aa");
+		btnData.setBorderPainted(false);
+		btnData.setContentAreaFilled(false);
+		btnData.setFocusPainted(false);
+		btnData.setOpaque(false);
 		btnData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnData.setBorderPainted(false);
-				btnData.setContentAreaFilled(false);
-				btnData.setFocusPainted(false);
-				btnData.setOpaque(false);
+			
 			}
 		});
 		btnData.setFont(new Font("Carlito", Font.PLAIN, 19));
@@ -113,7 +116,7 @@ public class TelaInternaInicial extends JPanel {
 
 		        if (largura > 0 && altura > 0) {
 		            // Fonte menor que o NomeProjeto
-		            int novoTamanho = Math.min(largura / 20, altura / 10);
+		            int novoTamanho = Math.min(largura / 15, altura / 7);
 		            if (novoTamanho < 12) novoTamanho = 12;
 		            btnData.setFont(new Font("Carlito", Font.PLAIN, novoTamanho));
 		        }
@@ -121,21 +124,23 @@ public class TelaInternaInicial extends JPanel {
 		});
 		
 		btnData.setForeground(new Color(153, 131, 116));
-		panel.add(btnData, "cell 7 1,growy");
+		panel.add(btnData, "cell 7 1,alignx right,growy");
 		
 		JButton btnDescrição = new JButton("Descrição");
 		btnDescrição.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnDescrição.setBorderPainted(false);
-				btnDescrição.setContentAreaFilled(false);
-				btnDescrição.setFocusPainted(false);
-				btnDescrição.setOpaque(false);
+				
 			}
 		});
 		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 14));
 		
 		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 14));
 
+		btnDescrição.setBorderPainted(false);
+		btnDescrição.setContentAreaFilled(false);
+		btnDescrição.setFocusPainted(false);
+		btnDescrição.setOpaque(false);
+		
 		panel.addComponentListener(new ComponentAdapter() {
 		    @Override
 		    public void componentResized(ComponentEvent e) {
@@ -144,7 +149,7 @@ public class TelaInternaInicial extends JPanel {
 
 		        if (largura > 0 && altura > 0) {
 		            // Fonte ainda menor, pois é apenas descritiva
-		            int novoTamanho = Math.min(largura / 30, altura / 15);
+		            int novoTamanho = Math.min(largura / 20, altura / 10);
 		            if (novoTamanho < 11) novoTamanho = 11;
 		            btnDescrição.setFont(new Font("Carlito", Font.PLAIN, novoTamanho));
 		        }
