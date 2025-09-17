@@ -1,6 +1,7 @@
 package classesBanco;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import java.sql.Statement;
 public class ProjetoDAO {
 	
 	public void adicionarProjeto(Projeto projeto) {
-        String sql = "INSERT INTO Projeto (nome, descricao, saldo) VALUES (?, ?,?)";
+        String sql = "INSERT INTO Projeto (nome, descricao, saldo, dataCriacao) VALUES (?, ?,?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -19,6 +20,9 @@ public class ProjetoDAO {
             pstm.setString(1, projeto.getNome());
             pstm.setString(2, projeto.getDescricao());
             pstm.setDouble(3, projeto.getSaldo());
+            
+            Date dataUtil = new Date(1, 4, 26);
+            pstm.setDate(4, dataUtil);
          
             pstm.executeUpdate();
             
