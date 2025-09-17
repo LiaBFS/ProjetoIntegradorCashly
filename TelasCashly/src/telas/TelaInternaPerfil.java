@@ -26,45 +26,47 @@ public class TelaInternaPerfil extends JPanel {
 		
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoPerfil.png");
 		add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[100][][200px][][][][0]", "[150px][100px][][40][][][60][][][60][][75px]"));
+		panel.setLayout(new MigLayout("", "[0][0][500][500,grow][200px][][][][0]", "[150px][50px][][40,grow][][][60][][][60][][75px]"));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 245, 234));
+		panel.add(panel_1, "cell 2 2 3 8,grow");
+		panel_1.setLayout(new MigLayout("", "[][][][][][]", "[][][][][][][][]"));
 		
 		JPanelComBackground panelFundoIcone = new JPanelComBackground("/imgs/FundoIcone.png");
+		panel_1.add(panelFundoIcone, "cell 0 0,alignx left");
 		panelFundoIcone.setBackground(new Color(255, 245, 234));
 		panelFundoIcone.repaint();
-		panel.add(panelFundoIcone, "cell 1 2,grow");
 		panelFundoIcone.setLayout(new MigLayout("", "[401][][][20][][][][][][401]", "[][][]"));
 		
+		JLabel lblNewLabel_1 = new JLabel("Nome");
+		panel_1.add(lblNewLabel_1, "cell 0 2");
+		lblNewLabel_1.setForeground(new Color(72, 53, 40));
+		lblNewLabel_1.setFont(new Font("Carlito", Font.BOLD, 18));
+		
 		JButton btnNewButton_4 = new JButton("Alterar Ícone");
+		panel_1.add(btnNewButton_4, "cell 3 2");
 		btnNewButton_4.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnNewButton_4.setForeground(new Color(255, 245, 234));
 		btnNewButton_4.setBackground(new Color(207, 114, 116));
-		panel.add(btnNewButton_4, "cell 2 2,alignx left");
-		
-		JLabel lblNewLabel_1 = new JLabel("Nome");
-		lblNewLabel_1.setForeground(new Color(72, 53, 40));
-		lblNewLabel_1.setFont(new Font("Carlito", Font.BOLD, 18));
-		panel.add(lblNewLabel_1, "cell 1 4");
 		
 		textField_1 = new JTextField();
-		panel.add(textField_1, "cell 1 5,growx");
+		panel_1.add(textField_1, "cell 0 3,growx");
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton_3 = new JButton("Editar");
+		panel_1.add(btnNewButton_3, "cell 3 3");
 		btnNewButton_3.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnNewButton_3.setForeground(new Color(255, 245, 234));
 		btnNewButton_3.setBackground(new Color(207, 114, 116));
-		panel.add(btnNewButton_3, "cell 2 5");
 		
 		JLabel lblNewLabel = new JLabel("Endereço de Email");
+		panel_1.add(lblNewLabel, "cell 0 4");
 		lblNewLabel.setForeground(new Color(72, 53, 40));
 		lblNewLabel.setFont(new Font("Carlito", Font.BOLD, 18));
-		panel.add(lblNewLabel, "cell 1 7");
-		
-		textField = new JTextField();
-		panel.add(textField, "cell 1 8,growx");
-		textField.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("Editar");
+		panel_1.add(btnNewButton_2, "cell 3 4");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -72,9 +74,13 @@ public class TelaInternaPerfil extends JPanel {
 		btnNewButton_2.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnNewButton_2.setForeground(new Color(255, 245, 234));
 		btnNewButton_2.setBackground(new Color(207, 114, 116));
-		panel.add(btnNewButton_2, "cell 2 8");
+		
+		textField = new JTextField();
+		panel_1.add(textField, "cell 0 5,growx");
+		textField.setColumns(10);
 		
 		JButton btnSair = new JButton("Sair");
+		panel_1.add(btnSair, "cell 0 7");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -82,9 +88,9 @@ public class TelaInternaPerfil extends JPanel {
 		btnSair.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnSair.setForeground(new Color(255, 245, 234));
 		btnSair.setBackground(new Color(207, 114, 116));
-		panel.add(btnSair, "flowx,cell 1 10,alignx left");
 		
 		JButton btnExcluirPerfil = new JButton("Excluir Perfil");
+		panel_1.add(btnExcluirPerfil, "cell 1 7");
 		btnExcluirPerfil.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnExcluirPerfil.setForeground(new Color(255, 245, 234));
 		btnExcluirPerfil.setBackground(new Color(193, 31, 35));
@@ -92,7 +98,6 @@ public class TelaInternaPerfil extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel.add(btnExcluirPerfil, "cell 2 10,alignx left");
 
 	}
 
