@@ -16,19 +16,23 @@ public class Usuario {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.senhaHash = PasswordUtils.gerarHash(senha);
+		this.senhaHash = PasswordUtils.md5(senha);
 		this.dataCadastro = dataCadastro;
 		this.projetos = projetos;
+		System.out.println("ENTREI NO CONSTRUTOR 2");
 	}
 	
 	
 	public Usuario(String nome, String email, String senha) throws Exception {
         this.nome = nome;
         this.email = email;
-        this.senhaHash = PasswordUtils.gerarHash(senha);
+        this.senhaHash = PasswordUtils.md5(senha);
+        System.out.println("ENTREI NO CONSTRUTOR 2");
     }
 	
-	public Usuario() {}
+	public Usuario() {
+		System.out.println("entrei no construtor vazio!");
+	}
 
 	
 
@@ -67,7 +71,7 @@ public class Usuario {
 
    
     public void setSenha(String senha) throws Exception {
-        this.senhaHash = PasswordUtils.gerarHash(senha);
+        this.senhaHash = PasswordUtils.md5(senha);
     }
 
 	public Date getDataCadastro() {

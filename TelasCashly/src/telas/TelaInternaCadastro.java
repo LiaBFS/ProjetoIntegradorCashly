@@ -356,6 +356,7 @@ public class TelaInternaCadastro extends JPanel {
 		    @Override
 		    public void focusLost(FocusEvent e) {
 		        if (String.valueOf(txtSenha.getPassword()).isEmpty()) {
+
 		            txtSenha.setText(placeholderSenha);
 		            txtSenha.setEchoChar((char) 0); // mostra texto normal de placeholder
 		        }
@@ -378,9 +379,10 @@ public class TelaInternaCadastro extends JPanel {
 				
 				String nome = txtNome.getText();
 				String email = txtEmail.getText();
-				String senha = String.valueOf(txtSenha.getPassword());
-				
-				
+				char[] senhaChars = txtSenha.getPassword();
+		        String senha = new String(senhaChars);
+		        
+								
 				if (nome.equals(placeholderUsuario) || email.equals(placeholderEmail) || senha.equals(placeholderSenha)|| nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Todos os campos do Cadastro são obrigatórios.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
 			        return;
@@ -409,7 +411,7 @@ public class TelaInternaCadastro extends JPanel {
                 novoUsuario.setNome(txtNome.getText());
                 novoUsuario.setEmail(txtEmail.getText());
                 try {
-					novoUsuario.setSenha(txtSenha.getText());
+					novoUsuario.setSenha(senha);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
