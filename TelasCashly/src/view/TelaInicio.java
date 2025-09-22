@@ -38,20 +38,20 @@ public class TelaInicio extends JFrame {
 	private JButton btnColaboradores;
 	private JButton btnPerfil;
 
-	private ImageIcon iconMeusProjetos = new ImageIcon(getClass().getResource("/BtnMeusProjetos.png"));
-	private ImageIcon iconMeusProjetosSel = new ImageIcon(getClass().getResource("/btnMeusProjetosSEL.png"));
+	private ImageIcon iconMeusProjetos = new ImageIcon(getClass().getResource("/imgs/BtnMeusProjetos.png"));
+	private ImageIcon iconMeusProjetosSel = new ImageIcon(getClass().getResource("/imgs/btnMeusProjetosSEL.png"));
 
-	private ImageIcon iconCriarProjetos = new ImageIcon(getClass().getResource("/BtnCriarProjetos.png"));
-	private ImageIcon iconCriarProjetosSel = new ImageIcon(getClass().getResource("/btnCriarProjetoSEL.png"));
+	private ImageIcon iconCriarProjetos = new ImageIcon(getClass().getResource("/imgs/BtnCriarProjetos.png"));
+	private ImageIcon iconCriarProjetosSel = new ImageIcon(getClass().getResource("/imgs/btnCriarProjetoSEL.png"));
 
-	private ImageIcon iconNotificacoes = new ImageIcon(getClass().getResource("/BtnNotificacoes.png"));
-	private ImageIcon iconNotificacoesSel = new ImageIcon(getClass().getResource("/btnNotificacoesSEL.png"));
+	private ImageIcon iconNotificacoes = new ImageIcon(getClass().getResource("/imgs/BtnNotificacoes.png"));
+	private ImageIcon iconNotificacoesSel = new ImageIcon(getClass().getResource("/imgs/btnNotificacoesSEL.png"));
 
-	private ImageIcon iconColaboradores = new ImageIcon(getClass().getResource("/BtnColaboradores.png"));
-	private ImageIcon iconColaboradoresSel = new ImageIcon(getClass().getResource("/btnColaboradoresSEL.png"));
+	private ImageIcon iconColaboradores = new ImageIcon(getClass().getResource("/imgs/BtnColaboradores.png"));
+	private ImageIcon iconColaboradoresSel = new ImageIcon(getClass().getResource("/imgs/btnColaboradoresSEL.png"));
 
-	private ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/BtnPerfil.png"));
-	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/btnPerfilSEL.png"));
+	private ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/imgs/BtnPerfil.png"));
+	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/imgs/btnPerfilSEL.png"));
 
 	private void selecionarBotao(JButton botaoSelecionado) {
 	    // Reseta todos os ícones
@@ -141,7 +141,7 @@ public class TelaInicio extends JFrame {
 		panel.setLayout(new MigLayout("", "[5px,grow 5][60px][grow 10][][][][][][][][][][][][grow][][][][][][][][][][][][][][][][][][][][][][5px,grow 5]", "[fill]"));
 		
 		JButton btnAbrirMenu = new JButton("");
-		btnAbrirMenu.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnMenu.png")));
+		btnAbrirMenu.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMenu.png")));
 		btnAbrirMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (menuAberto == false) {
@@ -183,7 +183,7 @@ public class TelaInicio extends JFrame {
 		panel.add(btnAbrirMenu, "cell 1 0,alignx left,aligny bottom");
 		
 		JLabel lblLogoCashly = new JLabel("");
-		lblLogoCashly.setIcon(new ImageIcon(TelaInicio.class.getResource("/LogoCashly2.png")));
+		lblLogoCashly.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly2.png")));
 		panel.add(lblLogoCashly, "cell 3 0,alignx center,growy");
 		
 		JButton btnNewButton_1 = new JButton("");
@@ -207,7 +207,7 @@ public class TelaInicio extends JFrame {
 			}
 		});
 		btnNewButton_1.setMargin(new Insets(1, 1, 1, 1));
-		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnHome.png")));
+		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
 		
 		
 		btnNewButton_1.setBorderPainted(false);
@@ -249,7 +249,7 @@ public class TelaInicio extends JFrame {
 		        
 			}
 		});
-		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnMeusProjetos.png")));
+		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png")));
 		panelMenu_expanded.add(btnMeusProjetos, "cell 0 1,growx,aligny center");
 		
 		btnMeusProjetos.setBorderPainted(false);
@@ -280,7 +280,7 @@ public class TelaInicio extends JFrame {
 		        panel_Central.repaint();
 			}
 		});
-		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnCriarProjetos.png")));
+		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
 		panelMenu_expanded.add(btnCriarProjetos, "cell 0 2,growx,aligny center");
 		
 		btnCriarProjetos.setBorderPainted(false);
@@ -307,7 +307,7 @@ public class TelaInicio extends JFrame {
 		        panel_Central.repaint();
 			}
 		});
-		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnNotificacoes.png")));
+		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnNotificacoes.png")));
 		panelMenu_expanded.add(btnNotificacoes, "cell 0 3,growx,aligny center");
 		
 		btnNotificacoes.setBorderPainted(false);
@@ -334,7 +334,7 @@ public class TelaInicio extends JFrame {
 		        panel_Central.repaint();
 			}
 		});
-		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnColaboradores.png")));
+		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
 		panelMenu_expanded.add(btnColaboradores, "cell 0 4,growx,aligny center");
 		
 		btnColaboradores.setBorderPainted(false);
@@ -361,7 +361,7 @@ public class TelaInicio extends JFrame {
 		        panel_Central.repaint();
 			}
 		});
-		btnPerfil.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnPerfil.png")));
+		btnPerfil.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfil.png")));
 		panelMenu_expanded.add(btnPerfil, "cell 0 14,alignx center,growy");
 		
 		btnPerfil.setBorderPainted(false);
@@ -392,7 +392,7 @@ public class TelaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(TelaInicio.class.getResource("/BtnPerfilRe.png")));
+		btnNewButton.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfilRe.png")));
 		panelMenuContracted.add(btnNewButton, "cell 0 20,alignx center,growy");
 		
 		btnNewButton.setBorderPainted(false);
