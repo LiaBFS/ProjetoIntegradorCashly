@@ -26,11 +26,11 @@ public class TelaInternaInicial extends JPanel {
 		setLayout(new MigLayout("", "[][][grow,fill][][]", "[][grow 10][5px][191px,grow][][380px,grow][]"));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaInternaInicial.class.getResource("/ProjetoRecente.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaInternaInicial.class.getResource("/imgs/ProjetoRecente.png")));
 		
 		
 		add(lblNewLabel, "cell 2 1,alignx left,aligny center");
-		ImageIcon iconProjetoRecente = new ImageIcon(TelaApresentacao.class.getResource("/ProjetoRecente.png"));
+		ImageIcon iconProjetoRecente = new ImageIcon(TelaApresentacao.class.getResource("/imgs/ProjetoRecente.png"));
 		lblNewLabel.setIcon(iconProjetoRecente);
 		
 		lblNewLabel.addComponentListener(new ComponentAdapter() {
@@ -52,7 +52,7 @@ public class TelaInternaInicial extends JPanel {
             }
         });
 		
-		JPanelComBackground panel = new JPanelComBackground("/FundoBtn.png");
+		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel, "cell 1 3 3 1,grow");
 		panel.setLayout(new MigLayout("", "[][grow 20][grow 20][][][grow 70][][grow 15][][grow][]", "[grow 25][][grow 10][][][][grow 25]"));
 		
@@ -159,7 +159,7 @@ public class TelaInternaInicial extends JPanel {
 		btnDescrição.setForeground(new Color(255, 245, 234));
 		panel.add(btnDescrição, "cell 2 3 1 2,alignx left,growy");
 		
-		JPanelComBackground panel_1 = new JPanelComBackground("/BemVindoDeVolta.png");
+		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/BemVindoDeVolta.png");
 		add(panel_1, "cell 1 5 3 1,grow");
 
 	}
