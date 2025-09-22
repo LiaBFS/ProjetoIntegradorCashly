@@ -20,33 +20,19 @@ public class TelaApresentacao extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+	private JButton btnCadastrar;
+	private JButton btnLogin;
+	private JButton btnFacaProjetos;
+	private JButton btnRecebaAvisos;
+	private JButton btnGrafica;
+	private JButton btnPainelCentral;
     
 	
-    private void abrirTelaCadastro() {
-        dispose(); // Fecha a tela atual
-        new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
-    }
 
-    private void abrirTelaLogin() {
-        dispose(); // Fecha a tela atual
-        new TelaCredenciais("login").setVisible(true); // Abre direto no login
-    }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-           TelaApresentacao frame = new TelaApresentacao();
-                   frame.setVisible(true);
-                	System.out.println("nfjiiad");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
-    public TelaApresentacao() {
+
+	public TelaApresentacao() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 700));
 
@@ -114,26 +100,18 @@ public class TelaApresentacao extends JFrame {
         btnInicio.setFocusPainted(false);
         btnInicio.setOpaque(false);
 
-        JButton btnCadastrar = new JButton("");
+        btnCadastrar = new JButton("");
         panel.add(btnCadastrar, "cell 17 0,grow");
-        btnCadastrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaCadastro();
-            }
-        });
+       
         btnCadastrar.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnCadastro.png")));
         btnCadastrar.setBorderPainted(false);
         btnCadastrar.setContentAreaFilled(false);
         btnCadastrar.setFocusPainted(false);
         btnCadastrar.setOpaque(false);
 
-        JButton btnLogin = new JButton("");
+        btnLogin = new JButton("");
         panel.add(btnLogin, "cell 20 0,alignx left,aligny center");
-        btnLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaLogin();
-            }
-        });
+      
         btnLogin.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnLogin.png")));
         btnLogin.setBorderPainted(false);
         btnLogin.setContentAreaFilled(false);
@@ -147,37 +125,28 @@ public class TelaApresentacao extends JFrame {
         ImageIcon FacaProjetos = new ImageIcon(
                 TelaApresentacao.class.getResource("/imgs/FacaProjetos.png"));
 
-        JButton btnNewButton = new JButton("");
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaCadastro();
-            }
-        });
-
+        btnPainelCentral = new JButton("");
+      
         ImageIcon iconBemVindo = new ImageIcon(
                 TelaApresentacao.class.getResource("/imgs/SejaBemVindo.png"));
-        btnNewButton.setIcon(iconBemVindo);
-        contentPane.add(btnNewButton, "cell 0 2 5 1,grow");
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setContentAreaFilled(false);
-        btnNewButton.setFocusPainted(false);
-        btnNewButton.setOpaque(false);
-        btnNewButton.setMinimumSize(new Dimension(30, 30));
-        btnNewButton.setPreferredSize(new Dimension(1000, 1000));
+        btnPainelCentral.setIcon(iconBemVindo);
+        contentPane.add(btnPainelCentral, "cell 0 2 5 1,grow");
+        btnPainelCentral.setBorderPainted(false);
+        btnPainelCentral.setContentAreaFilled(false);
+        btnPainelCentral.setFocusPainted(false);
+        btnPainelCentral.setOpaque(false);
+        btnPainelCentral.setMinimumSize(new Dimension(30, 30));
+        btnPainelCentral.setPreferredSize(new Dimension(1000, 1000));
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(216, 178, 184));
         contentPane.add(panel_1, "cell 0 4 5 1,grow");
         panel_1.setLayout(new MigLayout("", "[150px][grow][][grow][][grow][150px]", "[]"));
 
-        JButton btnFacaProjetos = new JButton("");
+        btnFacaProjetos = new JButton("");
         btnFacaProjetos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/FacaProjetos.png")));
         panel_1.add(btnFacaProjetos, "cell 1 0,grow");
-        btnFacaProjetos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaCadastro();
-            }
-        });
+       
         btnFacaProjetos.setBorderPainted(false);
         btnFacaProjetos.setContentAreaFilled(false);
         btnFacaProjetos.setFocusPainted(false);
@@ -203,13 +172,9 @@ public class TelaApresentacao extends JFrame {
             }
         });
 
-        JButton btnRecebaAvisos = new JButton("");
+        btnRecebaAvisos = new JButton("");
         panel_1.add(btnRecebaAvisos, "cell 3 0,grow");
-        btnRecebaAvisos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaCadastro();
-            }
-        });
+       
         btnRecebaAvisos.setIcon(RecebaAvisos);
         btnRecebaAvisos.setBorderPainted(false);
         btnRecebaAvisos.setContentAreaFilled(false);
@@ -236,13 +201,9 @@ public class TelaApresentacao extends JFrame {
             }
         });
 
-        JButton btnGrafica = new JButton("");
+        btnGrafica = new JButton("");
         panel_1.add(btnGrafica, "cell 5 0,grow");
-        btnGrafica.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirTelaCadastro();
-            }
-        });
+       
         btnGrafica.setIcon(iconOriginal);
         btnGrafica.setMinimumSize(new Dimension(30, 30));
         btnGrafica.setPreferredSize(new Dimension(1000, 1000));
@@ -270,11 +231,11 @@ public class TelaApresentacao extends JFrame {
             }
         });
 
-        btnNewButton.addComponentListener(new ComponentAdapter() {
+        btnPainelCentral.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                int largura = btnNewButton.getWidth();
-                int altura = btnNewButton.getHeight();
+                int largura = btnPainelCentral.getWidth();
+                int altura = btnPainelCentral.getHeight();
                 if (largura > 0 && altura > 0) {
                     double proporcaoOriginal = (double) iconBemVindo.getIconWidth() / iconBemVindo.getIconHeight();
                     int novaLargura = largura;
@@ -284,9 +245,59 @@ public class TelaApresentacao extends JFrame {
                         novaLargura = (int) (altura * proporcaoOriginal);
                     }
                     Image img = iconBemVindo.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
-                    btnNewButton.setIcon(new ImageIcon(img));
+                    btnPainelCentral.setIcon(new ImageIcon(img));
                 }
             }
         });
     }
+
+
+
+
+
+
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
+
+
+
+
+
+	public JButton getBtnFacaProjetos() {
+		return btnFacaProjetos;
+	}
+
+
+
+
+
+	public JButton getBtnRecebaAvisos() {
+		return btnRecebaAvisos;
+	}
+
+
+
+
+
+	public JButton getBtnGrafica() {
+		return btnGrafica;
+	}
+
+
+
+
+
+	public JButton getBtnCadastrar() {
+		return btnCadastrar;
+	}
+
+
+
+	public JButton getBtnPainelCentral() {
+		return btnPainelCentral;
+	}
+    
+    
+    
 }

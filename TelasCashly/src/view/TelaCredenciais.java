@@ -10,11 +10,12 @@ import model.UsuarioDAO;
 
 public class TelaCredenciais extends JFrame {
     private JPanel painelPrincipal;
-    private TelaInternaCadastro telaCadastro;
+   
+
+	private TelaInternaCadastro telaCadastro;
     private TelaInternaLogin telaLogin;
     private CardLayout card;
     
-    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public TelaCredenciais(String telaInicial) { // << ADICIONADO
         setTitle("Tela de Credenciais");
@@ -29,27 +30,22 @@ public class TelaCredenciais extends JFrame {
         card = new CardLayout();
         painelPrincipal = new JPanel(card);
 
-        // Cria os painéis internos
-        telaCadastro = new TelaInternaCadastro(this, usuarioDAO);
-        telaLogin = new TelaInternaLogin(this, usuarioDAO);
+       
 
-        // Adiciona ao CardLayout
-        painelPrincipal.add(telaLogin, "login");
-        painelPrincipal.add(telaCadastro, "cadastro");
-
+      
         add(painelPrincipal);
 
         // Mostra a tela inicial passada no construtor
-        mostrarTela(telaInicial);
     }
 
-    // Método para trocar entre telas
-    public void mostrarTela(String nomeTela) {
-        card.show(painelPrincipal, nomeTela);
-    }
+  
 
-    public static void main(String[] args) {
-        TelaCredenciais tela = new TelaCredenciais("login"); // default
-        tela.setVisible(true);
-    }
+    
+    public CardLayout getCard() {
+		return card;
+	}
+
+	public JPanel getPainelPrincipal() {
+		return painelPrincipal;
+	}
 }
