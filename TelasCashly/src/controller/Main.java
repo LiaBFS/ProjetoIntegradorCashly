@@ -9,7 +9,7 @@ public class Main {
 		
 		TelaApresentacao telaApresentacao = new TelaApresentacao();
 		ApresentacaoController apresentacaoController = new ApresentacaoController(telaApresentacao);
-		apresentacaoController.iniciar();
+		apresentacaoController.iniciarApresentacao();
 	}
 
 }

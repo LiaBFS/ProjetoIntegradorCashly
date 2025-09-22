@@ -37,7 +37,11 @@ public class TelaInternaLogin extends JPanel {
 	private String placeholderSenha = "Senha";
 	
 	private UsuarioDAO usuarioDAO;
+	private JButton btnCadastrar;
+	private JButton btnIrCadastro;
 	
+
+
 	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
 		telaCredenciais.dispose(); // Fecha a tela atual
         new TelaInicio().setVisible(true); // Abre a tela de cadastro
@@ -127,13 +131,9 @@ public class TelaInternaLogin extends JPanel {
 		btnInicio.setFocusPainted(false);
 		btnInicio.setOpaque(false);
 		
-		JButton btnCadastrar = new JButton("");
+		btnCadastrar = new JButton("");
 		panel.add(btnCadastrar, "cell 17 0,grow");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro();
-			}
-		});
+		
 		
 		btnCadastrar.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/BtnCadastro.png")));
 		
@@ -156,12 +156,8 @@ public class TelaInternaLogin extends JPanel {
 		add(panel_1, "cell 2 2 2 2,grow");
 		panel_1.setLayout(new MigLayout("", "[grow]", "[][grow][]"));
 		
-		JButton btnIrCadastro = new JButton("");
-		btnIrCadastro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaCadastro();
-			}
-		});
+		btnIrCadastro = new JButton("");
+		
 		btnIrCadastro.setPreferredSize(new Dimension(1000, 1000));
 		btnIrCadastro.setOpaque(false);
 		btnIrCadastro.setMinimumSize(new Dimension(600, 600));
@@ -401,5 +397,13 @@ public class TelaInternaLogin extends JPanel {
 		    }
 		});		
 
+	}
+	
+	public JButton getBtnIrCadastro() {
+		return btnIrCadastro;
+	}
+
+	public JButton getBtnCadastrar() {
+		return btnCadastrar;
 	}
 }

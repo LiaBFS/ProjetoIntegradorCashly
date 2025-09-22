@@ -41,23 +41,19 @@ public class TelaInternaCadastro extends JPanel {
 	private String placeholderEmail = "Email";
 	private String placeholderSenha = "Senha";
 	
-	private UsuarioDAO usuarioDAO;
 	
-	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
-		telaCredenciais.dispose(); // Fecha a tela atual
-        new TelaInicio().setVisible(true); // Abre a tela de cadastro
-    }
-
-
+	private JButton btnInicio;
+	private JButton btnCadastrar;
 	
+	
+	
+	
+
 	/**
 	 * Create the panel.
 	 * @param telaCredenciais 
 	 */
-	private void abrirTelaApresentacao() {
-	    dispose(); // Fecha a tela atual
-	    new TelaApresentacao().setVisible(true); // Abre a tela de cadastro
-	}
+	
 	
 	private void dispose() {
 		// TODO Auto-generated method stub
@@ -69,11 +65,11 @@ public class TelaInternaCadastro extends JPanel {
 	        new TelaCredenciais("login").setVisible(true); // Abre direto no login
 	    }
 
-	public TelaInternaCadastro(TelaCredenciais telaCredenciais, UsuarioDAO usuarioDAO) {
+	public TelaInternaCadastro(TelaCredenciais telaCredenciais) {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][75px,grow][70px,grow][75px,grow]"));
 		
-		this.usuarioDAO = usuarioDAO;
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
@@ -116,13 +112,9 @@ public class TelaInternaCadastro extends JPanel {
 		    }
 		});
 		
-		JButton btnInicio = new JButton("");
+		btnInicio = new JButton("");
 		panel.add(btnInicio, "cell 14 0,growx,aligny center");
-		btnInicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaApresentacao();
-			}
-		});
+		
 		btnInicio.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/BtnInicio2.png")));
 		
 		btnInicio.setBorderPainted(false);
@@ -373,57 +365,8 @@ public class TelaInternaCadastro extends JPanel {
 	
 		
 		
-		JButton btnCadastrar = new JButton("");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String nome = txtNome.getText();
-				String email = txtEmail.getText();
-				char[] senhaChars = txtSenha.getPassword();
-		        String senha = new String(senhaChars);
-		        
-								
-				if (nome.equals(placeholderUsuario) || email.equals(placeholderEmail) || senha.equals(placeholderSenha)|| nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Todos os campos do Cadastro são obrigatórios.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
-			        return;
-			    }
-				
-				if(nome.length() < 3) {
-					JOptionPane.showMessageDialog(null, "Crie um usuário contendo no mínimo 3 dígitos.", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
-					txtNome.setText(placeholderUsuario);
-					return;
-				}
-				
-				if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-				    JOptionPane.showMessageDialog(null, "Formato de email inválido. Exemplo: usuario@dominio.com", "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
-				    txtEmail.setText(placeholderEmail);
-				    return;
-				}
-				
-				if(senha.length() < 8 || senha.length() > 30) {
-					JOptionPane.showMessageDialog(null, "Crie uma senha contendo de 8 a 30 dígitos.", "Erro de Senha", JOptionPane.ERROR_MESSAGE);
-					txtSenha.setText(placeholderSenha);
-					return;
-				}
-				
-				
-				model.Usuario novoUsuario = new model.Usuario();
-                novoUsuario.setNome(txtNome.getText());
-                novoUsuario.setEmail(txtEmail.getText());
-                try {
-					novoUsuario.setSenha(senha);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                
-                usuarioDAO.adicionarUsuario(novoUsuario);
-                
-                abrirTelaLogin();
-				
-			}
-		});
-		
+		btnCadastrar = new JButton("");
+//		
 		
 		btnCadastrar.setPreferredSize(new Dimension(500, 100));
 		btnCadastrar.setOpaque(false);
@@ -464,6 +407,39 @@ public class TelaInternaCadastro extends JPanel {
 		    }
 		});		
 
+	}
+
+
+
+	public String getPlaceholderUsuario() {
+		return placeholderUsuario;
+	}
+
+	public String getPlaceholderEmail() {
+		return placeholderEmail;
+	}
+
+	public String getPlaceholderSenha() {
+		return placeholderSenha;
+	}
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public JButton getBtnInicio() {
+		return btnInicio;
+	}
+	
+	public JButton getBtnCadastrar() {
+		return btnCadastrar;
+	}
+	public JTextField getTxtNome() {
+		return txtNome;
+	}
+
+	public JPasswordField getTxtSenha() {
+		return txtSenha;
 	}
 
 }

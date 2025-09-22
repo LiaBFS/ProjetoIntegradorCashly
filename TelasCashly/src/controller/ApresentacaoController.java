@@ -18,7 +18,7 @@ public class ApresentacaoController {
 		this.telaApresentacao.getBtnLogin().addActionListener(e -> abrirTelaLogin());
 				
 	}
-	public void iniciar() {
+	public void iniciarApresentacao() {
 		this.telaApresentacao.setVisible(true);
 		
 	}
@@ -38,7 +38,7 @@ public class ApresentacaoController {
     	
     	  TelaCredenciais tela = new TelaCredenciais("login"); // Abre direto no cadastro
           CredenciaisController credenciais = new CredenciaisController(tela);
-          credenciais.iniciarCadastro();
+          credenciais.iniciarLogin();
     }
 
 }
