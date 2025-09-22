@@ -11,7 +11,7 @@ import model.UsuarioDAO;
 public class TelaCredenciais extends JFrame {
     private JPanel painelPrincipal;
    
-
+    
 	private TelaInternaCadastro telaCadastro;
     private TelaInternaLogin telaLogin;
     private CardLayout card;
