@@ -42,7 +42,7 @@ public class TelaInternaCriar extends JPanel {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][]"));
 		
-		JPanelComBackground panel = new JPanelComBackground("/FundoCriarProjeto2.png");
+		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoCriarProjeto2.png");
 		add(panel, "cell 1 1,grow");
 		panel.setLayout(new MigLayout("", "[18][grow][grow][grow][18]", "[][][grow 55][][grow 15][][grow 15][][grow 15][][grow 55]"));
 		
