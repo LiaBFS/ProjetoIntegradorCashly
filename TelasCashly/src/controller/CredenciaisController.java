@@ -2,9 +2,11 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.Usuario;
 import model.UsuarioDAO;
 import view.TelaApresentacao;
 import view.TelaCredenciais;
+import view.TelaInicio;
 import view.TelaInternaCadastro;
 import view.TelaInternaLogin;
 
@@ -24,22 +26,74 @@ public class CredenciaisController {
 	
 		 // Cria os painéis internos
         telaCadastro = new TelaInternaCadastro(this.tela);
-        telaLogin = new TelaInternaLogin(this.tela, usuarioDAO);
+        telaLogin = new TelaInternaLogin(this.tela);
 		  // Adiciona ao CardLayout
         this.tela.getPainelPrincipal().add(telaLogin, "login");
         this.tela.getPainelPrincipal().add(telaCadastro, "cadastro");
         
         
-        
+        this.telaCadastro.getBtnLogin().addActionListener(e -> mostrarTela("login"));
+        this.telaCadastro.getBtnIrProLogin().addActionListener(e -> mostrarTela("login"));
         this.telaCadastro.getBtnInicio().addActionListener(e -> abrirTelaApresentacao());
         this.telaCadastro.getBtnCadastrar().addActionListener(e -> confereCadastro());
         
         this.telaLogin.getBtnCadastrar().addActionListener(e -> mostrarTela("cadastro"));
         this.telaLogin.getBtnIrCadastro().addActionListener(e -> mostrarTela("cadastro"));
+        this.telaLogin.getBtnInicio().addActionListener(e -> abrirTelaApresentacao());
+        this.telaLogin.getBtnIniciarSessao().addActionListener(e -> iniciarSessao());
+        
+        
 
 
 	}
 	
+	private void iniciarSessao() {
+
+		 String email = this.telaLogin.getTxtEmail().getText().trim();
+	        //String senha = txtSenha.getPassword().toString()
+	        char[] senhaChars = this.telaLogin.getTxtSenha().getPassword();
+	        String senha = new String(senhaChars);
+	        System.out.println("SENHA DIGITADA NO LOGIN:" + senha);
+
+	      
+	        if (email.isEmpty() || email.equals(this.telaLogin.getPlaceholderEmail()) ||
+	            senha.isEmpty() || senha.equals(this.telaLogin.getPlaceholderSenha())) {
+	            
+	        	JOptionPane.showMessageDialog(null, "Todos os campos do Login são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
+
+	        // cria objeto usuario com email e senha
+	        Usuario usuarioLogin=null;
+			try {
+				usuarioLogin = new Usuario(0, null, email, senha, null, null);
+				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Senha hash usuario:" + usuarioLogin.getSenhaHash());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+	        
+	        UsuarioDAO usuarioDAO = new UsuarioDAO();
+	        Usuario usuarioAutenticado = usuarioDAO.pesquisarUsuariosPorEmailSenha(usuarioLogin);
+
+	        // avalia retorno
+	        if (usuarioAutenticado != null) {
+	        	
+	            abrirTelaInicial();
+
+	        } else {
+	            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+	            
+	            
+	            
+	            this.telaLogin.resetarTxtEmail() ; 
+	            this.telaLogin.resetarTxtSenha();
+	            
+		            }
+		
+	}
+
 	public void confereCadastro() {
 		
 		String nome = this.telaCadastro.getTxtNome().getText();
@@ -84,7 +138,7 @@ public class CredenciaisController {
         
         usuarioDAO.adicionarUsuario(novoUsuario);
         
-        iniciarLogin();
+        mostrarTela("login");
 		
 		
 	}
@@ -109,6 +163,14 @@ public class CredenciaisController {
 	  // Método para trocar entre telas
     public void mostrarTela(String nomeTela) {
         this.tela.getCard().show(this.tela.getPainelPrincipal(), nomeTela);
+    }
+    
+    
+    private void abrirTelaInicial() {
+		this.tela.dispose(); // Fecha a tela atual
+        TelaInicio t = new TelaInicio(); // Abre a tela de cadastro
+        InicioController inicio = new InicioController(t);
+        inicio.abrirTela();
     }
 
 

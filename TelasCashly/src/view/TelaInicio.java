@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
@@ -52,8 +53,14 @@ public class TelaInicio extends JFrame {
 
 	private ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/imgs/BtnPerfil.png"));
 	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/imgs/btnPerfilSEL.png"));
+	private JButton btnAbrirMenu;
+	private JButton btnHome;
 
-	private void selecionarBotao(JButton botaoSelecionado) {
+	public JButton getBtnHome() {
+		return btnHome;
+	}
+
+	public void selecionarBotao(JButton botaoSelecionado) {
 	    // Reseta todos os ícones
 	    btnMeusProjetos.setIcon(iconMeusProjetos);
 	    btnCriarProjetos.setIcon(iconCriarProjetos);
@@ -76,41 +83,24 @@ public class TelaInicio extends JFrame {
 	}
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicio frame = new TelaInicio();
-					frame.setVisible(true);
-					
-					frame.addComponentListener(new ComponentAdapter() {
-						public void componentResized(ComponentEvent e) {
-							Dimension d=frame.getSize();
-							Dimension minD=frame.getMinimumSize();
-							if(d.width<minD.width) {
-								d.width=minD.width;
-							}
-							if(d.height<minD.height) {
-								d.height=minD.height;
-							}
-							
-							frame.setSize(d);
-						}
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	
+	public void atualizarMenuLateral() {
+	    panelMenu_expanded.revalidate();
+        panelMenu_expanded.repaint();
+
+
+        panel_Central.revalidate();
+        panel_Central.repaint();
+	}
 	
+	
+	public void atualizarPainel (JPanel painel) {
+		panel_Central.remove(panelActual);
+	        panelActual = painel;
+        panel_Central.add(panelActual, BorderLayout.CENTER);
+	}
 	
 	
 	public TelaInicio() {
@@ -140,37 +130,9 @@ public class TelaInicio extends JFrame {
 		contentPane.add(panel, "cell 0 0,grow");
 		panel.setLayout(new MigLayout("", "[5px,grow 5][60px][grow 10][][][][][][][][][][][][grow][][][][][][][][][][][][][][][][][][][][][][5px,grow 5]", "[fill]"));
 		
-		JButton btnAbrirMenu = new JButton("");
+		btnAbrirMenu = new JButton("");
 		btnAbrirMenu.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMenu.png")));
-		btnAbrirMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (menuAberto == false) {
-					menuAberto  = true;
-					
-					panel_Central.remove(panelMenu_expanded);
-
-			        // Novo painel para o lado esquerdo
-			        			        // Adiciona o novo painel na mesma posição
-					panel_Central.add(panelMenuContracted, BorderLayout.WEST);
-
-					
-					
-				} else {
-					menuAberto = false; 
-					
-					panel_Central.remove(panelMenuContracted);
-
-			        // Novo painel para o lado esquerdo
-			        			        // Adiciona o novo painel na mesma posição
-					panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
-
-				}
-			    // Atualiza a interface
-		        revalidate();
-		        repaint();
-				
-			}
-		});
+		
 		
 		
 		
@@ -186,35 +148,17 @@ public class TelaInicio extends JFrame {
 		lblLogoCashly.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/LogoCashly2.png")));
 		panel.add(lblLogoCashly, "cell 3 0,alignx center,growy");
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				panel_Central.remove(panelActual);
-	  	        panelActual = new TelaInternaInicial(); // <- seu JPanel de projetos
-		        panel_Central.add(panelActual, BorderLayout.CENTER);
-		        
-				selecionarBotao(null);
-
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-
-
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-				
-			}
-		});
-		btnNewButton_1.setMargin(new Insets(1, 1, 1, 1));
-		btnNewButton_1.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
+		btnHome = new JButton("");
+		
+		btnHome.setMargin(new Insets(1, 1, 1, 1));
+		btnHome.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnHome.png")));
 		
 		
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setFocusPainted(false);
-		btnNewButton_1.setOpaque(false);
-		panel.add(btnNewButton_1, "cell 35 0");
+		btnHome.setBorderPainted(false);
+		btnHome.setContentAreaFilled(false);
+		btnHome.setFocusPainted(false);
+		btnHome.setOpaque(false);
+		panel.add(btnHome, "cell 35 0");
 		
 		
 		
@@ -388,10 +332,7 @@ public class TelaInicio extends JFrame {
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnNewButton.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfilRe.png")));
 		panelMenuContracted.add(btnNewButton, "cell 0 20,alignx center,growy");
 		
@@ -405,5 +346,48 @@ public class TelaInicio extends JFrame {
 		
 		
 		
+	}
+
+	
+
+	public JButton getBtnAbrirMenu() {
+		return btnAbrirMenu;
+	}
+	
+	
+
+	public void abrirMenu() {
+		if (menuAberto == false) {
+			menuAberto  = true;
+			
+			panel_Central.remove(panelMenu_expanded);
+
+	        // Novo painel para o lado esquerdo
+	        			        // Adiciona o novo painel na mesma posição
+			panel_Central.add(panelMenuContracted, BorderLayout.WEST);
+
+			
+			
+		} else {
+			menuAberto = false; 
+			
+			panel_Central.remove(panelMenuContracted);
+
+	        // Novo painel para o lado esquerdo
+	        			        // Adiciona o novo painel na mesma posição
+			panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
+
+		}
+	    // Atualiza a interface
+        revalidate();
+        repaint();
+		
+	
+		
+	}
+
+	public JButton getBtnCriarProjetos() {
+		
+		return btnCriarProjetos;
 	}
 }

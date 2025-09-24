@@ -33,34 +33,32 @@ public class TelaInternaLogin extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtEmail;
 	private String placeholderEmail = "Email";
+	public String getPlaceholderEmail() {
+		return placeholderEmail;
+	}
+
+	public String getPlaceholderSenha() {
+		return placeholderSenha;
+	}
+
 	private JPasswordField txtSenha;
 	private String placeholderSenha = "Senha";
 	
-	private UsuarioDAO usuarioDAO;
+//	private UsuarioDAO usuarioDAO;
 	private JButton btnCadastrar;
 	private JButton btnIrCadastro;
+	private JButton btnInicio;
+	private JButton BtnIniciarSessao;
 	
 
 
-	private void abrirTelaInicial(TelaCredenciais telaCredenciais) {
-		telaCredenciais.dispose(); // Fecha a tela atual
-        new TelaInicio().setVisible(true); // Abre a tela de cadastro
-    }
-	
-	private void abrirTelaApresentacao() {
-	    dispose(); // Fecha a tela atual
-	    new TelaApresentacao().setVisible(true); // Abre a tela de cadastro
+	public JButton getBtnInicio() {
+		return btnInicio;
 	}
+
 	
-	private void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	private void abrirTelaCadastro() {
-        dispose(); // Fecha a tela atual
-        new TelaCredenciais("cadastro").setVisible(true); // Abre direto no cadastro
-    }
+	
 
 	/**
 	 * Create the panel.
@@ -69,12 +67,12 @@ public class TelaInternaLogin extends JPanel {
 	 */
 	
 	
-	public TelaInternaLogin(TelaCredenciais telaCredenciais, UsuarioDAO usuarioDAO) {
+	public TelaInternaLogin(TelaCredenciais telaCredenciais) {
 		setForeground(new Color(255, 245, 234));
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[50px,grow][100px,grow][35px,grow][70px][476px,grow][130px,grow]", "[grow][grow][grow][75px][70px,grow][75px,grow]"));
 		
-		this.usuarioDAO = usuarioDAO;
+//		this.usuarioDAO = usuarioDAO;
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(216, 178, 184));
@@ -117,13 +115,8 @@ public class TelaInternaLogin extends JPanel {
 		    }
 		});
 		
-		JButton btnInicio = new JButton("");
+		btnInicio = new JButton("");
 		panel.add(btnInicio, "cell 14 0,growx,aligny center");
-		btnInicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaApresentacao();
-			}
-		});
 		btnInicio.setIcon(new ImageIcon(TelaInternaLogin.class.getResource("/imgs/BtnInicio2.png")));
 		
 		btnInicio.setBorderPainted(false);
@@ -311,53 +304,8 @@ public class TelaInternaLogin extends JPanel {
 		txtSenha.setColumns(10);
 		txtSenha.setBorder(BorderFactory.createEmptyBorder());
 		
-		JButton BtnIniciarSessao = new JButton("");
-		BtnIniciarSessao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				 String email = txtEmail.getText().trim();
-			        //String senha = txtSenha.getPassword().toString()
-			        char[] senhaChars = txtSenha.getPassword();
-			        String senha = new String(senhaChars);
-			        System.out.println("SENHA DIGITADA NO LOGIN:" + senha);
-
-			      
-			        if (email.isEmpty() || email.equals(placeholderEmail) ||
-			            senha.isEmpty() || senha.equals(placeholderSenha)) {
-			            
-			        	JOptionPane.showMessageDialog(null, "Todos os campos do Login são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
-			            return;
-			        }
-
-			        // cria objeto usuario com email e senha
-			        Usuario usuarioLogin=null;
-					try {
-						usuarioLogin = new Usuario(0, null, email, senha, null, null);
-						System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Senha hash usuario:" + usuarioLogin.getSenhaHash());
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-			        
-			        UsuarioDAO usuarioDAO = new UsuarioDAO();
-			        Usuario usuarioAutenticado = usuarioDAO.pesquisarUsuariosPorEmailSenha(usuarioLogin);
-
-			        // avalia retorno
-			        if (usuarioAutenticado != null) {
-			        	
-			            abrirTelaInicial(telaCredenciais);
-
-			        } else {
-			            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
-			            txtEmail.setText(placeholderEmail);
-			            txtSenha.setText(placeholderSenha);
-			            txtSenha.setEchoChar((char)0); // volta a mostrar texto normal
-				            }
-				
-			}
-		});
+		BtnIniciarSessao = new JButton("");
+		
 		BtnIniciarSessao.setPreferredSize(new Dimension(500, 100));
 		BtnIniciarSessao.setOpaque(false);
 		BtnIniciarSessao.setMinimumSize(new Dimension(300, 100));
@@ -399,11 +347,41 @@ public class TelaInternaLogin extends JPanel {
 
 	}
 	
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public void setTxtEmail(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
+	}
+
+	public JPasswordField getTxtSenha() {
+		return txtSenha;
+	}
+
+	public void setTxtSenha(JPasswordField txtSenha) {
+		this.txtSenha = txtSenha;
+	}
+
+	public JButton getBtnIniciarSessao() {
+		return BtnIniciarSessao;
+	}
+
 	public JButton getBtnIrCadastro() {
 		return btnIrCadastro;
 	}
 
 	public JButton getBtnCadastrar() {
 		return btnCadastrar;
+	}
+
+	public void resetarTxtEmail() {
+		txtEmail.setText(getPlaceholderEmail());		
+	}
+
+	public void resetarTxtSenha() {
+	            txtSenha.setText(getPlaceholderSenha());
+	            txtSenha.setEchoChar((char)0); // volta a mostrar texto normal
+		
 	}
 }

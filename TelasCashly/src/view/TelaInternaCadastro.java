@@ -44,6 +44,8 @@ public class TelaInternaCadastro extends JPanel {
 	
 	private JButton btnInicio;
 	private JButton btnCadastrar;
+	private JButton btnLogin;
+	private JButton btnIrProLogin;
 	
 	
 	
@@ -130,13 +132,9 @@ public class TelaInternaCadastro extends JPanel {
 		btnCadastro.setBorderPainted(false);
 		panel.add(btnCadastro, "cell 17 0");
 		
-		JButton btnLogin = new JButton("");
+		btnLogin = new JButton("");
 		panel.add(btnLogin, "cell 20 0,alignx left,aligny center");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaLogin();
-			}
-		});
+		
 		btnLogin.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/BtnLogin.png")));
 		
 		btnLogin.setBorderPainted(false);
@@ -149,7 +147,7 @@ public class TelaInternaCadastro extends JPanel {
 		add(panel_1, "cell 2 2 2 2,grow");
 		panel_1.setLayout(new MigLayout("", "[grow]", "[grow][][grow]"));
 		
-		JButton btnIrProLogin = new JButton("");
+		btnIrProLogin = new JButton("");
 		btnIrProLogin.setPreferredSize(new Dimension(1000, 900));
 		btnIrProLogin.setOpaque(false);
 		btnIrProLogin.setMinimumSize(new Dimension(600, 600));
@@ -161,11 +159,7 @@ public class TelaInternaCadastro extends JPanel {
 		panel_1.add(btnIrProLogin, "cell 0 1 1 2,grow");
 
 		
-		btnIrProLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirTelaLogin();
-			}
-		});
+		
 		
 		ImageIcon IrProLogin2 = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/IrProLogin2.png")
@@ -410,6 +404,14 @@ public class TelaInternaCadastro extends JPanel {
 	}
 
 
+
+	public JButton getBtnIrProLogin() {
+		return btnIrProLogin;
+	}
+
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
 
 	public String getPlaceholderUsuario() {
 		return placeholderUsuario;
