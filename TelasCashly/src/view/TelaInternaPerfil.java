@@ -38,7 +38,7 @@ public class TelaInternaPerfil extends JPanel {
 		JPanel panel_1 = new JPanel();
 		
 		panel.add(panel_1, "cell 2 3 3 7,grow");
-		panel_1.setLayout(new MigLayout("", "[][grow][grow][grow]", "[grow][grow][grow][grow][grow][][grow][grow][grow][grow]"));
+		panel_1.setLayout(new MigLayout("", "[50px][grow][grow][grow]", "[grow][grow][grow][grow][grow][][grow][grow][grow][grow]"));
 		
 		
 		
@@ -46,23 +46,25 @@ public class TelaInternaPerfil extends JPanel {
 		
 		panel_1.setOpaque(false);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPNomePerfil.png")));
-		panel_1.add(lblNewLabel_1, "flowx,cell 1 1");
-		lblNewLabel_1.setForeground(new Color(72, 53, 40));
-		lblNewLabel_1.setFont(new Font("Carlito", Font.BOLD, 20));
+		JLabel lblNomePerfil = new JLabel("");
+		lblNomePerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPNomePerfil.png")));
+		panel_1.add(lblNomePerfil, "flowx,cell 1 1");
+		lblNomePerfil.setForeground(new Color(72, 53, 40));
+		lblNomePerfil.setFont(new Font("Carlito", Font.BOLD, 20));
 		
 		ImageIcon JPNomePerfil = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/JPNomePerfil.png")
 			);	
 		
-		lblNewLabel_1.setMinimumSize(new Dimension(10, 5));
-		lblNewLabel_1.setPreferredSize(new Dimension(500, 100));
 		
-		lblNewLabel_1.addComponentListener(new ComponentAdapter() {
+		
+		lblNomePerfil.setMinimumSize(new Dimension(100, 50));
+		lblNomePerfil.setPreferredSize(new Dimension(250, 50));
+		
+		lblNomePerfil.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent e) {
-		        int largura = JPNomePerfil.getIconWidth();
-		        int altura = JPNomePerfil.getIconHeight();
+		        int largura = lblNomePerfil.getWidth();
+		        int altura = lblNomePerfil.getHeight();
 
 		        if (largura > 0 && altura > 0) {
 		            double proporcaoOriginal = (double) JPNomePerfil.getIconWidth() / JPNomePerfil.getIconHeight();
@@ -77,13 +79,13 @@ public class TelaInternaPerfil extends JPanel {
 		            Image img = JPNomePerfil.getImage().getScaledInstance(
 		                novaLargura, novaAltura, Image.SCALE_SMOOTH
 		            );
-		            lblNewLabel_1.setIcon(new ImageIcon(img));
+		            lblNomePerfil.setIcon(new ImageIcon(img));
 		        }
 		    }
 		});
 		
 		textField_1 = new JTextField();
-		panel_1.add(textField_1, "cell 1 2 2 1,growx");
+		panel_1.add(textField_1, "cell 1 2,growx");
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton_3 = new JButton("");
@@ -111,7 +113,7 @@ public class TelaInternaPerfil extends JPanel {
 		lblNewLabel.setFont(new Font("Carlito", Font.BOLD, 20));
 		
 		textField = new JTextField();
-		panel_1.add(textField, "cell 1 5 2 1,growx");
+		panel_1.add(textField, "cell 1 5,growx");
 		textField.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("");
