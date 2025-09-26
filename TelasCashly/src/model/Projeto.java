@@ -46,12 +46,12 @@ public class Projeto {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDataCriacao() {
-		return dataCriacao;
+	public Date getDataCriacao() { 
+		return dataCriacao; 
 	}
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+    public void setDataCriacao(Date dataCriacao) { 
+    	this.dataCriacao = dataCriacao; 
+    }
 	public String getDescricao() {
 		return descricao;
 	}
@@ -70,7 +70,7 @@ public class Projeto {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
-	
+
 	
 
 }

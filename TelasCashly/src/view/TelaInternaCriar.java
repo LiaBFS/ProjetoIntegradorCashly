@@ -111,35 +111,48 @@ public class TelaInternaCriar extends JPanel {
 		btnCriar = new JButton("Criar");
 		panel.add(btnCriar, "cell 2 9,alignx center,growy");
 		btnCriar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String nome = tfNomeProjeto.getText();
-				String descricao = tfDescricaoProjeto.getText();
-				String saldo = tfSaldo.getText();
-				
-				
-				
-				if (nome.equals(placeholderNomeProjeto) || descricao.equals(placeholderDescricao) || nome.isEmpty() || descricao.isEmpty() || saldo.equals(placeholderSaldo) || saldo.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios.", "Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
-			        return;
-			    }
-				
-		
-				model.Projeto novoProjeto = new model.Projeto();
-                novoProjeto.setNome(tfNomeProjeto.getText());
-                novoProjeto.setDescricao(tfDescricaoProjeto.getText());
-                novoProjeto.setDescricao(tfSaldo.getText());
-               
-                
-                
-				projetoDAO.adicionarProjeto(novoProjeto);
-               
-                
-				
-				
-				
-				
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        
+		        String nome = tfNomeProjeto.getText();
+		        String descricao = tfDescricaoProjeto.getText();
+		        String saldoTexto = tfSaldo.getText();
+
+		        // validação dos campos obrigatórios
+		        if (nome.equals(placeholderNomeProjeto) || 
+		            descricao.equals(placeholderDescricao) || 
+		            saldoTexto.equals(placeholderSaldo) || 
+		            nome.isEmpty() || 
+		            descricao.isEmpty() || 
+		            saldoTexto.isEmpty()) {
+
+		            JOptionPane.showMessageDialog(null, 
+		                "Todos os campos são obrigatórios.", 
+		                "Erro na Criação do Projeto", 
+		                JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+
+		        double saldo = 0.0;
+		        try {
+		            // troca vírgula por ponto para aceitar formatos diferentes
+		            saldo = Double.parseDouble(saldoTexto.replace(",", "."));
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(null, 
+		                "Saldo inválido. Digite apenas números!", 
+		                "Erro na Criação do Projeto", 
+		                JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+
+		        // cria e preenche o objeto Projeto
+		        model.Projeto novoProjeto = new model.Projeto();
+		        novoProjeto.setNome(nome);
+		        novoProjeto.setDescricao(descricao);
+		        novoProjeto.setSaldo(saldo);
+
+		        // salva no banco
+		        projetoDAO.adicionarProjeto(novoProjeto);
+		    }
 		});
 		
 		
