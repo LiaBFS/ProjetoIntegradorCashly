@@ -117,7 +117,7 @@ public class TelaInternaCriar extends JPanel {
 		        String descricao = tfDescricaoProjeto.getText();
 		        String saldoTexto = tfSaldo.getText();
 
-		        // validação dos campos obrigatórios
+		        
 		        if (nome.equals(placeholderNomeProjeto) || 
 		            descricao.equals(placeholderDescricao) || 
 		            saldoTexto.equals(placeholderSaldo) || 
@@ -134,7 +134,7 @@ public class TelaInternaCriar extends JPanel {
 
 		        double saldo = 0.0;
 		        try {
-		            // troca vírgula por ponto para aceitar formatos diferentes
+		            
 		            saldo = Double.parseDouble(saldoTexto.replace(",", "."));
 		        } catch (NumberFormatException ex) {
 		            JOptionPane.showMessageDialog(null, 
@@ -144,13 +144,13 @@ public class TelaInternaCriar extends JPanel {
 		            return;
 		        }
 
-		        // cria e preenche o objeto Projeto
+		        
 		        model.Projeto novoProjeto = new model.Projeto();
 		        novoProjeto.setNome(nome);
 		        novoProjeto.setDescricao(descricao);
 		        novoProjeto.setSaldo(saldo);
 
-		        // salva no banco
+		        
 		        projetoDAO.adicionarProjeto(novoProjeto);
 		    }
 		});

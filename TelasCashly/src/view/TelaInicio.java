@@ -178,21 +178,21 @@ public class TelaInicio extends JFrame {
 		
 		btnMeusProjetos = new JButton("");
 		btnMeusProjetos.setMargin(new Insets(2, 2, 2, 2));
-		btnMeusProjetos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				selecionarBotao(btnMeusProjetos);
-
+//		btnMeusProjetos.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				selecionarBotao(btnMeusProjetos);
+//
 //		        panel_Central.remove(panelActual);
-	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
-		//        panel_Central.add(panelActual, BorderLayout.CENTER);
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-		        
-			}
-		});
+//		        panelActual = new TelaInternaProjetos();
+//		        panel_Central.add(panelActual, BorderLayout.CENTER);
+//
+//		        panelMenu_expanded.revalidate();
+//		        panelMenu_expanded.repaint();
+//		        panel_Central.revalidate();
+//		        panel_Central.repaint();
+//		        
+//			}
+//		}); 
 		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png")));
 		panelMenu_expanded.add(btnMeusProjetos, "cell 0 1,growx,aligny center");
 		
@@ -209,22 +209,22 @@ public class TelaInicio extends JFrame {
 		
 		btnCriarProjetos = new JButton("");
 		btnCriarProjetos.setMargin(new Insets(2, 2, 2, 2));
-		btnCriarProjetos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				selecionarBotao(btnCriarProjetos);
-
-		        panel_Central.remove(panelActual);
-		        panelActual = new TelaInternaCriar(); // <- seu JPanel de projetos
-		        panel_Central.add(panelActual, BorderLayout.CENTER);
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-			}
-		});
-		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
+//		btnCriarProjetos.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				selecionarBotao(btnCriarProjetos);
+//
+//		        panel_Central.remove(panelActual);
+//		        panelActual = new TelaInternaCriar(); // <- seu JPanel de projetos
+//		        panel_Central.add(panelActual, BorderLayout.CENTER);
+//
+//		        panelMenu_expanded.revalidate();
+//		        panelMenu_expanded.repaint();
+//		        panel_Central.revalidate();
+//		        panel_Central.repaint();
+//			}
+//		});
+//		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
 		panelMenu_expanded.add(btnCriarProjetos, "cell 0 2,growx,aligny center");
 		
 		btnCriarProjetos.setBorderPainted(false);
@@ -349,6 +349,14 @@ public class TelaInicio extends JFrame {
 	}
 
 	
+
+	public JButton getBtnNotificacoes() {
+		return btnNotificacoes;
+	}
+
+	public JButton getBtnMeusProjetos() {
+		return btnMeusProjetos;
+	}
 
 	public JButton getBtnAbrirMenu() {
 		return btnAbrirMenu;

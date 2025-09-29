@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import view.TelaInicio;
 import view.TelaInternaCriar;
 import view.TelaInternaInicial;
+import view.TelaInternaNotificacoes;
+import view.TelaInternaProjetos;
 
 public class InicioController {
 	
@@ -17,8 +19,28 @@ public class InicioController {
         this.telaInicio.getBtnAbrirMenu().addActionListener(e -> abrirMenu());
         this.telaInicio.getBtnHome().addActionListener(e -> abrirTelaHome());
         this.telaInicio.getBtnCriarProjetos().addActionListener(e -> abrirTelaCriarProjeto());
-
+        this.telaInicio.getBtnMeusProjetos().addActionListener(e -> abrirTelaMeusProjetos());
+        this.telaInicio.getBtnNotificacoes().addActionListener(e -> abrirTelaNotificacoes());
 	
+	}
+	
+	private void abrirTelaNotificacoes() {
+		TelaInternaNotificacoes tela = new TelaInternaNotificacoes();
+		this.telaInicio.atualizarPainel(tela);
+		
+		this.telaInicio.selecionarBotao(telaInicio.getBtnNotificacoes());
+		
+		this.telaInicio.atualizarMenuLateral();
+	}
+	
+	
+	private void abrirTelaMeusProjetos() {
+		TelaInternaProjetos tela = new TelaInternaProjetos();
+		this.telaInicio.atualizarPainel(tela);
+		
+		this.telaInicio.selecionarBotao(telaInicio.getBtnMeusProjetos());
+		
+		this.telaInicio.atualizarMenuLateral();
 	}
 
 	private void abrirTelaHome() {
