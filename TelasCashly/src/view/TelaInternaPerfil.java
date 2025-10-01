@@ -38,23 +38,28 @@ public class TelaInternaPerfil extends JPanel {
 		JPanel panel_1 = new JPanel();
 		
 		panel.add(panel_1, "cell 2 3 3 7,grow");
-		panel_1.setLayout(new MigLayout("", "[50px][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
+		panel_1.setLayout(new MigLayout("", "[50px][grow][grow][grow]", "[50px,grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
 		
 		
 		
 		panel_1.setOpaque(false);
 		
 		panel_1.setOpaque(false);
+		
+		ImageIcon JPNomePerfil = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/JPNomePerfil.png")
+			);	
+		
+		
+		ImageIcon Editar = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/Editar.png")
+			);	
 		
 		JLabel lblNomePerfil = new JLabel("");
 		lblNomePerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPNomePerfil.png")));
 		panel_1.add(lblNomePerfil, "flowx,cell 1 1");
 		lblNomePerfil.setForeground(new Color(72, 53, 40));
 		lblNomePerfil.setFont(new Font("Carlito", Font.BOLD, 20));
-		
-		ImageIcon JPNomePerfil = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/JPNomePerfil.png")
-			);	
 		
 		
 		
@@ -93,11 +98,6 @@ public class TelaInternaPerfil extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		
-		ImageIcon Editar = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/Editar.png")
-			);	
 		
 		
 		
@@ -141,7 +141,7 @@ public class TelaInternaPerfil extends JPanel {
 		
 		JLabel lblEmailPerfil = new JLabel("");
 		lblEmailPerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPEmailPerfil.png")));
-		panel_1.add(lblEmailPerfil, "cell 1 4");
+		panel_1.add(lblEmailPerfil, "cell 1 3");
 		lblEmailPerfil.setForeground(new Color(72, 53, 40));
 		lblEmailPerfil.setFont(new Font("Carlito", Font.BOLD, 20));
 		
@@ -178,12 +178,12 @@ public class TelaInternaPerfil extends JPanel {
 		});
 		
 		textField = new JTextField();
-		panel_1.add(textField, "cell 1 5,growx");
+		panel_1.add(textField, "cell 1 4,growx");
 		textField.setColumns(10);
 		
 		JButton btnEditarEmail = new JButton("");
 		btnEditarEmail.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Editar.png")));
-		panel_1.add(btnEditarEmail, "cell 3 5,alignx right");
+		panel_1.add(btnEditarEmail, "cell 3 4,alignx right");
 		btnEditarEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -233,7 +233,7 @@ public class TelaInternaPerfil extends JPanel {
 		
 		JButton btnSair = new JButton("");
 		btnSair.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Sair.png")));
-		panel_1.add(btnSair, "cell 1 8");
+		panel_1.add(btnSair, "cell 1 7");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -282,7 +282,7 @@ public class TelaInternaPerfil extends JPanel {
 		
 		JButton btnExcluirPerfil = new JButton("");
 		btnExcluirPerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Excluir.png")));
-		panel_1.add(btnExcluirPerfil, "cell 2 8");
+		panel_1.add(btnExcluirPerfil, "cell 2 7");
 		btnExcluirPerfil.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnExcluirPerfil.setForeground(new Color(255, 245, 234));
 		btnExcluirPerfil.setBackground(new Color(193, 31, 35));
