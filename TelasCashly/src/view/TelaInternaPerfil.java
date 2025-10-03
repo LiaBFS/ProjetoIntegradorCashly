@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,8 +23,13 @@ import javax.swing.ImageIcon;
 public class TelaInternaPerfil extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfEmail;
+	private JTextField tfNome;
+	private String placeholderUsuario = "Nome de Usuário";
+	private String placeholderEmail = "Email Cadastrado";
+	private JButton btnEditarNome;
+	private JButton btnEditarEmail;
+	private JButton btnExcluirPerfil;
 
 	/**
 	 * Create the panel.
@@ -89,16 +96,26 @@ public class TelaInternaPerfil extends JPanel {
 		    }
 		});
 		
-		textField_1 = new JTextField();
-		panel_1.add(textField_1, "cell 1 2,growx");
-		textField_1.setColumns(10);
-		
-		JButton btnEditarNome = new JButton("");
-		btnEditarNome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		tfNome = new JTextField();
+		panel_1.add(tfNome, "cell 1 2,growx");
+		tfNome.setColumns(10);
+		tfNome.setText(placeholderUsuario);
+		tfNome.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfNome.getText().equals(placeholderUsuario)) {
+					tfNome.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfNome.getText().isEmpty()) {
+					tfNome.setText(placeholderUsuario);
+				}
 			}
 		});
 		
+		btnEditarNome = new JButton("");
 		
 		
 		btnEditarNome.setMinimumSize(new Dimension(100, 50));
@@ -177,11 +194,26 @@ public class TelaInternaPerfil extends JPanel {
 		    }
 		});
 		
-		textField = new JTextField();
-		panel_1.add(textField, "cell 1 4,growx");
-		textField.setColumns(10);
+		tfEmail = new JTextField();
+		panel_1.add(tfEmail, "cell 1 4,growx");
+		tfEmail.setColumns(10);
+		tfEmail.setText(placeholderEmail);
+		tfEmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfEmail.getText().equals(placeholderEmail)) {
+					tfEmail.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfEmail.getText().isEmpty()) {
+					tfEmail.setText(placeholderEmail);
+				}
+			}
+		});
 		
-		JButton btnEditarEmail = new JButton("");
+		btnEditarEmail = new JButton("");
 		btnEditarEmail.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Editar.png")));
 		panel_1.add(btnEditarEmail, "cell 3 4,alignx right");
 		btnEditarEmail.addActionListener(new ActionListener() {
@@ -280,16 +312,13 @@ public class TelaInternaPerfil extends JPanel {
 		btnSair.setForeground(new Color(255, 245, 234));
 		btnSair.setBackground(new Color(207, 114, 116));
 		
-		JButton btnExcluirPerfil = new JButton("");
+		btnExcluirPerfil = new JButton("");
 		btnExcluirPerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Excluir.png")));
 		panel_1.add(btnExcluirPerfil, "cell 2 7");
 		btnExcluirPerfil.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnExcluirPerfil.setForeground(new Color(255, 245, 234));
 		btnExcluirPerfil.setBackground(new Color(193, 31, 35));
-		btnExcluirPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		
 		ImageIcon Excluir = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Excluir.png")
@@ -329,6 +358,34 @@ public class TelaInternaPerfil extends JPanel {
 		btnExcluirPerfil.setOpaque(false);
 		
 
+	}
+
+	public JButton getBtnExcluirPerfil() {
+		return btnExcluirPerfil;
+	}
+
+	public String getPlaceholderUsuario() {
+		return placeholderUsuario;
+	}
+
+	public String getPlaceholderEmail() {
+		return placeholderEmail;
+	}
+
+	public JTextField getTfEmail() {
+		return tfEmail;
+	}
+
+	public JTextField getTfNome() {
+		return tfNome;
+	}
+
+	public JButton getBtnEditarEmail() {
+		return btnEditarEmail;
+	}
+
+	public JButton getBtnEditarNome() {
+		return btnEditarNome;
 	}
 
 }

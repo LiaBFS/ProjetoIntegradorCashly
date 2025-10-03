@@ -81,9 +81,11 @@ import java.util.ArrayList;
 //	        return usuarios;
 //	    }
 
-	    // UPDATE - Atualizar um usuário existente
-	    public void atualizarUsuario(Usuario usuario) {
-	        String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?";
+	    
+	    
+	    
+	    public void atualizarNomeUsuario(Usuario usuario) {
+	        String sql = "UPDATE usuario SET nome = ? WHERE id = ?";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
 
@@ -91,9 +93,25 @@ import java.util.ArrayList;
 	            conexao = BancoDeDados.conectar();
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, usuario.getNome());
-	            pstm.setString(2, usuario.getEmail());
-	            pstm.setString(3, usuario.getSenhaHash());
-	            pstm.setInt(4, usuario.getId());
+	            pstm.setInt(2, usuario.getId());
+	            pstm.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	        	BancoDeDados.desconectar(conexao);
+	        }
+	    }
+	    
+	    public void atualizarEmailUsuario(Usuario usuario) {
+	        String sql = "UPDATE usuario SET email = ? WHERE id = ?";
+	        Connection conexao = null;
+	        PreparedStatement pstm = null;
+
+	        try {
+	            conexao = BancoDeDados.conectar();
+	            pstm = conexao.prepareStatement(sql);
+	            pstm.setString(1, usuario.getEmail());
+	            pstm.setInt(2, usuario.getId());
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -102,9 +120,11 @@ import java.util.ArrayList;
 	        }
 	    }
 
-	    // DELETE - Excluir um usuário pelo ID
-	    public void excluirUsuario(int id) {
-	        String sql = "DELETE FROM usuarios WHERE id = ?";
+
+	    // DELETE
+	    
+	    public boolean excluirUsuario(int id) {
+	        String sql = "DELETE FROM usuario WHERE id = ?";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
 
@@ -118,6 +138,7 @@ import java.util.ArrayList;
 	        } finally {
 	        	BancoDeDados.desconectar(conexao);
 	        }
+			return false;
 	    }
 	    
 	    

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.BorderLayout;
 
+import model.Sessao;
 import view.TelaInicio;
 import view.TelaInternaCriar;
 import view.TelaInternaInicial;
@@ -28,13 +29,12 @@ public class InicioController {
 	
 	
 	private void abrirTelaPerfil() {
-		
 		TelaInternaPerfil tela = new TelaInternaPerfil();
-		this.telaInicio.atualizarPainel(tela);
-		
-		this.telaInicio.selecionarBotao(telaInicio.getBtnPerfil());
-		
-		this.telaInicio.atualizarMenuLateral();
+		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado());
+	    this.telaInicio.atualizarPainel(tela);
+
+	    this.telaInicio.selecionarBotao(telaInicio.getBtnPerfil());
+	    this.telaInicio.atualizarMenuLateral();
 	}
 	
 	private void abrirTelaNotificacoes() {

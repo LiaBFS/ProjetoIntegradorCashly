@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.Sessao;
 import model.Usuario;
 import model.UsuarioDAO;
 import view.TelaApresentacao;
@@ -79,9 +80,8 @@ public class CredenciaisController {
 
 	        // avalia retorno
 	        if (usuarioAutenticado != null) {
-	        	
+	            Sessao.setUsuarioLogado(usuarioAutenticado);
 	            abrirTelaInicial();
-
 	        } else {
 	            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
 	            
