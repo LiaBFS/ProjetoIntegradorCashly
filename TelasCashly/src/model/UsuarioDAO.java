@@ -25,8 +25,17 @@ import java.util.ArrayList;
 	            pstm.setString(2, usuario.getEmail());
 	            pstm.setString(3, usuario.getSenhaHash());
 	            
-	            Date dataUtil = new Date(1, 4, 26);
-	            pstm.setDate(4, dataUtil);
+	         // pega a data atual do sistema
+		        java.sql.Date dataAtual = new java.sql.Date(System.currentTimeMillis());
+		        pstm.setDate(4, dataAtual);
+
+		        pstm.executeUpdate();
+
+		        ResultSet rs = pstm.getGeneratedKeys();
+		        if (rs.next()) {
+		            int curId = rs.getInt(1);
+		            usuario.setId(curId);
+		        }
 	            
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {

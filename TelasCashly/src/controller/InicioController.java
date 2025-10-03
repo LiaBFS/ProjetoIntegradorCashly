@@ -6,6 +6,7 @@ import view.TelaInicio;
 import view.TelaInternaCriar;
 import view.TelaInternaInicial;
 import view.TelaInternaNotificacoes;
+import view.TelaInternaPerfil;
 import view.TelaInternaProjetos;
 
 public class InicioController {
@@ -21,7 +22,19 @@ public class InicioController {
         this.telaInicio.getBtnCriarProjetos().addActionListener(e -> abrirTelaCriarProjeto());
         this.telaInicio.getBtnMeusProjetos().addActionListener(e -> abrirTelaMeusProjetos());
         this.telaInicio.getBtnNotificacoes().addActionListener(e -> abrirTelaNotificacoes());
+        this.telaInicio.getBtnPerfil().addActionListener(e -> abrirTelaPerfil());
 	
+	}
+	
+	
+	private void abrirTelaPerfil() {
+		
+		TelaInternaPerfil tela = new TelaInternaPerfil();
+		this.telaInicio.atualizarPainel(tela);
+		
+		this.telaInicio.selecionarBotao(telaInicio.getBtnPerfil());
+		
+		this.telaInicio.atualizarMenuLateral();
 	}
 	
 	private void abrirTelaNotificacoes() {

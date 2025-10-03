@@ -61,6 +61,7 @@ public class TelaInicio extends JFrame {
 	}
 
 	public void selecionarBotao(JButton botaoSelecionado) {
+		
 	    // Reseta todos os ícones
 	    btnMeusProjetos.setIcon(iconMeusProjetos);
 	    btnCriarProjetos.setIcon(iconCriarProjetos);
@@ -107,12 +108,11 @@ public class TelaInicio extends JFrame {
 		
 		setBackground(new Color(216, 178, 184));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(950, 690)); // tamanho mínimo
+        setMinimumSize(new Dimension(950, 690)); 
 
-		// Faz abrir em tela cheia
+		
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
-        // setUndecorated(true); // Opcional: sem bordas e barra de título
-        // setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize()); // Opcional: força resolução exata
+        
 
         
 		setBounds(100, 100, 1280, 800);
@@ -120,7 +120,7 @@ public class TelaInicio extends JFrame {
 		contentPane.setBackground(new Color(180, 98, 100));
 		contentPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.setBorder(null);
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("insets 0", "[958px,grow,fill]", "[70px,fill][630px,grow,fill]"));
@@ -174,25 +174,10 @@ public class TelaInicio extends JFrame {
 		panel_Central.add(panelMenu_expanded, BorderLayout.WEST);
 		
 		
-//		ImageIcon iconMeusProjetos = new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png"));
-		
+
 		btnMeusProjetos = new JButton("");
 		btnMeusProjetos.setMargin(new Insets(2, 2, 2, 2));
-//		btnMeusProjetos.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				selecionarBotao(btnMeusProjetos);
-//
-//		        panel_Central.remove(panelActual);
-//		        panelActual = new TelaInternaProjetos();
-//		        panel_Central.add(panelActual, BorderLayout.CENTER);
-//
-//		        panelMenu_expanded.revalidate();
-//		        panelMenu_expanded.repaint();
-//		        panel_Central.revalidate();
-//		        panel_Central.repaint();
-//		        
-//			}
-//		}); 
+
 		btnMeusProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnMeusProjetos.png")));
 		panelMenu_expanded.add(btnMeusProjetos, "cell 0 1,growx,aligny center");
 		
@@ -209,22 +194,8 @@ public class TelaInicio extends JFrame {
 		
 		btnCriarProjetos = new JButton("");
 		btnCriarProjetos.setMargin(new Insets(2, 2, 2, 2));
-//		btnCriarProjetos.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				selecionarBotao(btnCriarProjetos);
-//
-//		        panel_Central.remove(panelActual);
-//		        panelActual = new TelaInternaCriar(); // <- seu JPanel de projetos
-//		        panel_Central.add(panelActual, BorderLayout.CENTER);
-//
-//		        panelMenu_expanded.revalidate();
-//		        panelMenu_expanded.repaint();
-//		        panel_Central.revalidate();
-//		        panel_Central.repaint();
-//			}
-//		});
-//		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
+
+		btnCriarProjetos.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnCriarProjetos.png")));
 		panelMenu_expanded.add(btnCriarProjetos, "cell 0 2,growx,aligny center");
 		
 		btnCriarProjetos.setBorderPainted(false);
@@ -236,21 +207,7 @@ public class TelaInicio extends JFrame {
 		
 		 btnNotificacoes = new JButton("");
 		btnNotificacoes.setMargin(new Insets(2, 2, 2, 2));
-		btnNotificacoes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				selecionarBotao(btnNotificacoes);
-
-//		        panel_Central.remove(panelActual);
-	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
-		//        panel_Central.add(panelActual, BorderLayout.CENTER);
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-			}
-		});
+	
 		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnNotificacoes.png")));
 		panelMenu_expanded.add(btnNotificacoes, "cell 0 3,growx,aligny center");
 		
@@ -263,21 +220,7 @@ public class TelaInicio extends JFrame {
 		
 		 btnColaboradores = new JButton("");
 		btnColaboradores.setMargin(new Insets(2, 2, 2, 2));
-		btnColaboradores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				selecionarBotao(btnColaboradores);
-
-//		        panel_Central.remove(panelActual);
-	//	        panelActual = new TelaInternaProjetos(); // <- seu JPanel de projetos
-		//        panel_Central.add(panelActual, BorderLayout.CENTER);
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-			}
-		});
+		
 		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
 		panelMenu_expanded.add(btnColaboradores, "cell 0 4,growx,aligny center");
 		
@@ -290,21 +233,7 @@ public class TelaInicio extends JFrame {
 		
 		 btnPerfil = new JButton("");
 		btnPerfil.setMargin(new Insets(2, 2, 2, 2));
-		btnPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				selecionarBotao(btnPerfil);
-
- 		        panel_Central.remove(panelActual);
-	  	        panelActual = new TelaInternaPerfil(); // <- seu JPanel de projetos
-		        panel_Central.add(panelActual, BorderLayout.CENTER);
-
-		        panelMenu_expanded.revalidate();
-		        panelMenu_expanded.repaint();
-		        panel_Central.revalidate();
-		        panel_Central.repaint();
-			}
-		});
+		
 		btnPerfil.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnPerfil.png")));
 		panelMenu_expanded.add(btnPerfil, "cell 0 14,alignx center,growy");
 		
@@ -349,6 +278,10 @@ public class TelaInicio extends JFrame {
 	}
 
 	
+
+	public JButton getBtnPerfil() {
+		return btnPerfil;
+	}
 
 	public JButton getBtnNotificacoes() {
 		return btnNotificacoes;

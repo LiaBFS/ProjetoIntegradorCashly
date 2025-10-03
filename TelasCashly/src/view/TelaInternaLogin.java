@@ -381,7 +381,7 @@ public class TelaInternaLogin extends JPanel {
 
 	public void resetarTxtSenha() {
 	            txtSenha.setText(getPlaceholderSenha());
-	            txtSenha.setEchoChar((char)0); // volta a mostrar texto normal
+	            txtSenha.setEchoChar((char)0);
 		
 	}
 }
