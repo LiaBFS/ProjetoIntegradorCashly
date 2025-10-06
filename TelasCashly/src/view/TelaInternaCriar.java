@@ -31,7 +31,7 @@ public class TelaInternaCriar extends JPanel {
 	private String placeholderDescricao = "Descrição do Projeto";
 	private String placeholderSaldo = "Saldo Atual Disponível para o Projeto";
 
-	private ProjetoDAO projetoDAO;
+	
 	private JPanel panel_1;
 	private JPanelComBackground panel_2;
 	private JPanelComBackground panel_3;
@@ -42,7 +42,7 @@ public class TelaInternaCriar extends JPanel {
 	 */
 	public TelaInternaCriar() {
 
-		this.projetoDAO = new ProjetoDAO();
+		
 
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][]"));
@@ -154,41 +154,43 @@ public class TelaInternaCriar extends JPanel {
 		btnCriar.setContentAreaFilled(false);
 		btnCriar.setBorderPainted(false);
 		panel.add(btnCriar, "cell 2 9,alignx center,growy");
-		btnCriar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
 
-				String nome = tfNomeProjeto.getText();
-				String descricao = tfDescricaoProjeto.getText();
-				String saldoTexto = tfSaldo.getText();
+	}
+	
 
-				if (nome.equals(placeholderNomeProjeto) || descricao.equals(placeholderDescricao)
-						|| saldoTexto.equals(placeholderSaldo) || nome.isEmpty() || descricao.isEmpty()
-						|| saldoTexto.isEmpty()) {
+	public String getPlaceholderNomeProjeto() {
+		return placeholderNomeProjeto;
+	}
 
-					JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios.",
-							"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
 
-				double saldo = 0.0;
-				try {
+	public String getPlaceholderDescricao() {
+		return placeholderDescricao;
+	}
 
-					saldo = Double.parseDouble(saldoTexto.replace(",", "."));
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Saldo inválido. Digite apenas números!",
-							"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
 
-				model.Projeto novoProjeto = new model.Projeto();
-				novoProjeto.setNome(nome);
-				novoProjeto.setDescricao(descricao);
-				novoProjeto.setSaldo(saldo);
+	public String getPlaceholderSaldo() {
+		return placeholderSaldo;
+	}
 
-				projetoDAO.adicionarProjeto(novoProjeto);
-			}
-		});
 
+	public JTextField getTfNomeProjeto() {
+		return tfNomeProjeto;
+	}
+
+
+	public JTextField getTfDescricaoProjeto() {
+		return tfDescricaoProjeto;
+	}
+
+
+	public JTextField getTfSaldo() {
+		return tfSaldo;
+	}
+
+
+	public JButton getBtnCriar() {
+		return btnCriar;
 	}
 
 }

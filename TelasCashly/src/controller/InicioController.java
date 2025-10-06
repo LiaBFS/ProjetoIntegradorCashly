@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.BorderLayout;
 
+import model.ProjetoDAO;
 import model.Sessao;
 import view.TelaInicio;
 import view.TelaInternaCriar;
@@ -64,11 +65,15 @@ public class InicioController {
 		
 		this.telaInicio.atualizarMenuLateral();
 		
+		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
+		
 	}
 	
 	
 	private void abrirTelaCriarProjeto() {
 		TelaInternaCriar tela = new TelaInternaCriar();
+		ProjetoDAO projetoDAO = new ProjetoDAO();
+		ProjetoController projetoController = new ProjetoController(tela, projetoDAO);
 		this.telaInicio.atualizarPainel(tela);
 		
 		this.telaInicio.selecionarBotao(telaInicio.getBtnCriarProjetos());

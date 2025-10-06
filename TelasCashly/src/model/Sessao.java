@@ -10,5 +10,7 @@ package model;
 	    public static Usuario getUsuarioLogado() {
 	        return usuarioLogado;
 	    }
+
+		
 	}
 

@@ -50,7 +50,7 @@ public class UsuarioController {
 
         if (resposta == JOptionPane.YES_OPTION) {
             if (usuarioDAO.excluirUsuario(usuario.getId())) {
-                JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso!");
+                JOptionPane.showMessageDialog(null, "Perfil excluído.");
                
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir perfil.", "Erro", JOptionPane.ERROR_MESSAGE);
