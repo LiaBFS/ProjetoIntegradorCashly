@@ -363,9 +363,9 @@ public class TelaInternaCadastro extends JPanel {
 //		
 		
 		btnCadastrar.setPreferredSize(new Dimension(500, 100));
-		btnCadastrar.setOpaque(false);
 		btnCadastrar.setMinimumSize(new Dimension(300, 100));
 		btnCadastrar.setIcon(new ImageIcon(TelaInternaCadastro.class.getResource("/imgs/ConfirmaCadastro.png")));
+		btnCadastrar.setOpaque(false);
 		btnCadastrar.setFocusPainted(false);
 		btnCadastrar.setContentAreaFilled(false);
 		btnCadastrar.setBorderPainted(false);
