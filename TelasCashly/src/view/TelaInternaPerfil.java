@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.SwingConstants;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 public class TelaInternaPerfil extends JPanel {
@@ -30,6 +31,9 @@ public class TelaInternaPerfil extends JPanel {
 	private JButton btnEditarNome;
 	private JButton btnEditarEmail;
 	private JButton btnExcluirPerfil;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Create the panel.
@@ -38,18 +42,18 @@ public class TelaInternaPerfil extends JPanel {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][]"));
 		
-		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoPerfil22.png");
+		JPanel panel = new JPanel();
 		add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[0][40][500][500,grow][200px][40][0]", "[150px][50px][][40,grow][][][60][][][60][][75px]"));
-		
-		JPanel panel_1 = new JPanel();
-		
-		panel.add(panel_1, "cell 2 3 3 7,grow");
-		panel_1.setLayout(new MigLayout("", "[50px][grow][grow][grow]", "[50px,grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
+		panel.setLayout(new MigLayout("", "[100][40][500][500,grow][200px][40][0]", "[150px][50px][][40,grow][][][60][][][60][][75px]"));
+		panel.setOpaque(false);
 		
 		
+		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/FundoPerfilFinal.png");
 		
-		panel_1.setOpaque(false);
+		
+		panel.add(panel_1, "cell 0 0 7 10,grow");
+		panel_1.setLayout(new MigLayout("", "[50][grow][grow][0]", "[60px,grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
+		
 		
 		panel_1.setOpaque(false);
 		
@@ -62,9 +66,22 @@ public class TelaInternaPerfil extends JPanel {
 			    TelaApresentacao.class.getResource("/imgs/Editar.png")
 			);	
 		
+		ImageIcon JPEmailPerfil = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/JPEmailPerfil.png")
+			);	
+		
+		
+		ImageIcon Editar1 = new ImageIcon(
+			    TelaApresentacao.class.getResource("/imgs/Editar.png")
+			);	
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/SeuPerfil.png")));
+		panel_1.add(lblNewLabel, "cell 1 1 2 1,growx");
+		
 		JLabel lblNomePerfil = new JLabel("");
 		lblNomePerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPNomePerfil.png")));
-		panel_1.add(lblNomePerfil, "flowx,cell 1 1");
+		panel_1.add(lblNomePerfil, "flowx,cell 1 2,growx");
 		lblNomePerfil.setForeground(new Color(72, 53, 40));
 		lblNomePerfil.setFont(new Font("Carlito", Font.BOLD, 20));
 		
@@ -97,7 +114,8 @@ public class TelaInternaPerfil extends JPanel {
 		});
 		
 		tfNome = new JTextField();
-		panel_1.add(tfNome, "cell 1 2,growx");
+		tfNome.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_1.add(tfNome, "cell 1 3,grow");
 		tfNome.setColumns(10);
 		tfNome.setText(placeholderUsuario);
 		tfNome.addFocusListener(new FocusAdapter() {
@@ -114,7 +132,35 @@ public class TelaInternaPerfil extends JPanel {
 				}
 			}
 		});
+		tfNome.setOpaque(false);
+		tfNome.setBorder(BorderFactory.createEmptyBorder());
 		
+//		tfNome.setMinimumSize(new Dimension(50, 25));
+//		tfNome.setPreferredSize(new Dimension(250, 50));
+//		
+//		tfNome.addComponentListener(new ComponentAdapter() {
+//		    public void componentResized(ComponentEvent e) {
+//		        int largura = tfNome.getWidth();
+//		        int altura = tfNome.getHeight();
+//
+//		        if (largura > 0 && altura > 0) {
+//		            double proporcaoOriginal = (double) JPNomePerfil.getIconWidth() / JPNomePerfil.getIconHeight();
+//		            int novaLargura = largura;
+//		            int novaAltura = (int) (largura / proporcaoOriginal);
+//
+//		            if (novaAltura > altura) {
+//		                novaAltura = altura;
+//		                novaLargura = (int) (altura * proporcaoOriginal);
+//		            }
+//
+//		            Image img = JPNomePerfil.getImage().getScaledInstance(
+//		                novaLargura, novaAltura, Image.SCALE_SMOOTH
+//		            );
+//		            lblNomePerfil.setIcon(new ImageIcon(img));
+//		        }
+//		    }
+//		});
+	
 		btnEditarNome = new JButton("");
 		
 		
@@ -151,20 +197,20 @@ public class TelaInternaPerfil extends JPanel {
 		btnEditarNome.setOpaque(false);
 		
 		btnEditarNome.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Editar.png")));
-		panel_1.add(btnEditarNome, "cell 3 2,alignx right");
+		panel_1.add(btnEditarNome, "cell 2 3,alignx right");
 		btnEditarNome.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnEditarNome.setForeground(new Color(255, 245, 234));
 		btnEditarNome.setBackground(new Color(207, 114, 116));
 		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/LinhaFundoPerfil.png")));
+		panel_1.add(lblNewLabel_1, "cell 1 4 2 1,alignx center");
+		
 		JLabel lblEmailPerfil = new JLabel("");
 		lblEmailPerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPEmailPerfil.png")));
-		panel_1.add(lblEmailPerfil, "cell 1 3");
+		panel_1.add(lblEmailPerfil, "cell 1 5,growx");
 		lblEmailPerfil.setForeground(new Color(72, 53, 40));
 		lblEmailPerfil.setFont(new Font("Carlito", Font.BOLD, 20));
-		
-		ImageIcon JPEmailPerfil = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/JPEmailPerfil.png")
-			);	
 		
 		
 		
@@ -195,7 +241,8 @@ public class TelaInternaPerfil extends JPanel {
 		});
 		
 		tfEmail = new JTextField();
-		panel_1.add(tfEmail, "cell 1 4,growx");
+		tfEmail.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_1.add(tfEmail, "cell 1 6,grow");
 		tfEmail.setColumns(10);
 		tfEmail.setText(placeholderEmail);
 		tfEmail.addFocusListener(new FocusAdapter() {
@@ -213,18 +260,16 @@ public class TelaInternaPerfil extends JPanel {
 			}
 		});
 		
+		tfEmail.setOpaque(false);
+		tfEmail.setBorder(BorderFactory.createEmptyBorder());
+		
 		btnEditarEmail = new JButton("");
 		btnEditarEmail.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Editar.png")));
-		panel_1.add(btnEditarEmail, "cell 3 4,alignx right");
+		panel_1.add(btnEditarEmail, "cell 2 6,alignx right");
 		btnEditarEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		
-		ImageIcon Editar1 = new ImageIcon(
-			    TelaApresentacao.class.getResource("/imgs/Editar.png")
-			);	
 		
 		
 		
@@ -263,9 +308,13 @@ public class TelaInternaPerfil extends JPanel {
 		btnEditarEmail.setForeground(new Color(255, 245, 234));
 		btnEditarEmail.setBackground(new Color(207, 114, 116));
 		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/LinhaFundoPerfil.png")));
+		panel_1.add(lblNewLabel_2, "cell 1 7 2 1,alignx center");
+		
 		JButton btnSair = new JButton("");
 		btnSair.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Sair.png")));
-		panel_1.add(btnSair, "cell 1 7");
+		panel_1.add(btnSair, "cell 1 8");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -274,8 +323,6 @@ public class TelaInternaPerfil extends JPanel {
 		ImageIcon Sair = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Sair.png")
 			);	
-		
-		
 		
 		btnSair.setMinimumSize(new Dimension(100, 100));
 		btnSair.setPreferredSize(new Dimension(300, 100));
@@ -286,7 +333,7 @@ public class TelaInternaPerfil extends JPanel {
 		        int altura = btnSair.getHeight();
 
 		        if (largura > 0 && altura > 0) {
-		            double proporcaoOriginal = (double) Sair.getIconWidth() / Sair.getIconHeight();
+		            double proporcaoOriginal = (double) Sair.getIconWidth() /  Sair.getIconHeight();
 		            int novaLargura = largura;
 		            int novaAltura = (int) (largura / proporcaoOriginal);
 
@@ -312,9 +359,14 @@ public class TelaInternaPerfil extends JPanel {
 		btnSair.setForeground(new Color(255, 245, 234));
 		btnSair.setBackground(new Color(207, 114, 116));
 		
+		
+		
+		
+		
+		
 		btnExcluirPerfil = new JButton("");
 		btnExcluirPerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Excluir.png")));
-		panel_1.add(btnExcluirPerfil, "cell 2 7");
+		panel_1.add(btnExcluirPerfil, "cell 2 8");
 		btnExcluirPerfil.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnExcluirPerfil.setForeground(new Color(255, 245, 234));
 		btnExcluirPerfil.setBackground(new Color(193, 31, 35));
@@ -324,12 +376,11 @@ public class TelaInternaPerfil extends JPanel {
 			    TelaApresentacao.class.getResource("/imgs/Excluir.png")
 			);	
 		
-		
-		
 		btnExcluirPerfil.setMinimumSize(new Dimension(100, 100));
 		btnExcluirPerfil.setPreferredSize(new Dimension(300, 100));
 		
-		btnSair.addComponentListener(new ComponentAdapter() {
+		
+		btnExcluirPerfil.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent e) {
 		        int largura = btnExcluirPerfil.getWidth();
 		        int altura = btnExcluirPerfil.getHeight();
@@ -352,10 +403,15 @@ public class TelaInternaPerfil extends JPanel {
 		    }
 		});
 		
+		
 		btnExcluirPerfil.setBorderPainted(false);
 		btnExcluirPerfil.setContentAreaFilled(false);
 		btnExcluirPerfil.setFocusPainted(false);
 		btnExcluirPerfil.setOpaque(false);
+		
+		
+		
+		
 		
 
 	}
