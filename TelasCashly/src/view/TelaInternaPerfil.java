@@ -34,6 +34,7 @@ public class TelaInternaPerfil extends JPanel {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
+	private JButton btnSair;
 
 	/**
 	 * Create the panel.
@@ -312,13 +313,10 @@ public class TelaInternaPerfil extends JPanel {
 		lblNewLabel_2.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/LinhaFundoPerfil.png")));
 		panel_1.add(lblNewLabel_2, "cell 1 7 2 1,alignx center");
 		
-		JButton btnSair = new JButton("");
+		btnSair = new JButton("");
 		btnSair.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Sair.png")));
 		panel_1.add(btnSair, "cell 1 8");
-		btnSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		
 		ImageIcon Sair = new ImageIcon(
 			    TelaApresentacao.class.getResource("/imgs/Sair.png")
@@ -414,6 +412,10 @@ public class TelaInternaPerfil extends JPanel {
 		
 		
 
+	}
+
+	public JButton getBtnSair() {
+		return btnSair;
 	}
 
 	public JButton getBtnExcluirPerfil() {

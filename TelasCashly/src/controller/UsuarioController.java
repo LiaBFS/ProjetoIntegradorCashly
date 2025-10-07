@@ -4,12 +4,14 @@ import javax.swing.JOptionPane;
 
 import model.Usuario;
 import model.UsuarioDAO;
+import view.TelaApresentacao;
 import view.TelaInternaPerfil;
 
 public class UsuarioController {
     private TelaInternaPerfil tela;
     private Usuario usuario;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+   
 
    
     public UsuarioController(TelaInternaPerfil tela, Usuario usuario) {
@@ -30,11 +32,18 @@ public class UsuarioController {
         tela.getBtnEditarNome().addActionListener(e -> editarNome());
         tela.getBtnEditarEmail().addActionListener(e -> editarEmail());
         tela.getBtnExcluirPerfil().addActionListener(e -> excluirPerfil());
+        tela.getBtnSair().addActionListener(e -> logoff());
     }
     
     
     
-    private void excluirPerfil() {
+    private void logoff() {
+		
+		
+	}
+
+
+	private void excluirPerfil() {
         Object[] opcoes = {"Continuar", "Cancelar"};
 
         int resposta = JOptionPane.showOptionDialog(
@@ -48,15 +57,37 @@ public class UsuarioController {
                 opcoes[1]
         );
 
-        if (resposta == JOptionPane.YES_OPTION) {
-            if (usuarioDAO.excluirUsuario(usuario.getId())) {
-                JOptionPane.showMessageDialog(null, "Perfil excluído.");
-               
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro ao excluir perfil.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
+        if (resposta != JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Exclusão cancelada.");
+            return;
+        }
+
+        
+        String email = tela.getTfEmail().getText().trim();
+        if (email.isEmpty() || email.equals(tela.getPlaceholderEmail())) {
+            email = usuario.getEmail();
+        }
+
+        if (email == null || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Email inválido para exclusão.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        System.out.println("Tentando excluir usuário com email");
+
+        boolean excluido = usuarioDAO.excluirUsuario(email);
+
+        if (excluido) {
+            JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso!");
+            
+    		TelaApresentacao tela = new TelaApresentacao(); 
+            ApresentacaoController apresentacao = new ApresentacaoController(tela);
+            apresentacao.iniciarApresentacao();
+
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir perfil. Verifique se o email está correto.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     

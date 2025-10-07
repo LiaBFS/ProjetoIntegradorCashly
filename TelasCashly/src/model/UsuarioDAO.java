@@ -122,25 +122,21 @@ import java.util.ArrayList;
 
 
 	    // DELETE
-	    
-	    public boolean excluirUsuario(int id) {
-	        String sql = "DELETE FROM usuario WHERE id = ?";
-	        Connection conexao = null;
-	        PreparedStatement pstm = null;
+	    public boolean excluirUsuario(String email) {
+	        String sql = "DELETE FROM usuario WHERE email = ?";
+	        // try-with-resources fecha automaticamente PreparedStatement e Connection
+	        try (Connection conexao = BancoDeDados.conectar();
+	             PreparedStatement pstm = conexao.prepareStatement(sql)) {
 
-	        try {
-	            conexao = BancoDeDados.conectar();
-	            pstm = conexao.prepareStatement(sql);
-	            pstm.setInt(1, id);
-	            pstm.executeUpdate();
+	            pstm.setString(1, email);
+	            int linhasAfetadas = pstm.executeUpdate();
+	            return linhasAfetadas > 0; // true se realmente deletou algo
+
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        } finally {
-	        	BancoDeDados.desconectar(conexao);
+	            return false;
 	        }
-			return false;
 	    }
-	    
 	    
 
 	    // READ - Listar todos os usuários

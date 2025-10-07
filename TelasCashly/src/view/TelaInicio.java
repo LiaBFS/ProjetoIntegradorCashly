@@ -36,7 +36,7 @@ public class TelaInicio extends JFrame {
 	private JButton btnMeusProjetos;
 	private JButton btnCriarProjetos;
 	private JButton btnNotificacoes;
-	private JButton btnColaboradores;
+	//private JButton btnColaboradores;
 	private JButton btnPerfil;
 
 	private ImageIcon iconMeusProjetos = new ImageIcon(getClass().getResource("/imgs/BtnMeusProjetos.png"));
@@ -48,8 +48,8 @@ public class TelaInicio extends JFrame {
 	private ImageIcon iconNotificacoes = new ImageIcon(getClass().getResource("/imgs/BtnNotificacoes.png"));
 	private ImageIcon iconNotificacoesSel = new ImageIcon(getClass().getResource("/imgs/btnNotificacoesSEL.png"));
 
-	private ImageIcon iconColaboradores = new ImageIcon(getClass().getResource("/imgs/BtnColaboradores.png"));
-	private ImageIcon iconColaboradoresSel = new ImageIcon(getClass().getResource("/imgs/btnColaboradoresSEL.png"));
+	//private ImageIcon iconColaboradores = new ImageIcon(getClass().getResource("/imgs/BtnColaboradores.png"));
+	//private ImageIcon iconColaboradoresSel = new ImageIcon(getClass().getResource("/imgs/btnColaboradoresSEL.png"));
 
 	private ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/imgs/BtnPerfil.png"));
 	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/imgs/btnPerfilSEL.png"));
@@ -66,7 +66,7 @@ public class TelaInicio extends JFrame {
 	    btnMeusProjetos.setIcon(iconMeusProjetos);
 	    btnCriarProjetos.setIcon(iconCriarProjetos);
 	    btnNotificacoes.setIcon(iconNotificacoes);
-	    btnColaboradores.setIcon(iconColaboradores);
+	    //btnColaboradores.setIcon(iconColaboradores);
 	    btnPerfil.setIcon(iconPerfil);
 
 	    // Ativa o ícone selecionado do botão clicado
@@ -76,9 +76,9 @@ public class TelaInicio extends JFrame {
 	        botaoSelecionado.setIcon(iconCriarProjetosSel);
 	    } else if (botaoSelecionado == btnNotificacoes) {
 	        botaoSelecionado.setIcon(iconNotificacoesSel);
-	    } else if (botaoSelecionado == btnColaboradores) {
-	        botaoSelecionado.setIcon(iconColaboradoresSel);
-	    } else if (botaoSelecionado == btnPerfil) {
+	    } //else if (botaoSelecionado == btnColaboradores) {
+	        //botaoSelecionado.setIcon(iconColaboradoresSel);
+	     else if (botaoSelecionado == btnPerfil) {
 	        botaoSelecionado.setIcon(iconPerfilSel);
 	    }
 	}
@@ -227,16 +227,16 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		 btnColaboradores = new JButton("");
-		btnColaboradores.setMargin(new Insets(2, 2, 2, 2));
-		
-		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
-		panelMenu_expanded.add(btnColaboradores, "cell 0 4,growx,aligny center");
-		
-		btnColaboradores.setBorderPainted(false);
-		btnColaboradores.setContentAreaFilled(false);
-		btnColaboradores.setFocusPainted(false);
-		btnColaboradores.setOpaque(false);
+//		 btnColaboradores = new JButton("");
+//		btnColaboradores.setMargin(new Insets(2, 2, 2, 2));
+//		
+//		btnColaboradores.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnColaboradores.png")));
+//		panelMenu_expanded.add(btnColaboradores, "cell 0 4,growx,aligny center");
+//		
+//		btnColaboradores.setBorderPainted(false);
+//		btnColaboradores.setContentAreaFilled(false);
+//		btnColaboradores.setFocusPainted(false);
+//		btnColaboradores.setOpaque(false);
 		
 		
 		
