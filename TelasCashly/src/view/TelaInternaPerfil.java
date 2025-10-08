@@ -52,7 +52,7 @@ public class TelaInternaPerfil extends JPanel {
 		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/FundoPerfilFinal.png");
 		
 		
-		panel.add(panel_1, "cell 0 0 7 10,grow");
+		panel.add(panel_1, "flowx,cell 0 0 7 10,grow");
 		panel_1.setLayout(new MigLayout("", "[50][grow][grow][0]", "[60px,grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
 		
 		
@@ -78,7 +78,7 @@ public class TelaInternaPerfil extends JPanel {
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/SeuPerfil.png")));
-		panel_1.add(lblNewLabel, "cell 1 1 2 1,growx");
+		panel_1.add(lblNewLabel, "cell 1 1 2 1,alignx center");
 		
 		JLabel lblNomePerfil = new JLabel("");
 		lblNomePerfil.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/JPNomePerfil.png")));
@@ -163,6 +163,7 @@ public class TelaInternaPerfil extends JPanel {
 //		});
 	
 		btnEditarNome = new JButton("");
+		panel_1.add(btnEditarNome, "cell 2 3,alignx right");
 		
 		
 		btnEditarNome.setMinimumSize(new Dimension(100, 50));
@@ -198,7 +199,6 @@ public class TelaInternaPerfil extends JPanel {
 		btnEditarNome.setOpaque(false);
 		
 		btnEditarNome.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Editar.png")));
-		panel_1.add(btnEditarNome, "cell 2 3,alignx right");
 		btnEditarNome.setFont(new Font("Carlito", Font.BOLD, 19));
 		btnEditarNome.setForeground(new Color(255, 245, 234));
 		btnEditarNome.setBackground(new Color(207, 114, 116));
@@ -315,7 +315,7 @@ public class TelaInternaPerfil extends JPanel {
 		
 		btnSair = new JButton("");
 		btnSair.setIcon(new ImageIcon(TelaInternaPerfil.class.getResource("/imgs/Sair.png")));
-		panel_1.add(btnSair, "cell 1 8");
+		panel_1.add(btnSair, "cell 1 8,alignx right");
 		
 		
 		ImageIcon Sair = new ImageIcon(

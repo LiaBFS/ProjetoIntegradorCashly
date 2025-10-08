@@ -74,10 +74,9 @@ public class TelaInternaInicial extends JPanel {
 		        int altura = panel.getHeight();
 
 		        if (largura > 0 && altura > 0) {
-		            // calcula o tamanho da fonte com base na largura ou altura
+		        	
 		            int novoTamanho = Math.min(largura / 10, altura / 5);
-
-		            // garante um mínimo para não sumir
+		            
 		            if (novoTamanho < 14) {
 		                novoTamanho = 14;
 		            }
