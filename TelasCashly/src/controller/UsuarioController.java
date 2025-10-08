@@ -98,7 +98,7 @@ public class UsuarioController {
         boolean excluido = usuarioDAO.excluirUsuario(email);
 
         if (excluido) {
-            JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso!");
+            JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso.");
             
     		TelaApresentacao tela = new TelaApresentacao(); 
             ApresentacaoController apresentacao = new ApresentacaoController(tela);

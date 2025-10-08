@@ -51,12 +51,12 @@ public class ProjetoController {
 			
 		} catch (NumberFormatException ex) {
 			
-			JOptionPane.showMessageDialog(null, "Saldo inválido. Digite apenas números!",
+			JOptionPane.showMessageDialog(null, "Saldo inválido. Digite apenas números.",
 					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-	
+		JOptionPane.showMessageDialog(null, "Projeto Criado com sucesso.");
 		Projeto novoProjeto = new model.Projeto();
 		novoProjeto.setNome(nome);
 		novoProjeto.setDescricao(descricao);
