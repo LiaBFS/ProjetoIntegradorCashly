@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.Sessao;
 import model.Usuario;
 import model.UsuarioDAO;
 import view.TelaApresentacao;
@@ -17,7 +18,10 @@ public class UsuarioController {
     public UsuarioController(TelaInternaPerfil tela, Usuario usuario) {
         this.tela = tela;
         this.usuario = usuario;
+        
         inicializar();
+        
+
     }
 
     
@@ -25,6 +29,7 @@ public class UsuarioController {
     	
     	
         // Preenche os textFields com os dados já cadastrados
+    	
         tela.getTfNome().setText(usuario.getNome());
         tela.getTfEmail().setText(usuario.getEmail());
 
@@ -39,6 +44,20 @@ public class UsuarioController {
     
     private void logoff() {
 		
+    	int opcao = JOptionPane.showConfirmDialog(
+    	        null,
+    	        "Deseja realmente sair da sua conta?",
+    	        "Confirmar Logoff",
+    	        JOptionPane.YES_NO_OPTION
+    	    );
+
+    	    if (opcao == JOptionPane.YES_OPTION) {
+    	        
+    	    	Sessao.setUsuarioLogado(null);
+    	    	TelaApresentacao telaApresentacao = new TelaApresentacao();
+    			ApresentacaoController apresentacaoController = new ApresentacaoController(telaApresentacao);
+    			apresentacaoController.iniciarApresentacao();
+    	    }
 		
 	}
 
