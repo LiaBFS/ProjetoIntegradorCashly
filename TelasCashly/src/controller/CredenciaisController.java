@@ -25,10 +25,10 @@ public class CredenciaisController {
 		
 		
 	
-		 // Cria os painéis internos
+		 
         telaCadastro = new TelaInternaCadastro(this.tela);
         telaLogin = new TelaInternaLogin(this.tela);
-		  // Adiciona ao CardLayout
+		 
         this.tela.getPainelPrincipal().add(telaLogin, "login");
         this.tela.getPainelPrincipal().add(telaCadastro, "cadastro");
         
@@ -51,7 +51,6 @@ public class CredenciaisController {
 	private void iniciarSessao() {
 
 		 String email = this.telaLogin.getTxtEmail().getText().trim();
-	        //String senha = txtSenha.getPassword().toString()
 	        char[] senhaChars = this.telaLogin.getTxtSenha().getPassword();
 	        String senha = new String(senhaChars);
 	        System.out.println("SENHA DIGITADA NO LOGIN:" + senha);
@@ -65,6 +64,7 @@ public class CredenciaisController {
 	        }
 
 	        // cria objeto usuario com email e senha
+	        
 	        Usuario usuarioLogin=null;
 			try {
 				usuarioLogin = new Usuario(0, null, email, senha, null, null);
@@ -78,7 +78,7 @@ public class CredenciaisController {
 	        UsuarioDAO usuarioDAO = new UsuarioDAO();
 	        Usuario usuarioAutenticado = usuarioDAO.pesquisarUsuariosPorEmailSenha(usuarioLogin);
 
-	        // avalia retorno
+	     
 	        if (usuarioAutenticado != null) {
 	            Sessao.setUsuarioLogado(usuarioAutenticado);
 	            abrirTelaInicial();
