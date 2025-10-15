@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Projeto;
 import model.ProjetoDAO;
@@ -23,13 +24,16 @@ public class MeusProjetosController {
 		this.projetoDAO = projetoDAO;
 		
 		
-		ArrayList<Projeto> lista = projetoDAO.listarProjetos();
+		List<Projeto> lista = projetoDAO.listarProjetos();
 		
 		for (Projeto projeto : lista) {
 			telaInternaProjetos.adicionarPainelProjeto(projeto);
 		}
 		
 		
-		
 		}
+
+	
+	
+	
 }
