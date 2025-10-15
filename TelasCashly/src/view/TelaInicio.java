@@ -101,6 +101,7 @@ public class TelaInicio extends JFrame {
 		panel_Central.remove(panelActual);
 	        panelActual = painel;
         panel_Central.add(panelActual, BorderLayout.CENTER);
+        this.pack();
 	}
 	
 	public void atualizarDadosProjetoRecente(JButton nomeProjeto, JButton descricao, JButton dataCriacao) {
