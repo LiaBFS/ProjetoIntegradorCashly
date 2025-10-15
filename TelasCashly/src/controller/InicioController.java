@@ -50,6 +50,9 @@ public class InicioController {
 	
 	private void abrirTelaMeusProjetos() {
 		TelaInternaProjetos tela = new TelaInternaProjetos();
+		ProjetoDAO P = new ProjetoDAO();
+		MeusProjetosController projetosController = new MeusProjetosController(tela, P);
+
 		this.telaInicio.atualizarPainel(tela);
 		
 		this.telaInicio.selecionarBotao(telaInicio.getBtnMeusProjetos());

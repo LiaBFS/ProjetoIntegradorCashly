@@ -66,8 +66,12 @@ public class ProjetoDAO {
                 Projeto projeto = new Projeto();
               projeto.setId(rset.getInt("id"));
                projeto.setNome(rset.getString("nome"));
+               projeto.setDataCriacao(rset.getDate("dataCriacao"));
               //  projeto.setEmail(rset.getString("email"));
-              // projeto.add(projeto);
+               projeto.setSaldo(rset.getDouble("saldo"));
+               //projeto.setFluxoRenda(rset.getInt("fluxoRenda"));
+              projeto.setDescricao(rset.getString("descricao"));
+              projetos.add(projeto);
            }
       } catch (SQLException e) {
          e.printStackTrace();

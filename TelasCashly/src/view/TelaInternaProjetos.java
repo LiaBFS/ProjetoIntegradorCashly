@@ -12,6 +12,8 @@ import model.Projeto;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class TelaInternaProjetos extends JPanel {
@@ -28,6 +30,7 @@ public class TelaInternaProjetos extends JPanel {
 		
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[1390px]", "[175px][175px][175px][175px][175px]"));
+		
 		
 		
 		
@@ -229,7 +232,9 @@ public class TelaInternaProjetos extends JPanel {
 		btnDescrição_4.setFocusPainted(false);
 		btnDescrição_4.setContentAreaFilled(false);
 		btnDescrição_4.setBorderPainted(false);
-		panel.add(btnDescrição_4, "cell 4 2");*/
+		panel.add(btnDescrição_4, "cell 4 2");
+		*/
+		
 
 	}
 	
@@ -247,7 +252,7 @@ public class TelaInternaProjetos extends JPanel {
 		panel_4.add(btnNomeProjeto1, "cell 4 1");
 		btnNomeProjeto1.setOpaque(false);
 		btnNomeProjeto1.setForeground(new Color(255, 245, 234));
-		btnNomeProjeto1.setFont(new Font("Carlito", Font.BOLD, 29));
+		btnNomeProjeto1.setFont(new Font("Carlito", Font.BOLD, 35));
 		btnNomeProjeto1.setFocusPainted(false);
 		btnNomeProjeto1.setContentAreaFilled(false);
 		btnNomeProjeto1.setBorderPainted(false);
@@ -256,7 +261,7 @@ public class TelaInternaProjetos extends JPanel {
 		panel_4.add(btnData, "cell 15 1");
 		btnData.setOpaque(false);
 		btnData.setForeground(new Color(153, 131, 116));
-		btnData.setFont(new Font("Carlito", Font.PLAIN, 19));
+		btnData.setFont(new Font("Carlito", Font.PLAIN, 25));
 		btnData.setFocusPainted(false);
 		btnData.setContentAreaFilled(false);
 		btnData.setBorderPainted(false);
@@ -269,7 +274,7 @@ public class TelaInternaProjetos extends JPanel {
 		panel_4.add(btnDescrição, "cell 4 2");
 		btnDescrição.setOpaque(false);
 		btnDescrição.setForeground(new Color(255, 245, 234));
-		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 14));
+		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 25));
 		btnDescrição.setFocusPainted(false);
 		btnDescrição.setContentAreaFilled(false);
 		btnDescrição.setBorderPainted(false);
@@ -277,5 +282,6 @@ public class TelaInternaProjetos extends JPanel {
 		linha++;
 		
 	}
-
 }
+
+
