@@ -12,7 +12,7 @@ import java.util.List;
 public class ProjetoDAO {
 	
 	public void adicionarProjeto(Projeto projeto) {
-	    String sql = "INSERT INTO Projeto (nome, descricao, saldo, dataCriacao) VALUES (?, ?, ?, ?)";
+	    String sql = "INSERT INTO Projeto (nome, descricao, saldo, dataCriacao, objetivo, usuario_id) VALUES (?, ?, ?, ?, ?, ?)";
 	    Connection conexao = null;
 	    PreparedStatement pstm = null;
 
@@ -23,12 +23,17 @@ public class ProjetoDAO {
 	        pstm.setString(1, projeto.getNome());
 	        pstm.setString(2, projeto.getDescricao());
 	        pstm.setDouble(3, projeto.getSaldo());
+	  
 
 	        // pega a data atual do sistema
 	        java.sql.Date dataAtual = new java.sql.Date(System.currentTimeMillis());
 	        pstm.setDate(4, dataAtual);
+	        
+	        pstm.setDouble(5, projeto.getObjetivo());
+	        pstm.setInt(6, projeto.getUsuarioID());
 
 	        pstm.executeUpdate();
+	    
 
 	        ResultSet rs = pstm.getGeneratedKeys();
 	        if (rs.next()) {
