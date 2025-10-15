@@ -1,4 +1,4 @@
- CREATE SCHEMA sistema_financeiro;
+CREATE SCHEMA sistema_financeiro;
 USE sistema_financeiro;
 
 CREATE TABLE Usuario (
@@ -25,6 +25,7 @@ CREATE TABLE Projeto (
     descricao VARCHAR(255),
     dataCriacao DATE NOT NULL,
     saldo DOUBLE NOT NULL,
+    objetivo DOUBLE NOT NULL,
     usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
@@ -104,7 +105,6 @@ CREATE TABLE LancamentoFinanceiro (
     FOREIGN KEY (projeto_id) REFERENCES Projeto(id),
     FOREIGN KEY (categoria_id) REFERENCES CategoriaGasto(id)
 );
-
 
 
 
