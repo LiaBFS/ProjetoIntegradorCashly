@@ -62,18 +62,18 @@ public class InicioController {
 	}
 
 	private void abrirTelaHome() {
-//		TelaInternaInicial tela = new TelaInternaInicial();
-//		this.telaInicio.atualizarPainel(tela);
-//		
-//		this.telaInicio.selecionarBotao(null);
-//		
-//		this.telaInicio.atualizarMenuLateral();
-//		
-//		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
-		
-		TelaInternaProjeto tela = new TelaInternaProjeto();
+		TelaInternaInicial tela = new TelaInternaInicial();
 		this.telaInicio.atualizarPainel(tela);
-		System.out.println("Abrir tela");
+		
+		this.telaInicio.selecionarBotao(null);
+		
+		this.telaInicio.atualizarMenuLateral();
+		
+		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
+		
+//		TelaInternaProjeto tela = new TelaInternaProjeto();
+//		this.telaInicio.atualizarPainel(tela);
+//		System.out.println("Abrir tela");
 	}
 	
 	
