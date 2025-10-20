@@ -142,6 +142,8 @@ public class TelaInternaProjeto extends JPanel {
 		panel_2.add(lblAdicionar, "cell 1 4");
 		
 		btnAdicionarLancamento = new JButton("");
+		
+		
 		btnAdicionarLancamento.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnAdicionarLancamento.png")));
 		panel_2.add(btnAdicionarLancamento, "cell 3 4,growx,aligny center");
 		btnAdicionarLancamento.setBorderPainted(false);
@@ -168,11 +170,7 @@ public class TelaInternaProjeto extends JPanel {
 
 	}
 	
-	
-	public void adicionarLancamento(ActionListener actionListener) {
-		this.btnAdicionarLancamento.addActionListener(actionListener);
-	}
-	
+
 	public void irTelaGraficos(ActionListener actionListener) {
 		this.btnIrGraficos.addActionListener(actionListener);
 	}
