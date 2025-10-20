@@ -19,7 +19,7 @@ public class Usuario {
 		this.senhaHash = PasswordUtils.md5(senha);
 		this.dataCadastro = dataCadastro;
 		this.projetos = projetos;
-		System.out.println("ENTREI NO CONSTRUTOR 2");
+		
 	}
 	
 	
@@ -27,11 +27,11 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.senhaHash = PasswordUtils.md5(senha);
-        System.out.println("ENTREI NO CONSTRUTOR 2");
+       
     }
 	
 	public Usuario() {
-		System.out.println("entrei no construtor vazio!");
+		
 	}
 
 	

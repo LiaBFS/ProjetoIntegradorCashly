@@ -52,7 +52,7 @@ public class InicioController {
 	private void abrirTelaMeusProjetos() {
 		TelaInternaProjetos tela = new TelaInternaProjetos();
 		ProjetoDAO P = new ProjetoDAO();
-		MeusProjetosController projetosController = new MeusProjetosController(tela, P);
+		MeusProjetosController projetosController = new MeusProjetosController(tela, P, telaInicio);
 
 		this.telaInicio.atualizarPainel(tela);
 		

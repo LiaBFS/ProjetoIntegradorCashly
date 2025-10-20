@@ -93,7 +93,7 @@ public class UsuarioController {
         }
 
         
-        System.out.println("Tentando excluir usuário com email");
+   
 
         boolean excluido = usuarioDAO.excluirUsuario(email);
 

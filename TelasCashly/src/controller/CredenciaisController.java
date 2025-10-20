@@ -53,7 +53,7 @@ public class CredenciaisController {
 		 String email = this.telaLogin.getTxtEmail().getText().trim();
 	        char[] senhaChars = this.telaLogin.getTxtSenha().getPassword();
 	        String senha = new String(senhaChars);
-	        System.out.println("SENHA DIGITADA NO LOGIN:" + senha);
+	        
 
 	      
 	        if (email.isEmpty() || email.equals(this.telaLogin.getPlaceholderEmail()) ||
@@ -68,7 +68,7 @@ public class CredenciaisController {
 	        Usuario usuarioLogin=null;
 			try {
 				usuarioLogin = new Usuario(0, null, email, senha, null, null);
-				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Senha hash usuario:" + usuarioLogin.getSenhaHash());
+				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
