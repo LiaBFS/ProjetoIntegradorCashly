@@ -9,6 +9,7 @@ import view.TelaInternaCriar;
 import view.TelaInternaInicial;
 import view.TelaInternaNotificacoes;
 import view.TelaInternaPerfil;
+import view.TelaInternaProjeto;
 import view.TelaInternaProjetos;
 
 public class InicioController {
@@ -61,15 +62,18 @@ public class InicioController {
 	}
 
 	private void abrirTelaHome() {
-		TelaInternaInicial tela = new TelaInternaInicial();
+//		TelaInternaInicial tela = new TelaInternaInicial();
+//		this.telaInicio.atualizarPainel(tela);
+//		
+//		this.telaInicio.selecionarBotao(null);
+//		
+//		this.telaInicio.atualizarMenuLateral();
+//		
+//		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
+		
+		TelaInternaProjeto tela = new TelaInternaProjeto();
 		this.telaInicio.atualizarPainel(tela);
-		
-		this.telaInicio.selecionarBotao(null);
-		
-		this.telaInicio.atualizarMenuLateral();
-		
-		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
-		
+		System.out.println("Abrir tela");
 	}
 	
 	
