@@ -6,14 +6,20 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import javax.swing.JScrollBar;
+
+import model.Projeto;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class TelaInternaProjetos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private int linha = 0;
 
 	/**
 	 * Create the panel.
@@ -23,11 +29,12 @@ public class TelaInternaProjetos extends JPanel {
 		
 		
 		setBackground(new Color(216, 178, 184));
-		setLayout(new MigLayout("", "[1390px]", "[175px][175px][175px][175px][175px][175px]"));
+		setLayout(new MigLayout("", "[1390px]", "[175px][175px][175px][175px][175px]"));
 		
 		
 		
-		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/FundoBtn.png");
+		
+		/*JPanelComBackground panel_4 = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel_4, "cell 0 0,grow");
 		panel_4.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
 		
@@ -68,13 +75,7 @@ public class TelaInternaProjetos extends JPanel {
 		
 		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel_3, "cell 0 1,grow");
-		panel_3.setLayout(new MigLayout("", "[249][241,grow][241,grow][][][][][][][][][][][][][241][241][241][241][][241][241][241][249]", "[grow 25][][][][][][][][][grow 10][][][][][grow 25]"));
-		
-		JButton btnData_1 = new JButton("dd/mm/aa");
-		btnData_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		panel_3.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
 		
 		JButton btnNomeProjeto2 = new JButton("Nome do Projeto Criado");
 		btnNomeProjeto2.addActionListener(new ActionListener() {
@@ -87,31 +88,37 @@ public class TelaInternaProjetos extends JPanel {
 		btnNomeProjeto2.setFocusPainted(false);
 		btnNomeProjeto2.setContentAreaFilled(false);
 		btnNomeProjeto2.setBorderPainted(false);
-		panel_3.add(btnNomeProjeto2, "flowy,cell 11 0,alignx left,aligny top");
-		btnData_1.setOpaque(false);
-		btnData_1.setForeground(new Color(153, 131, 116));
-		btnData_1.setFont(new Font("Carlito", Font.PLAIN, 19));
-		btnData_1.setFocusPainted(false);
-		btnData_1.setContentAreaFilled(false);
-		btnData_1.setBorderPainted(false);
-		panel_3.add(btnData_1, "cell 20 0,alignx left,aligny center");
+		panel_3.add(btnNomeProjeto2, "cell 4 1");
 		
 		JButton btnDescrição_1 = new JButton("Descrição");
 		btnDescrição_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		JButton btnData_1 = new JButton("dd/mm/aa");
+		btnData_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnData_1.setOpaque(false);
+		btnData_1.setForeground(new Color(153, 131, 116));
+		btnData_1.setFont(new Font("Carlito", Font.PLAIN, 19));
+		btnData_1.setFocusPainted(false);
+		btnData_1.setContentAreaFilled(false);
+		btnData_1.setBorderPainted(false);
+		panel_3.add(btnData_1, "cell 15 1");
 		btnDescrição_1.setOpaque(false);
 		btnDescrição_1.setForeground(new Color(255, 245, 234));
 		btnDescrição_1.setFont(new Font("Carlito", Font.PLAIN, 14));
 		btnDescrição_1.setFocusPainted(false);
 		btnDescrição_1.setContentAreaFilled(false);
 		btnDescrição_1.setBorderPainted(false);
-		panel_3.add(btnDescrição_1, "cell 11 1,alignx left,aligny top");
+		panel_3.add(btnDescrição_1, "cell 4 2");
 		
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel_2, "cell 0 2,grow");
-		panel_2.setLayout(new MigLayout("", "[282][241,grow][241,grow][][][][][][][][][][][][][][][][][241][241][241][241][][][241][][241][241][315][282]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
+		panel_2.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
 		
 		JButton btnNomeProjeto3 = new JButton("Nome do Projeto Criado");
 		btnNomeProjeto3.setOpaque(false);
@@ -120,7 +127,7 @@ public class TelaInternaProjetos extends JPanel {
 		btnNomeProjeto3.setFocusPainted(false);
 		btnNomeProjeto3.setContentAreaFilled(false);
 		btnNomeProjeto3.setBorderPainted(false);
-		panel_2.add(btnNomeProjeto3, "cell 14 0,alignx left,aligny top");
+		panel_2.add(btnNomeProjeto3, "cell 4 1");
 		
 		JButton btnData_2 = new JButton("dd/mm/aa");
 		btnData_2.setOpaque(false);
@@ -129,7 +136,7 @@ public class TelaInternaProjetos extends JPanel {
 		btnData_2.setFocusPainted(false);
 		btnData_2.setContentAreaFilled(false);
 		btnData_2.setBorderPainted(false);
-		panel_2.add(btnData_2, "flowx,cell 26 0,alignx left,aligny center");
+		panel_2.add(btnData_2, "cell 15 1");
 		
 		JButton btnDescrição_2 = new JButton("Descrição");
 		btnDescrição_2.addActionListener(new ActionListener() {
@@ -142,11 +149,17 @@ public class TelaInternaProjetos extends JPanel {
 		btnDescrição_2.setFocusPainted(false);
 		btnDescrição_2.setContentAreaFilled(false);
 		btnDescrição_2.setBorderPainted(false);
-		panel_2.add(btnDescrição_2, "cell 14 1,alignx left,aligny top");
+		panel_2.add(btnDescrição_2, "cell 4 2");
 		
 		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/FundoBtn.png");
-		add(panel_1, "cell 0 4,grow");
-		panel_1.setLayout(new MigLayout("", "[315][241,grow][241,grow][][][][][][][][][][][][241][241][241][241][][241][241][241][315]", "[grow 25][][][][][][][grow 10][][][][][][][grow 25]"));
+		add(panel_1, "cell 0 3,grow");
+		panel_1.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
+		
+		JButton btnData_3 = new JButton("dd/mm/aa");
+		btnData_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		JButton btnNomeProjeto4 = new JButton("Nome do Projeto Criado");
 		btnNomeProjeto4.addActionListener(new ActionListener() {
@@ -159,33 +172,32 @@ public class TelaInternaProjetos extends JPanel {
 		btnNomeProjeto4.setFocusPainted(false);
 		btnNomeProjeto4.setContentAreaFilled(false);
 		btnNomeProjeto4.setBorderPainted(false);
-		panel_1.add(btnNomeProjeto4, "cell 8 0,alignx left,aligny top");
+		panel_1.add(btnNomeProjeto4, "cell 4 1");
 		
-		JButton btnDescrição_3 = new JButton("Descrição");
-		btnDescrição_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnData_3 = new JButton("dd/mm/aa");
 		btnData_3.setOpaque(false);
 		btnData_3.setForeground(new Color(153, 131, 116));
 		btnData_3.setFont(new Font("Carlito", Font.PLAIN, 19));
 		btnData_3.setFocusPainted(false);
 		btnData_3.setContentAreaFilled(false);
 		btnData_3.setBorderPainted(false);
-		panel_1.add(btnData_3, "cell 17 0,alignx left,aligny center");
+		panel_1.add(btnData_3, "cell 15 1");
+		
+		JButton btnDescrição_3 =  new JButton("Descrição");
+		btnDescrição_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnDescrição_3.setOpaque(false);
 		btnDescrição_3.setForeground(new Color(255, 245, 234));
 		btnDescrição_3.setFont(new Font("Carlito", Font.PLAIN, 14));
 		btnDescrição_3.setFocusPainted(false);
 		btnDescrição_3.setContentAreaFilled(false);
 		btnDescrição_3.setBorderPainted(false);
-		panel_1.add(btnDescrição_3, "cell 8 1,alignx left,aligny top");
+		panel_1.add(btnDescrição_3, "cell 4 2");
 		
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoBtn.png");
-		add(panel, "cell 0 5,grow");
-		panel.setLayout(new MigLayout("", "[332][241,grow][][241,grow][][][][][][241][241][241][241][241][][][241][241][332]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
+		add(panel, "cell 0 4,grow");
+		panel.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
 		
 		JButton btnData_4 = new JButton("dd/mm/aa");
 		btnData_4.addActionListener(new ActionListener() {
@@ -204,14 +216,14 @@ public class TelaInternaProjetos extends JPanel {
 		btnNomeProjeto5.setFocusPainted(false);
 		btnNomeProjeto5.setContentAreaFilled(false);
 		btnNomeProjeto5.setBorderPainted(false);
-		panel.add(btnNomeProjeto5, "cell 7 0,alignx left,aligny top");
+		panel.add(btnNomeProjeto5, "cell 4 1");
 		btnData_4.setOpaque(false);
 		btnData_4.setForeground(new Color(153, 131, 116));
 		btnData_4.setFont(new Font("Carlito", Font.PLAIN, 19));
 		btnData_4.setFocusPainted(false);
 		btnData_4.setContentAreaFilled(false);
 		btnData_4.setBorderPainted(false);
-		panel.add(btnData_4, "cell 12 0,alignx left,aligny center");
+		panel.add(btnData_4, "cell 15 1");
 		
 		JButton btnDescrição_4 = new JButton("Descrição");
 		btnDescrição_4.setOpaque(false);
@@ -220,8 +232,56 @@ public class TelaInternaProjetos extends JPanel {
 		btnDescrição_4.setFocusPainted(false);
 		btnDescrição_4.setContentAreaFilled(false);
 		btnDescrição_4.setBorderPainted(false);
-		panel.add(btnDescrição_4, "cell 7 1,alignx left,aligny top");
+		panel.add(btnDescrição_4, "cell 4 2");
+		*/
+		
 
 	}
-
+	
+	
+	public void adicionarPainelProjeto(Projeto p) {
+		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/FundoBtn.png");
+		add(panel_4, "cell 0 "+linha+",grow");
+		panel_4.setLayout(new MigLayout("", "[266][241,grow][241,grow][][241][][][][][][][241][241][][241][241][241][241][266]", "[grow 25][][][][][][][][grow 10][][][][][][grow 25]"));
+		
+		JButton btnNomeProjeto1 = new JButton(p.getNome());
+		btnNomeProjeto1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel_4.add(btnNomeProjeto1, "cell 4 1");
+		btnNomeProjeto1.setOpaque(false);
+		btnNomeProjeto1.setForeground(new Color(255, 245, 234));
+		btnNomeProjeto1.setFont(new Font("Carlito", Font.BOLD, 35));
+		btnNomeProjeto1.setFocusPainted(false);
+		btnNomeProjeto1.setContentAreaFilled(false);
+		btnNomeProjeto1.setBorderPainted(false);
+		
+		JButton btnData = new JButton(p.getDataCriacao().toString());
+		panel_4.add(btnData, "cell 15 1");
+		btnData.setOpaque(false);
+		btnData.setForeground(new Color(153, 131, 116));
+		btnData.setFont(new Font("Carlito", Font.PLAIN, 25));
+		btnData.setFocusPainted(false);
+		btnData.setContentAreaFilled(false);
+		btnData.setBorderPainted(false);
+		
+		JButton btnDescrição = new JButton(p.getDescricao());
+		btnDescrição.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel_4.add(btnDescrição, "cell 4 2");
+		btnDescrição.setOpaque(false);
+		btnDescrição.setForeground(new Color(255, 245, 234));
+		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 25));
+		btnDescrição.setFocusPainted(false);
+		btnDescrição.setContentAreaFilled(false);
+		btnDescrição.setBorderPainted(false);
+		
+		linha++;
+		
+	}
 }
+
+

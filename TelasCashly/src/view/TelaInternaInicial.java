@@ -57,7 +57,7 @@ public class TelaInternaInicial extends JPanel {
 		
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel, "cell 1 3 3 1,grow");
-		panel.setLayout(new MigLayout("", "[][grow 20][grow 20][][][grow 70][][grow 15][][grow][]", "[grow 25][][grow 10][][][][grow 25]"));
+		panel.setLayout(new MigLayout("","[][grow 20][grow 20][][][grow 70][][grow 15][][grow][]", "[grow 25][][grow 10][][][][grow 25]"));
 		
 		btnNomeProjeto = new JButton("Nome do Projeto Criado");
 		btnNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 29));

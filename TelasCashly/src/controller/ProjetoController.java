@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import model.Projeto;
 import model.ProjetoDAO;
-
+import model.Sessao;
 import view.TelaInternaCriar;
 import view.TelaInternaInicial;
 
@@ -33,10 +33,11 @@ public class ProjetoController {
 		String nome = telaInternaCriar.getTfNomeProjeto().getText().trim();
 		String descricao = telaInternaCriar.getTfDescricaoProjeto().getText().trim();
 		String saldoTexto = telaInternaCriar.getTfSaldo().getText().trim();
+		String objetivoTexto = telaInternaCriar.getTfObjetivo().getText().trim();
 
 		if (nome.equals(telaInternaCriar.getPlaceholderNomeProjeto()) || descricao.equals(telaInternaCriar.getPlaceholderDescricao())
 				|| saldoTexto.equals(telaInternaCriar.getPlaceholderSaldo()) || nome.isEmpty() || descricao.isEmpty()
-				|| saldoTexto.isEmpty()) {
+				|| saldoTexto.isEmpty() || objetivoTexto.equals(telaInternaCriar.getPlaceholderObjetivo()) || objetivoTexto.isEmpty()) {
 			
 			
 			JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios.",
@@ -55,18 +56,33 @@ public class ProjetoController {
 					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		
+		double objetivo = 0.0;
+		try {
+
+			objetivo = Double.parseDouble(objetivoTexto.replace(",", "."));
+			
+		} catch (NumberFormatException ex) {
+			
+			JOptionPane.showMessageDialog(null, "Valor de Objetivo inválido. Digite apenas números.",
+					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		JOptionPane.showMessageDialog(null, "Projeto Criado com sucesso.");
 		Projeto novoProjeto = new model.Projeto();
 		novoProjeto.setNome(nome);
 		novoProjeto.setDescricao(descricao);
 		novoProjeto.setSaldo(saldo);
+		novoProjeto.setObjetivo(objetivo);
+		novoProjeto.setUsuarioID(Sessao.getUsuarioLogado().getId());
 
 		projetoDAO.adicionarProjeto(novoProjeto);
 		
 		telaInternaCriar.getTfNomeProjeto().setText(telaInternaCriar.getPlaceholderNomeProjeto());
 		telaInternaCriar.getTfDescricaoProjeto().setText(telaInternaCriar.getPlaceholderDescricao());
 		telaInternaCriar.getTfSaldo().setText(telaInternaCriar.getPlaceholderSaldo());
+		telaInternaCriar.getTfObjetivo().setText(telaInternaCriar.getPlaceholderObjetivo());
 	}
 
 
