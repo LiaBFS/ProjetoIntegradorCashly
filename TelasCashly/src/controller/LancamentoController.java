@@ -24,14 +24,14 @@ public class LancamentoController {
 	private void  abrirTelaLancamentos() {
 		telaLancamento = new TelaInternaLancamentos();
 		
-		telaLancamento.getCancelButton().addActionListener(e -> cancelarLanamentoDialog());
-		telaLancamento.getOkButton().addActionListener(e -> okLanamentoDialog());
+		telaLancamento.getbtnCancelar().addActionListener(e -> cancelarLanamentoDialog());
+		telaLancamento.getbtnAdicionar().addActionListener(e -> AdicionarLanamentoDialog());
 
 		telaLancamento.setVisible(true);
 		
 		
 	}
-	private Object okLanamentoDialog() {
+	private Object AdicionarLanamentoDialog() {
 		// TODO Auto-generated method stub
 		return null;
 	}
