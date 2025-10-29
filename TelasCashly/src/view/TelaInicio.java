@@ -104,15 +104,6 @@ public class TelaInicio extends JFrame {
      //   this.pack();
 	}
 	
-	public void atualizarDadosProjetoRecente(JButton nomeProjeto, JButton descricao, JButton dataCriacao) {
-		//acessar banco
-		//ProjetoDAO projetoDAO = new ProjetoDAO();
-		
-		nomeProjeto.setText(getName());
-		descricao.setText(getName());
-		dataCriacao.setText(getName());
-	}
-	
 	
 	public TelaInicio() {
 		

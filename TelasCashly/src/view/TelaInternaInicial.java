@@ -177,5 +177,11 @@ public class TelaInternaInicial extends JPanel {
 	public JButton getBtnNomeProjeto() {
 		return btnNomeProjeto;
 	}
+	
+	public void atualizarProjetoRecente(String nome, String descricao, String data) {
+	    btnNomeProjeto.setText(nome);
+	    btnDescrição.setText(descricao);
+	    btnData.setText(data);
+	}
 
 }

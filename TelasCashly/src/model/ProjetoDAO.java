@@ -86,5 +86,32 @@ public class ProjetoDAO {
        }
         return projetos;
    }
+  
+  public Projeto buscarProjetoRecente() {
+	    String sql = "SELECT * FROM projeto ORDER BY dataCriacao DESC LIMIT 1";
+	    Connection conexao = null;
+	    PreparedStatement pstm = null;
+	    ResultSet rset = null;
+	    Projeto projeto = null;
+
+	    try {
+	        conexao = BancoDeDados.conectar();
+	        pstm = conexao.prepareStatement(sql);
+	        rset = pstm.executeQuery();
+
+	        if (rset.next()) {
+	            projeto = new Projeto();
+	            projeto.setNome(rset.getString("nome"));
+	            projeto.setDescricao(rset.getString("descricao"));
+	            projeto.setDataCriacao(rset.getDate("dataCriacao"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        BancoDeDados.desconectar(conexao);
+	    }
+
+	    return projeto;
+	}
 
 }

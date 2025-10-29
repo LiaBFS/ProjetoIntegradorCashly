@@ -1,7 +1,9 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 
+import model.Projeto;
 import model.ProjetoDAO;
 import model.Sessao;
 import view.TelaInicio;
@@ -62,18 +64,28 @@ public class InicioController {
 	}
 
 	private void abrirTelaHome() {
-		TelaInternaInicial tela = new TelaInternaInicial();
-		this.telaInicio.atualizarPainel(tela);
-		
-		this.telaInicio.selecionarBotao(null);
-		
-		this.telaInicio.atualizarMenuLateral();
-		
-		this.telaInicio.atualizarDadosProjetoRecente(tela.getBtnNomeProjeto(), tela.getBtnData(), tela.getBtnDescrição());
-		
-//		TelaInternaProjeto tela = new TelaInternaProjeto();
-//		this.telaInicio.atualizarPainel(tela);
-//		System.out.println("Abrir tela");
+	    TelaInternaInicial tela = new TelaInternaInicial();
+	    this.telaInicio.atualizarPainel(tela);
+	    this.telaInicio.selecionarBotao(null);
+	    this.telaInicio.atualizarMenuLateral();
+
+	 
+	    ProjetoDAO projetoDAO = new ProjetoDAO();
+	    Projeto projetoRecente = projetoDAO.buscarProjetoRecente();
+
+	    
+	    if (projetoRecente != null) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	        String dataFormatada = sdf.format(projetoRecente.getDataCriacao());
+
+	        tela.atualizarProjetoRecente(
+	            projetoRecente.getNome(),
+	            projetoRecente.getDescricao(),
+	            dataFormatada
+	        );
+	    } else {
+	        tela.atualizarProjetoRecente("Nenhum projeto", "-", "-");
+	    }
 	}
 	
 	
