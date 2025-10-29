@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 
 import javax.swing.JPanel;
 
@@ -51,13 +53,26 @@ public class MeusProjetosController {
 	
 	}
 
+	
+	private void addMouseListenerRecursively(Component comp, MouseAdapter listener) {
+	    comp.addMouseListener(listener);
+	    if (comp instanceof java.awt.Container) {
+	        for (Component child : ((java.awt.Container) comp).getComponents()) {
+	            addMouseListenerRecursively(child, listener);
+	        }
+	    }
+	}
+	
 	public void buscarProjeto(JPanel p) {
 		
-		System.out.println("entrou");
-		p.addMouseListener(new MouseAdapter() {
+		//System.out.println("#######################################################");
+		MouseAdapter listener = new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
-	            abrirTelaProjeto();
+//	            abrirTelaProjeto();
+	        	System.out.println("#######################################################");
+	           // JButton B = (JButton) p.getComponent(0);
+	    		//System.out.println("entrou"+B.getText());
 	        }
 
 	        @Override
@@ -73,7 +88,10 @@ public class MeusProjetosController {
 	        	//panel_4.setBackground(new Color(216, 178, 186)); // volta cor original
 	        	//voltar pra img original
 	        }
-	    });
+	    };
+	    
+//	    p.addMouseListener(listener);
+	    addMouseListenerRecursively(p, listener);
 	}
 	
 	
