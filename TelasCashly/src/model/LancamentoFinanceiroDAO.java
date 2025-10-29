@@ -5,9 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LancamentoFinanceiroDAO {
+	
+	
+	//ainda não ta funcional, as variaveis de Projeto são: private int id;private Date data;private double valor;private boolean status;private String descricao;private CategoriaGasto categoria;
+	
 	public void adicionarLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro) {
         String sql = "INSERT INTO LancamentoFinanceiro (valor, descricao) VALUES (?, ?)";
         Connection conexao = null;

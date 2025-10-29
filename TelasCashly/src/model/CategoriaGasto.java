@@ -3,12 +3,10 @@ package model;
 public class CategoriaGasto {
 	private int id;
 	private String nome;
-	private double orcamentoMaximo;
-	public CategoriaGasto(int id, String nome, double orcamentoMaximo) {
+	public CategoriaGasto(int id, String nome) {
 	
 		this.id = id;
 		this.nome = nome;
-		this.orcamentoMaximo = orcamentoMaximo;
 	}
 	public int getId() {
 		return id;
@@ -21,12 +19,7 @@ public class CategoriaGasto {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public double getOrcamentoMaximo() {
-		return orcamentoMaximo;
-	}
-	public void setOrcamentoMaximo(double orcamentoMaximo) {
-		this.orcamentoMaximo = orcamentoMaximo;
+	
 	}
 	
 	

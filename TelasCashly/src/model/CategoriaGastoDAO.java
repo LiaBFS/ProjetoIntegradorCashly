@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CategoriaGastoDAO {
 	  public void adicionarCategoriaGasto(CategoriaGasto categoriaGasto) {
-	        String sql = "INSERT INTO CategoriaGasto (nome, orcamentoMaximo) VALUES (?, ?)";
+	        String sql = "INSERT INTO CategoriaGasto (nome) VALUES (?)";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
 	        
@@ -17,7 +17,6 @@ public class CategoriaGastoDAO {
 	            conexao = BancoDeDados.conectar();
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, categoriaGasto.getNome());
-	            pstm.setDouble(2, categoriaGasto.getOrcamentoMaximo());
 	           
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {
@@ -35,7 +34,7 @@ public class CategoriaGastoDAO {
 	    }
 
 	   public void atualizarCategoriaGasto(CategoriaGasto categoriaGasto) {
-	        String sql = "UPDATE  categoriaGasto SET nome = ?, orcamentoMaximo = ?, WHERE id = ?";
+	        String sql = "UPDATE  categoriaGasto SET nome = ?, WHERE id = ?";
 	        Connection conexao = null;
 	        PreparedStatement pstm = null;
 
@@ -44,7 +43,6 @@ public class CategoriaGastoDAO {
 	            conexao = BancoDeDados.conectar();
 	            pstm = conexao.prepareStatement(sql);
 	            pstm.setString(1, categoriaGasto.getNome());
-	            pstm.setDouble(2, categoriaGasto.getOrcamentoMaximo());
 
 	            pstm.executeUpdate();
 	        } catch (SQLException e) {
