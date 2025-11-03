@@ -13,9 +13,9 @@ import java.awt.*;
 import net.miginfocom.swing.MigLayout;
 
 
-public class TelaInternaGraficos extends JFrame {
+public class TelaInternaGraficoCategoria extends JFrame {
 
-    public TelaInternaGraficos() {
+    public TelaInternaGraficoCategoria() {
         setTitle("Gráfico de Categorias");
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +66,7 @@ public class TelaInternaGraficos extends JFrame {
         plot.setSectionPaint("Categoria 1", new Color(193, 31, 35));
         plot.setSectionPaint("Categoria 2", new Color(242, 151, 151));
         plot.setSectionPaint("Categoria 3", new Color(202, 196, 190));
-        plot.setSectionPaint("Categoria 4", new Color(214, 100, 160));
+        plot.setSectionPaint("Categoria 4", new Color(237, 145, 162));
 
         // Painel do gráfico
         ChartPanel painelGrafico = new ChartPanel(grafico);
@@ -79,7 +79,7 @@ public class TelaInternaGraficos extends JFrame {
         legenda.add(criarItemLegenda("Categoria 1", new Color(193, 31, 35)));
         legenda.add(criarItemLegenda("Categoria 2", new Color(242, 151, 151)));
         legenda.add(criarItemLegenda("Categoria 3", new Color(202, 196, 190)));
-        legenda.add(criarItemLegenda("Categoria 4", new Color(214, 100, 160)));
+        legenda.add(criarItemLegenda("Categoria 4", new Color(237, 145, 162)));
 
 
         // --- BOTÃO “+” ---
@@ -141,6 +141,6 @@ public class TelaInternaGraficos extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaInternaGraficos().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TelaInternaGraficoCategoria().setVisible(true));
     }
 }
