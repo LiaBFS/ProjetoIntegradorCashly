@@ -69,7 +69,7 @@ public class MeusProjetosController {
 		MouseAdapter listener = new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
-//	            abrirTelaProjeto();
+	            abrirTelaProjeto();
 	        	System.out.println("#######################################################");
 	           // JButton B = (JButton) p.getComponent(0);
 	    		//System.out.println("entrou"+B.getText());

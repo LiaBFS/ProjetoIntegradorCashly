@@ -55,6 +55,7 @@ public class TelaInicio extends JFrame {
 	private ImageIcon iconPerfilSel = new ImageIcon(getClass().getResource("/imgs/btnPerfilSEL.png"));
 	private JButton btnAbrirMenu;
 	private JButton btnHome;
+	private JButton btnExit;
 
 	public JButton getBtnHome() {
 		return btnHome;
@@ -159,7 +160,10 @@ public class TelaInicio extends JFrame {
 		btnHome.setContentAreaFilled(false);
 		btnHome.setFocusPainted(false);
 		btnHome.setOpaque(false);
-		panel.add(btnHome, "cell 35 0");
+		panel.add(btnHome, "cell 32 0");
+		
+		btnExit = new JButton("");
+		panel.add(btnExit, "cell 35 0");
 		
 		
 		
@@ -279,6 +283,10 @@ public class TelaInicio extends JFrame {
 	}
 
 	
+
+	public JButton getBtnExit() {
+		return btnExit;
+	}
 
 	public JButton getBtnPerfil() {
 		return btnPerfil;
