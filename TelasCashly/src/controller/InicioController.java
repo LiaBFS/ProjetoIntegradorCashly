@@ -1,7 +1,11 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
+
+import javax.swing.JFrame;
 
 import model.Projeto;
 import model.ProjetoDAO;
@@ -98,7 +102,7 @@ public class InicioController {
 	private void abrirTelaCriarProjeto() {
 		TelaInternaCriar tela = new TelaInternaCriar();
 		ProjetoDAO projetoDAO = new ProjetoDAO();
-		ProjetoController projetoController = new ProjetoController(tela, projetoDAO);
+		CriarProjetoController projetoController = new CriarProjetoController(tela, projetoDAO);
 		this.telaInicio.atualizarPainel(tela);
 		
 		this.telaInicio.selecionarBotao(telaInicio.getBtnCriarProjetos());
@@ -114,6 +118,9 @@ public class InicioController {
 
 	public void abrirTela() {
 		this.telaInicio.setVisible(true);
+		
+		
+		this.telaInicio.configurarTela();
 		
 	}
 

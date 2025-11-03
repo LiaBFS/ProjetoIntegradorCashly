@@ -19,6 +19,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.Dimension;
 
 public class TelaInicio extends JFrame {
@@ -108,6 +109,8 @@ public class TelaInicio extends JFrame {
 	
 	public TelaInicio() {
 		
+		
+		
 		setBackground(new Color(216, 178, 184));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(950, 690)); 
@@ -163,8 +166,12 @@ public class TelaInicio extends JFrame {
 		panel.add(btnHome, "cell 32 0");
 		
 		btnExit = new JButton("");
+		btnExit.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnExit.png")));
 		panel.add(btnExit, "cell 35 0");
-		
+		btnExit.setBorderPainted(false);
+		btnExit.setContentAreaFilled(false);
+		btnExit.setFocusPainted(false);
+		btnExit.setOpaque(false);
 		
 		
 		panel_Central = new JPanel();
@@ -339,5 +346,22 @@ public class TelaInicio extends JFrame {
 	public JButton getBtnCriarProjetos() {
 		
 		return btnCriarProjetos;
+	}
+	
+	
+	public void configurarTela() {
+		
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+        // Recupera as dimensões da tela
+		// Dimension screenSize = toolkit.getScreenSize();
+        
+        // Extrai a largura e altura em pixels
+        int largura = (int)this.getSize().getWidth();
+        int altura = (int)this.getSize().getHeight();
+        
+       
+        
+		this.setPreferredSize(new Dimension(largura, altura));
 	}
 }
