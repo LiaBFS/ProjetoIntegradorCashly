@@ -22,6 +22,10 @@ public class LancamentoFinanceiro {
 		
 	}
 	
+	public LancamentoFinanceiro() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

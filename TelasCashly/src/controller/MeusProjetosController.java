@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
-
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.Projeto;
@@ -50,6 +50,9 @@ public class MeusProjetosController {
 	public void abrirTelaProjeto() {
 		TelaInternaProjeto tela = new TelaInternaProjeto();
 		this.telaInicio.atualizarPainel(tela);
+		this.telaInicio.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.telaInicio.pack();
+		
 	
 	}
 
@@ -69,7 +72,7 @@ public class MeusProjetosController {
 		MouseAdapter listener = new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
-//	            abrirTelaProjeto();
+	            abrirTelaProjeto();
 	        	System.out.println("#######################################################");
 	           // JButton B = (JButton) p.getComponent(0);
 	    		//System.out.println("entrou"+B.getText());
@@ -78,14 +81,14 @@ public class MeusProjetosController {
 	        @Override
 	        public void mouseEntered(MouseEvent e) {
 	        	p.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	        	//panel_4.setBackground(new Color(200, 150, 160)); // muda cor ao passar o mouse
-	        	
+
+	        	//p.setBackground(/img);
 	        	//mudar a imagem quando o mouse passa aqui
 	        }
 
 	        @Override
 	        public void mouseExited(MouseEvent e) {
-	        	//panel_4.setBackground(new Color(216, 178, 186)); // volta cor original
+	        	
 	        	//voltar pra img original
 	        }
 	    };

@@ -1,7 +1,11 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
+
+import javax.swing.JFrame;
 
 import model.Projeto;
 import model.ProjetoDAO;
@@ -28,10 +32,16 @@ public class InicioController {
         this.telaInicio.getBtnMeusProjetos().addActionListener(e -> abrirTelaMeusProjetos());
         this.telaInicio.getBtnNotificacoes().addActionListener(e -> abrirTelaNotificacoes());
         this.telaInicio.getBtnPerfil().addActionListener(e -> abrirTelaPerfil());
+        this.telaInicio.getBtnExit().addActionListener(e -> sair());
 	
 	}
 	
 	
+	private void sair() {
+		telaInicio.dispose();
+	}
+
+
 	private void abrirTelaPerfil() {
 		TelaInternaPerfil tela = new TelaInternaPerfil();
 		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado());
@@ -92,7 +102,7 @@ public class InicioController {
 	private void abrirTelaCriarProjeto() {
 		TelaInternaCriar tela = new TelaInternaCriar();
 		ProjetoDAO projetoDAO = new ProjetoDAO();
-		ProjetoController projetoController = new ProjetoController(tela, projetoDAO);
+		CriarProjetoController projetoController = new CriarProjetoController(tela, projetoDAO);
 		this.telaInicio.atualizarPainel(tela);
 		
 		this.telaInicio.selecionarBotao(telaInicio.getBtnCriarProjetos());
@@ -108,6 +118,9 @@ public class InicioController {
 
 	public void abrirTela() {
 		this.telaInicio.setVisible(true);
+		
+		
+		this.telaInicio.configurarTela();
 		
 	}
 
