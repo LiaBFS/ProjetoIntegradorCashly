@@ -71,4 +71,44 @@ public void excluirCategoriaGasto(int id) {
     	BancoDeDados.desconectar(conexao);
     }
 }
+public List<CategoriaGasto> listarCategorias() {
+    String sql = "SELECT * FROM CategoriaGasto";
+    List<CategoriaGasto> categorias = new ArrayList<>();
+
+    try (Connection conexao = BancoDeDados.conectar();
+         PreparedStatement pstm = conexao.prepareStatement(sql);
+         ResultSet rs = pstm.executeQuery()) {
+
+        while (rs.next()) {
+            categorias.add(new CategoriaGasto(rs.getInt("id"), rs.getString("nome")));
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return categorias;
+}
+
+public CategoriaGasto buscarPorNome(String nome) {
+    String sql = "SELECT * FROM CategoriaGasto WHERE nome = ?";
+    CategoriaGasto categoria = null;
+
+    try (Connection conexao = BancoDeDados.conectar();
+         PreparedStatement pstm = conexao.prepareStatement(sql)) {
+
+        pstm.setString(1, nome);
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            categoria = new CategoriaGasto(rs.getInt("id"), rs.getString("nome"));
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return categoria;
+}
+
 }
