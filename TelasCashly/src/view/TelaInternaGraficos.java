@@ -13,9 +13,9 @@ import java.awt.*;
 import net.miginfocom.swing.MigLayout;
 
 
-public class TelaInternaGráficos extends JFrame {
+public class TelaInternaGraficos extends JFrame {
 
-    public TelaInternaGráficos() {
+    public TelaInternaGraficos() {
         setTitle("Gráfico de Categorias");
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -141,6 +141,6 @@ public class TelaInternaGráficos extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaInternaGráficos().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TelaInternaGraficos().setVisible(true));
     }
 }
