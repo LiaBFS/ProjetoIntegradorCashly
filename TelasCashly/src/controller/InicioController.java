@@ -28,10 +28,16 @@ public class InicioController {
         this.telaInicio.getBtnMeusProjetos().addActionListener(e -> abrirTelaMeusProjetos());
         this.telaInicio.getBtnNotificacoes().addActionListener(e -> abrirTelaNotificacoes());
         this.telaInicio.getBtnPerfil().addActionListener(e -> abrirTelaPerfil());
+        this.telaInicio.getBtnExit().addActionListener(e -> sair());
 	
 	}
 	
 	
+	private void sair() {
+		telaInicio.dispose();
+	}
+
+
 	private void abrirTelaPerfil() {
 		TelaInternaPerfil tela = new TelaInternaPerfil();
 		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado());
