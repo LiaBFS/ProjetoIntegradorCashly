@@ -1,15 +1,15 @@
 package controller;
 
-import view.TelaEscolhaOGraficoo;
+import view.TelaInternaEscolhaGrafico;
 import view.TelaInternaGraficoCategoria;
 
 import javax.swing.JButton;
 
 public class GraficoController {
 
-    private TelaEscolhaOGraficoo telaEscolha;
+    private TelaInternaEscolhaGrafico telaEscolha;
 
-    public GraficoController(TelaEscolhaOGraficoo telaEscolha) {
+    public GraficoController(TelaInternaEscolhaGrafico telaEscolha) {
         this.telaEscolha = telaEscolha;
         configurarEventos();
     }

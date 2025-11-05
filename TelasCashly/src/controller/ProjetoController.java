@@ -1,12 +1,17 @@
 package controller;
 
+import javax.swing.JFrame;
+
 import model.ProjetoDAO;
+import view.TelaInternaEscolhaGrafico;
+import view.TelaInternaInicial;
 import view.TelaInternaLancamentos;
 import view.TelaInternaProjeto;
 
 public class ProjetoController {
 	
-	TelaInternaProjeto tela = new TelaInternaProjeto();
+	TelaInternaProjeto tela;
+	TelaInternaInicial telaInicio;
 	
 	ProjetoDAO projetoDAO;
 	
@@ -16,12 +21,22 @@ public class ProjetoController {
 		this.projetoDAO = projetoDAO;
 		
 		this.tela.getBtnAdicionarLancamento().addActionListener(e -> abrirPopUpLancamento());
+		this.tela.getBtnIrGraficos().addActionListener(e -> abrirTelaEscolhaGrafico());
+		
+	}
+
+	private void abrirTelaEscolhaGrafico() {
+		
+		TelaInternaEscolhaGrafico tela = new TelaInternaEscolhaGrafico();
+		GraficoController controller = new GraficoController(tela);
+//		this.telaInicio.atualizarPainel(tela);
+//		this.telaInicio.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		this.telaInicio.pack();	
+		
 		
 	}
 
 	private void abrirPopUpLancamento() {
-		
-		System.out.println("ABRIU ###############################");
 		
 		TelaInternaLancamentos tela = new TelaInternaLancamentos();
 		LancamentoController controller = new LancamentoController(tela);

@@ -37,14 +37,14 @@ public class InicioController {
 	}
 	
 	
-	private void sair() {
+	public void sair() {
 		telaInicio.dispose();
 	}
 
 
 	private void abrirTelaPerfil() {
 		TelaInternaPerfil tela = new TelaInternaPerfil();
-		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado());
+		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado(), this);
 	    this.telaInicio.atualizarPainel(tela);
 
 	    this.telaInicio.selecionarBotao(telaInicio.getBtnPerfil());
@@ -94,7 +94,7 @@ public class InicioController {
 	            dataFormatada
 	        );
 	    } else {
-	        tela.atualizarProjetoRecente("Nenhum projeto", "-", "-");
+	        tela.atualizarProjetoRecente("Nenhum Projeto Cadastrado...", "Crie um Projeto para desbloquear a adição de Metas e visualização de Gráficos!", "-");
 	    }
 	}
 	

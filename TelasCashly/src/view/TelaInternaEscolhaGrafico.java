@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class TelaEscolhaOGraficoo extends JPanel {
+public class TelaInternaEscolhaGrafico extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,21 +17,21 @@ public class TelaEscolhaOGraficoo extends JPanel {
             JFrame frame = new JFrame("Tela de Gráficos");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1200, 800);
-            frame.setContentPane(new TelaEscolhaOGraficoo());
+            frame.setContentPane(new TelaInternaEscolhaGrafico());
             frame.setVisible(true);
         });
     }
 
-    public TelaEscolhaOGraficoo() {
+    public TelaInternaEscolhaGrafico() {
         setBackground(new Color(216, 178, 184));
         setLayout(new MigLayout("", "[1118px][537px]", "[88px][552px]"));
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(TelaEscolhaOGraficoo.class.getResource("/imgs/Gráficos.png")));
+        lblNewLabel.setIcon(new ImageIcon(TelaInternaEscolhaGrafico.class.getResource("/imgs/Gráficos.png")));
         add(lblNewLabel, "cell 0 0,alignx left,aligny top");
 
         JButton Categorias = new JButton("");
-        Categorias.setIcon(new ImageIcon(TelaEscolhaOGraficoo.class.getResource("/imgs/GraficoCategorias.png")));
+        Categorias.setIcon(new ImageIcon(TelaInternaEscolhaGrafico.class.getResource("/imgs/GraficoCategorias.png")));
         add(Categorias, "flowx,cell 0 1,alignx left,aligny center");
 
         Categorias.setBorderPainted(false);
@@ -40,7 +40,7 @@ public class TelaEscolhaOGraficoo extends JPanel {
         Categorias.setOpaque(false);
 
         JButton Plano = new JButton("");
-        Plano.setIcon(new ImageIcon(TelaEscolhaOGraficoo.class.getResource("/imgs/GráficoPlano.png")));
+        Plano.setIcon(new ImageIcon(TelaInternaEscolhaGrafico.class.getResource("/imgs/GráficoPlano.png")));
         add(Plano, "cell 0 1,alignx left,aligny top");
 
         Plano.setBorderPainted(false);

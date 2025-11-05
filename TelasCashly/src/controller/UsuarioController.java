@@ -9,15 +9,21 @@ import view.TelaApresentacao;
 import view.TelaInternaPerfil;
 
 public class UsuarioController {
+	
     private TelaInternaPerfil tela;
+    
+    private InicioController inicioController;
+    
+    
     private Usuario usuario;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
    
 
    
-    public UsuarioController(TelaInternaPerfil tela, Usuario usuario) {
+    public UsuarioController(TelaInternaPerfil tela, Usuario usuario, InicioController controller) {
         this.tela = tela;
         this.usuario = usuario;
+        this.inicioController = controller;
         
         inicializar();
         
@@ -57,6 +63,8 @@ public class UsuarioController {
     	    	TelaApresentacao telaApresentacao = new TelaApresentacao();
     			ApresentacaoController apresentacaoController = new ApresentacaoController(telaApresentacao);
     			apresentacaoController.iniciarApresentacao();
+    			inicioController.sair();
+   
     	    }
 		
 	}
