@@ -56,7 +56,7 @@ public class ProjetoDAO {
 	
 	//READ - Listar todos os projetos
   public List<Projeto> listarProjetos() {
-       String sql = "SELECT * FROM Projeto";
+       String sql = "SELECT * FROM Projeto WHERE usuario_id=?";
       List<Projeto> projetos = new ArrayList<>();
       Connection conexao = null;
       PreparedStatement pstm = null;
@@ -65,6 +65,10 @@ public class ProjetoDAO {
        try {
            conexao = BancoDeDados.conectar();
            pstm = conexao.prepareStatement(sql);
+           pstm.setInt(1, Sessao.getUsuarioLogado().getId());
+           
+           System.out.println("USUARIO LOGADO: " +Sessao.getUsuarioLogado().getId() );
+           
            rset = pstm.executeQuery();
 
            while (rset.next()) {
