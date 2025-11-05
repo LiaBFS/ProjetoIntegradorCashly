@@ -144,6 +144,7 @@ public class TelaInternaProjeto extends JPanel {
 		btnAdicionarLancamento = new JButton("");
 		
 		
+		
 		btnAdicionarLancamento.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnAdicionarLancamento.png")));
 		panel_2.add(btnAdicionarLancamento, "cell 3 4,growx,aligny center");
 		btnAdicionarLancamento.setBorderPainted(false);

@@ -59,7 +59,7 @@ public class TelaInternaInicial extends JPanel {
 		add(panel, "cell 1 3 3 1,grow");
 		panel.setLayout(new MigLayout("","[][grow 20][grow 20][][][grow 70][][grow 15][][grow][]", "[grow 25][][grow 10][][][][grow 25]"));
 		
-		btnNomeProjeto = new JButton("Nome do Projeto Criado");
+		btnNomeProjeto = new JButton("Nenhum Projeto Cadastrado...");
 		btnNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 29));
 		
 		btnNomeProjeto.setBorderPainted(false);
@@ -87,25 +87,17 @@ public class TelaInternaInicial extends JPanel {
 		});
 		
 		btnNomeProjeto.setForeground(new Color(255, 245, 234));
-		btnNomeProjeto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		
 		
 		
 		panel.add(btnNomeProjeto, "cell 2 1,alignx left,growy");
 		
-		btnData = new JButton("dd/mm/aa");
+		btnData = new JButton("-");
 		btnData.setBorderPainted(false);
 		btnData.setContentAreaFilled(false);
 		btnData.setFocusPainted(false);
 		btnData.setOpaque(false);
-		btnData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-			}
-		});
+		
 		btnData.setFont(new Font("Carlito", Font.PLAIN, 19));
 		
 		btnData.setFont(new Font("Carlito", Font.PLAIN, 19));
@@ -128,7 +120,7 @@ public class TelaInternaInicial extends JPanel {
 		btnData.setForeground(new Color(153, 131, 116));
 		panel.add(btnData, "cell 7 1,alignx right,growy");
 		
-		btnDescrição = new JButton("Descrição");
+		btnDescrição = new JButton("Crie um Projeto para desbloquear a adição de Metas e visualização de Gráficos!");
 		btnDescrição.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

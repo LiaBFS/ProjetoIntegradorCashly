@@ -49,6 +49,7 @@ public class MeusProjetosController {
 	
 	public void abrirTelaProjeto() {
 		TelaInternaProjeto tela = new TelaInternaProjeto();
+		ProjetoController controller = new ProjetoController(tela, projetoDAO);
 		this.telaInicio.atualizarPainel(tela);
 		this.telaInicio.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.telaInicio.pack();

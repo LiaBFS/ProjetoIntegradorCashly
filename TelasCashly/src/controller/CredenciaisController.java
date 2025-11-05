@@ -1,7 +1,11 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+
 import javax.swing.JOptionPane;
 
+import model.Projeto;
+import model.ProjetoDAO;
 import model.Sessao;
 import model.Usuario;
 import model.UsuarioDAO;
@@ -171,6 +175,8 @@ public class CredenciaisController {
         TelaInicio t = new TelaInicio(); // Abre a tela de cadastro
         InicioController inicio = new InicioController(t);
         inicio.abrirTela();
+        
+        
     }
 
 

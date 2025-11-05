@@ -119,8 +119,8 @@ public class InicioController {
 	public void abrirTela() {
 		this.telaInicio.setVisible(true);
 		
-		
 		this.telaInicio.configurarTela();
+		this.abrirTelaHome();
 		
 	}
 
