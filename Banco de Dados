@@ -26,71 +26,9 @@ CREATE TABLE Projeto (
     dataCriacao DATE NOT NULL,
     saldo DOUBLE NOT NULL,
     objetivo DOUBLE NOT NULL,
+    categoria VARCHAR(100),
     usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-);
-
-
-CREATE TABLE Colaborador (
-    usuario_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
-    projeto_id INT PRIMARY KEY,
-    FOREIGN KEY (projeto_id) REFERENCES Projeto(id)
-);
-
-
-/**ALTER TABLE Projeto
-ADD COLUMN dono_id INT NOT NULL,
-ADD FOREIGN KEY (dono_id) REFERENCES DonoProjeto(usuario_id);
-
-
-CREATE TABLE Colaborador_Projeto (
-    colaborador_id INT,
-    projeto_id INT,
-    PRIMARY KEY (colaborador_id, projeto_id),
-    FOREIGN KEY (colaborador_id) REFERENCES Usuario(usuario_id),
-    FOREIGN KEY (projeto_id) REFERENCES Projeto(id)
-);**/
-
-
-CREATE TABLE PlanoFinanceiro (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    usuario_id INT NOT NULL,
-    dataInicio DATE NOT NULL,
-    dataFim DATE NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-);
-
-
-ALTER TABLE PlanoFinanceiro
-ADD COLUMN projeto_id INT UNIQUE,
-ADD FOREIGN KEY (projeto_id) REFERENCES Projeto(id);
-
-CREATE TABLE MetaFinanceira (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(255),
-    valorMeta DOUBLE NOT NULL,
-    valorAtual DOUBLE NOT NULL,
-    prazo DATE NOT NULL,
-    plano_id INT NOT NULL,
-    FOREIGN KEY (plano_id) REFERENCES PlanoFinanceiro(id)
-);
-
-
-CREATE TABLE Notificacao (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    mensagem TEXT,
-    dataEnvio DATE NOT NULL,
-    tipo VARCHAR(50),
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-);
-
-
-CREATE TABLE CategoriaGasto (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    orcamentoMaximo DOUBLE
 );
 
 
@@ -98,12 +36,9 @@ CREATE TABLE LancamentoFinanceiro (
     id INT PRIMARY KEY AUTO_INCREMENT,
     data DATE NOT NULL,
     valor DOUBLE NOT NULL,
-    descricao TEXT,
-    status BOOLEAN,
     projeto_id INT NOT NULL,
-    categoria_id INT,
-    FOREIGN KEY (projeto_id) REFERENCES Projeto(id),
-    FOREIGN KEY (categoria_id) REFERENCES CategoriaGasto(id)
+    FOREIGN KEY (projeto_id) REFERENCES Projeto(id)
+   
 );
 
 
