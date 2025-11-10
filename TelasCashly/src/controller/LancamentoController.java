@@ -35,7 +35,7 @@ public class LancamentoController {
         try {
             double valor = Double.parseDouble(tela.getTxtValorDoLanamento().getText());
             String data = tela.getTxtDataDoLanamento().getText();
-            Object selected = tela.getComboBoxCategoria().getSelectedItem();
+            //Object selected = tela.getComboBoxCategoria().getSelectedItem();
             
 
             LancamentoFinanceiro novo = new LancamentoFinanceiro(0, null, valor);

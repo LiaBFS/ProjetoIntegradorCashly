@@ -10,11 +10,11 @@ public class Projeto {
 	private List<LancamentoFinanceiro> fluxoRenda;
 	private double saldo;
 	private double objetivo;
-	//private List<Usuario> colaboradores;
+	private String categoria;
 	private String nome;
 	private int usuario_id;
 	
-	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double saldo, double objetivo, int usuarioID) {
+	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double saldo, double objetivo, int usuarioID, String categoria) {
 
 		this.id = id;
 		this.nome = nome;
@@ -24,10 +24,14 @@ public class Projeto {
 		this.saldo = saldo;
 		this.objetivo = objetivo;
 		this.usuario_id = usuarioID;
+		this.categoria = categoria;
 		//this.colaboradores = colaboradores;
 	}
 	
 	
+
+	
+
 
 	public Projeto() {
 		
@@ -90,6 +94,13 @@ public class Projeto {
 	public void setUsuarioID(int usuarioID) {
 		this.usuario_id = usuarioID;
 	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
 	
 	
 	
