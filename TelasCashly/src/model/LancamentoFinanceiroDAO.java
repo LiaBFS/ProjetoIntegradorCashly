@@ -14,7 +14,7 @@ public class LancamentoFinanceiroDAO {
 	//ainda não ta funcional, as variaveis de Projeto são: private int id;private Date data;private double valor;private boolean status;private String descricao;private CategoriaGasto categoria;
 	
 	public void adicionarLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro) {
-        String sql = "INSERT INTO LancamentoFinanceiro (valor, descricao) VALUES (?, ?)";
+        String sql = "INSERT INTO LancamentoFinanceiro (valor, data) VALUES (?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
         
@@ -22,7 +22,7 @@ public class LancamentoFinanceiroDAO {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
             pstm.setDouble(1, lancamentoFinanceiro.getValor());
-            pstm.setString(2, lancamentoFinanceiro.getDescricao());
+            pstm.setDate(2, new java.sql.Date(lancamentoFinanceiro.getData().getTime()));
             
             pstm.executeUpdate();
       
