@@ -23,12 +23,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class TelaInternaProjeto extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JButton btnIrGraficos;
 	private JTable table;
 	private JButton btnAdicionarLancamento;
 	private JLabel lblDescricaoProjeto;
 	private JLabel lblDataProjeto;
 	private JLabel lblNomeProjeto;
+	private JLabel lblObjetivoR;
 	
 	public static void aplicarEstilo(JTable table) {
         // ======= CABEÇALHO =======
@@ -48,55 +48,19 @@ public class TelaInternaProjeto extends JPanel {
 	 */
 	public TelaInternaProjeto() {
 		setBackground(new Color(216, 178, 186));
-		setLayout(new MigLayout("", "[grow 10][500px][grow 8][][grow 10]", "[grow 10][grow][][grow 10]"));
+		setLayout(new MigLayout("", "[grow 3][grow 8][500px][grow 8][grow 3]", "[grow 5][grow][][grow 10]"));
 		
 		JPanel panel_1 = new JPanel();
-		add(panel_1, "cell 1 1 1 2,grow");
+		add(panel_1, "cell 1 1 3 3,grow");
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		panel_1.add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"VALOR DO LAN\u00C7AMENTO", "CATEGORIA", "DATA"
-			}
-		));
-		
-		scrollPane.setViewportView(table);
+		panel_1.add(scrollPane, BorderLayout.WEST);
 		
 		 	Color fundoTabela = new Color(255, 245, 234);   // bege claro
 		    Color corTexto = new Color(207, 114, 116);        // marrom escuro
 		    Color corGrade = new Color(110, 60, 56);      // marrom suave
 		    Color corGradeCabeçalho = new Color(92, 48, 45);
-		    
-		    // Cabeçalho estilizado
-		    
-		    table.getTableHeader().setBackground(fundoTabela);
-		    table.getTableHeader().setForeground(corTexto);
-		    table.getTableHeader().setFont(new Font("Carlito", Font.BOLD, 13));
-		    table.getTableHeader().setOpaque(true);
-		    
-		    table.getTableHeader().setBorder(
-		    	    BorderFactory.createMatteBorder(0, 0, 2, 0, corGradeCabeçalho)
-		    	);
-		    table.setGridColor(corGrade);
 		    
 		    DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
 		        @Override
@@ -120,65 +84,112 @@ public class TelaInternaProjeto extends JPanel {
 		            return c;
 		        }
 		    };
-		    table.setDefaultRenderer(Object.class, renderer);
-		    
-		    table.setBackground(fundoTabela);
 		
 		
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/FundoHeaderProjeto.png");
 		panel_1.add(panel_2, BorderLayout.NORTH);
-		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][0]", "[grow 10][][][grow 5][][grow 10]"));
+		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][80px]", "[grow 10][][][grow 5][][grow 10][]"));
+		panel_2.setOpaque(false);
 		
 		lblNomeProjeto = new JLabel("Nome Projeto");
+		lblNomeProjeto.setForeground(new Color(255, 245, 234));
+		lblNomeProjeto.setBackground(new Color(255, 245, 234));
+		lblNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
 		panel_2.add(lblNomeProjeto, "cell 1 1");
 		
-		lblDataProjeto = new JLabel("Data");
-		panel_2.add(lblDataProjeto, "cell 3 1");
+		lblDataProjeto = new JLabel("Total R$:");
+		lblDataProjeto.setForeground(new Color(72, 53, 40));
+		lblDataProjeto.setBackground(new Color(255, 245, 234));
+		lblDataProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
+		panel_2.add(lblDataProjeto, "cell 3 1,alignx right");
 		
 		lblDescricaoProjeto = new JLabel("Descricao");
+		lblDescricaoProjeto.setForeground(new Color(255, 245, 234));
+		lblDescricaoProjeto.setBackground(new Color(255, 245, 234));
+		lblDescricaoProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
 		panel_2.add(lblDescricaoProjeto, "cell 1 2");
+		
+		lblObjetivoR = new JLabel("Objetivo R$:");
+		lblObjetivoR.setForeground(new Color(72, 53, 40));
+		lblObjetivoR.setFont(new Font("Carlito", Font.BOLD, 20));
+		lblObjetivoR.setBackground(new Color(255, 245, 234));
+		panel_2.add(lblObjetivoR, "cell 3 2,alignx right");
 		
 		JLabel lblAdicionar = new JLabel("");
 		panel_2.add(lblAdicionar, "cell 1 4");
 		
 		btnAdicionarLancamento = new JButton("");
+		btnAdicionarLancamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		
 		
 		btnAdicionarLancamento.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnAdicionarLancamento.png")));
-		panel_2.add(btnAdicionarLancamento, "cell 3 4,growx,aligny center");
+		panel_2.add(btnAdicionarLancamento, "cell 4 4,growx,aligny center");
 		btnAdicionarLancamento.setBorderPainted(false);
 		btnAdicionarLancamento.setContentAreaFilled(false);
 		btnAdicionarLancamento.setFocusPainted(false);
 		btnAdicionarLancamento.setOpaque(false);
 		
+		table = new JTable();
+		panel_1.add(table, BorderLayout.CENTER);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"VALOR DO LAN\u00C7AMENTO", "DATA"
+			}
+		));
 		
+		// Cabeçalho estilizado
 		
-		JPanel panel = new JPanel();
-		add(panel, "cell 3 1,grow");
+		table.getTableHeader().setBackground(fundoTabela);
+		table.getTableHeader().setForeground(corTexto);
+		table.getTableHeader().setFont(new Font("Carlito", Font.BOLD, 13));
+		table.getTableHeader().setOpaque(true);
 		
+		table.getTableHeader().setBorder(
+			    BorderFactory.createMatteBorder(0, 0, 2, 0, corGradeCabeçalho)
+			);
+		table.setGridColor(corGrade);
+		table.setDefaultRenderer(Object.class, renderer);
 		
-		btnIrGraficos = new JButton("");
-		btnIrGraficos.setMargin(new Insets(2, 2, 2, 2));
-		btnIrGraficos.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnGrafico.png")));
-		add(btnIrGraficos, "cell 3 2,grow");
-		btnIrGraficos.setBorderPainted(false);
-		btnIrGraficos.setContentAreaFilled(false);
-        btnIrGraficos.setFocusPainted(false);
-        btnIrGraficos.setOpaque(false);
+		table.setBackground(fundoTabela);
         
         
 
-	}
-	
-
-	public void irTelaGraficos(ActionListener actionListener) {
-		this.btnIrGraficos.addActionListener(actionListener);
-	}
-	
-
-	public JButton getBtnIrGraficos() {
-		return btnIrGraficos;
 	}
 
 
@@ -203,12 +214,6 @@ public class TelaInternaProjeto extends JPanel {
 
 	public JButton getBtnAdicionarLancamento() {
 		return btnAdicionarLancamento;
-	}
-
-
-
-	public JButton getBtnNewButton() {
-		return btnIrGraficos;
 	}
 
 }
