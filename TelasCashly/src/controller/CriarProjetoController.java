@@ -45,10 +45,10 @@ public class CriarProjetoController {
 			return;
 		}
 
-		double saldo = 0.0;
+		double valorAtual = 0.0;
 		try {
 
-			saldo = Double.parseDouble(saldoTexto.replace(",", "."));
+			valorAtual = Double.parseDouble(saldoTexto.replace(",", "."));
 			
 		} catch (NumberFormatException ex) {
 			
@@ -73,7 +73,7 @@ public class CriarProjetoController {
 		Projeto novoProjeto = new model.Projeto();
 		novoProjeto.setNome(nome);
 		novoProjeto.setDescricao(descricao);
-		novoProjeto.setSaldo(saldo);
+		novoProjeto.setValorAtual(valorAtual);
 		novoProjeto.setObjetivo(objetivo);
 		novoProjeto.setUsuarioID(Sessao.getUsuarioLogado().getId());
 
