@@ -144,7 +144,7 @@ public class TelaApresentacao extends JFrame {
         panel_1.setLayout(new MigLayout("", "[150px][grow][][grow][][grow][150px]", "[]"));
 
         btnFacaProjetos = new JButton("");
-        btnFacaProjetos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/FacaProjetos.png")));
+        btnFacaProjetos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/BtnFacaProjetos.png")));
         panel_1.add(btnFacaProjetos, "cell 1 0,grow");
        
         btnFacaProjetos.setBorderPainted(false);
@@ -175,7 +175,7 @@ public class TelaApresentacao extends JFrame {
         btnRecebaAvisos = new JButton("");
         panel_1.add(btnRecebaAvisos, "cell 3 0,grow");
        
-        btnRecebaAvisos.setIcon(RecebaAvisos);
+        btnRecebaAvisos.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/EvoluaObjetivos.png")));
         btnRecebaAvisos.setBorderPainted(false);
         btnRecebaAvisos.setContentAreaFilled(false);
         btnRecebaAvisos.setFocusPainted(false);
@@ -204,7 +204,7 @@ public class TelaApresentacao extends JFrame {
         btnGrafica = new JButton("");
         panel_1.add(btnGrafica, "cell 5 0,grow");
        
-        btnGrafica.setIcon(iconOriginal);
+        btnGrafica.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/VisualizeGraficos.png")));
         btnGrafica.setMinimumSize(new Dimension(30, 30));
         btnGrafica.setPreferredSize(new Dimension(1000, 1000));
         
