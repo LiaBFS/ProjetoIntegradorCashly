@@ -21,6 +21,10 @@ public class ProjetoController {
 		this.projetoDAO = projetoDAO;
 		
 		this.tela.getBtnAdicionarLancamento().addActionListener(e -> abrirPopUpLancamento());
+<<<<<<< HEAD
+=======
+		//this.tela.getBtnIrGraficos().addActionListener(e -> abrirTelaEscolhaGrafico());
+>>>>>>> origin/main
 		
 	}
 
