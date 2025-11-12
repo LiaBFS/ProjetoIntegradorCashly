@@ -16,7 +16,8 @@ public class TelaInternaLancamentos extends JDialog {
     private JTextField txtDataDoLanamento;
     private JButton btnCancelar;
     private JButton btnAdicionar;
-    private String placeholderValorLancamento = "Valor Lançamento";
+    private String placeholderValorLancamento = "Valor do Lançamento";
+    private String placeholderDataLancamento = "Data do Lancamento";
 
     public TelaInternaLancamentos() {
         setTitle("Adicionar Lançamento");
@@ -47,7 +48,7 @@ public class TelaInternaLancamentos extends JDialog {
         txtValorDoLanamento = new JTextField();
         txtValorDoLanamento.setForeground(new Color(255, 245, 234));
         txtValorDoLanamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        txtValorDoLanamento.setText("Valor Lançamento");
+        txtValorDoLanamento.setText(placeholderValorLancamento);
         txtValorDoLanamento.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -74,9 +75,28 @@ public class TelaInternaLancamentos extends JDialog {
         contentPanel.add(panelData, "cell 0 4 2 1,grow");
         panelData.setLayout(new MigLayout("", "[130][grow][95]", "[][][]"));
 
-        txtDataDoLanamento = new JTextField("Data do Lançamento");
+        txtDataDoLanamento = new JTextField();
         txtDataDoLanamento.setForeground(new Color(255, 245, 234));
         txtDataDoLanamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        txtDataDoLanamento.setText(placeholderDataLancamento);
+        
+        txtDataDoLanamento.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtDataDoLanamento.getText().equals(placeholderDataLancamento)) {
+					txtDataDoLanamento.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtDataDoLanamento.getText().isEmpty()) {
+					txtDataDoLanamento.setText(placeholderDataLancamento);
+				}
+			}
+		});
+        
+        
         txtDataDoLanamento.setColumns(10);
         txtDataDoLanamento.setBorder(BorderFactory.createEmptyBorder());
         txtDataDoLanamento.setBackground(new Color(207, 114, 116));

@@ -8,24 +8,24 @@ public class Projeto {
 	private Date dataCriacao;
 	private String descricao;
 	private List<LancamentoFinanceiro> fluxoRenda;
-	private double saldo;
+	private double valorAtual;
 	private double objetivo;
-	private String categoria;
+	//private String categoria;
 	private String nome;
 	private int usuario_id;
 	
-	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double saldo, double objetivo, int usuarioID, String categoria) {
+	public Projeto(int id, Date dataCriacao, String descricao, List<LancamentoFinanceiro> fluxoRenda, double valorAtual, double objetivo, int usuarioID/*, String categoria*/) {
 
 		this.id = id;
 		this.nome = nome;
 		this.dataCriacao = dataCriacao;
 		this.descricao = descricao;
 		this.fluxoRenda = fluxoRenda;
-		this.saldo = saldo;
+		this.valorAtual = valorAtual;
 		this.objetivo = objetivo;
 		this.usuario_id = usuarioID;
-		this.categoria = categoria;
-		//this.colaboradores = colaboradores;
+		//this.categoria = categoria;
+
 	}
 	
 	
@@ -38,12 +38,6 @@ public class Projeto {
 	}
 	
 	
-//	public List<Usuario> getColaboradores() {
-//		return colaboradores;
-//	}
-//	public void setColaboradores(List<Usuario> colaboradores) {
-//		this.colaboradores = colaboradores;
-//	}
 	public String getNome() {
 		return nome;
 	}
@@ -74,11 +68,11 @@ public class Projeto {
 	public void setFluxoRenda(List<LancamentoFinanceiro> fluxoRenda) {
 		this.fluxoRenda = fluxoRenda;
 	}
-	public double getSaldo() {
-		return saldo;
+	public double getValorAtual() {
+		return valorAtual;
 	}
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+	public void setValorAtual(double valorAtual) {
+		this.valorAtual = valorAtual;
 	}
 	public double getObjetivo() {
 		return objetivo;
@@ -94,12 +88,12 @@ public class Projeto {
 	public void setUsuarioID(int usuarioID) {
 		this.usuario_id = usuarioID;
 	}
-	public String getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
+//	public String getCategoria() {
+//		return categoria;
+//	}
+//	public void setCategoria(String categoria) {
+//		this.categoria = categoria;
+//	}
 
 	
 	
