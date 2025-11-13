@@ -86,6 +86,47 @@ public class CriarProjetoController {
 	}
 
 
+		double valorAtual = 0.0;
+		try {
+
+			valorAtual = Double.parseDouble(saldoTexto.replace(",", "."));
+			
+		} catch (NumberFormatException ex) {
+			
+			JOptionPane.showMessageDialog(null, "Saldo inválido. Digite apenas números.",
+					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		double objetivo = 0.0;
+		try {
+
+			objetivo = Double.parseDouble(objetivoTexto.replace(",", "."));
+			
+		} catch (NumberFormatException ex) {
+			
+			JOptionPane.showMessageDialog(null, "Valor de Objetivo inválido. Digite apenas números.",
+					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		JOptionPane.showMessageDialog(null, "Projeto Criado com sucesso.");
+		Projeto novoProjeto = new model.Projeto();
+		novoProjeto.setNome(nome);
+		novoProjeto.setDescricao(descricao);
+		novoProjeto.setValorAtual(valorAtual);
+		novoProjeto.setObjetivo(objetivo);
+		novoProjeto.setUsuarioID(Sessao.getUsuarioLogado().getId());
+
+		projetoDAO.adicionarProjeto(novoProjeto);
+		
+		telaInternaCriar.getTfNomeProjeto().setText(telaInternaCriar.getPlaceholderNomeProjeto());
+		telaInternaCriar.getTfDescricaoProjeto().setText(telaInternaCriar.getPlaceholderDescricao());
+		telaInternaCriar.getTfSaldo().setText(telaInternaCriar.getPlaceholderSaldo());
+		telaInternaCriar.getTfObjetivo().setText(telaInternaCriar.getPlaceholderObjetivo());
+	}
+
+
 		
 	
 	

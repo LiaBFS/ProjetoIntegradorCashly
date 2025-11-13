@@ -12,7 +12,7 @@ import java.util.List;
 public class ProjetoDAO {
 	
 	public void adicionarProjeto(Projeto projeto) {
-	    String sql = "INSERT INTO Projeto (nome, descricao, saldo, dataCriacao, objetivo, usuario_id, categoria) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	    String sql = "INSERT INTO Projeto (nome, descricao, valorAtual, dataCriacao, objetivo, usuario_id) VALUES (?, ?, ?, ?, ?, ?)";
 	    Connection conexao = null;
 	    PreparedStatement pstm = null;
 
@@ -22,7 +22,7 @@ public class ProjetoDAO {
 	        
 	        pstm.setString(1, projeto.getNome());
 	        pstm.setString(2, projeto.getDescricao());
-	        pstm.setDouble(3, projeto.getSaldo());
+	        pstm.setDouble(3, projeto.getValorAtual());
 	  
 
 	        // pega a data atual do sistema
@@ -34,7 +34,7 @@ public class ProjetoDAO {
 
 	        pstm.executeUpdate();
 	        
-	        pstm.setString(7, projeto.getCategoria());
+	        //pstm.setString(7, projeto.getCategoria());
 	    
 
 	        ResultSet rs = pstm.getGeneratedKeys();
@@ -79,9 +79,10 @@ public class ProjetoDAO {
                projeto.setNome(rset.getString("nome"));
                projeto.setDataCriacao(rset.getDate("dataCriacao"));
               //  projeto.setEmail(rset.getString("email"));
-               projeto.setSaldo(rset.getDouble("saldo"));
+               projeto.setValorAtual(rset.getDouble("valorAtual"));
                //projeto.setFluxoRenda(rset.getInt("fluxoRenda"));
               projeto.setDescricao(rset.getString("descricao"));
+              
               projetos.add(projeto);
            }
       } catch (SQLException e) {

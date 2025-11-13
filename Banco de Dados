@@ -24,7 +24,7 @@ CREATE TABLE Projeto (
     nome VARCHAR(50),
     descricao VARCHAR(255),
     dataCriacao DATE NOT NULL,
-    saldo DOUBLE NOT NULL,
+    valorAtual DOUBLE NOT NULL,
     objetivo DOUBLE NOT NULL,
     categoria VARCHAR(100),
     usuario_id INT,
@@ -40,7 +40,3 @@ CREATE TABLE LancamentoFinanceiro (
     FOREIGN KEY (projeto_id) REFERENCES Projeto(id)
    
 );
-
-
-
-
