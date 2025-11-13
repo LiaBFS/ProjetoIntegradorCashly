@@ -58,22 +58,21 @@ public class JPanelComBackground extends JPanel {
             drawWidth = getWidth();
             drawHeight = (int) (drawWidth / imgRatio);
         }
-        
-//        System.out.println(getWidth());
-//        System.out.println(getHeight());
-//        System.out.println(imgWidth);
-//        System.out.println(imgHeight);
-//        System.out.println(panelRatio);
-//        System.out.println(imgRatio);
-//        System.out.println(drawWidth);
-//        System.out.println(drawHeight);
+        System.out.println(getWidth());
+        System.out.println(getHeight());
+        System.out.println(imgWidth);
+        System.out.println(imgHeight);
+        System.out.println(panelRatio);
+        System.out.println(imgRatio);
+        System.out.println(drawWidth);
+        System.out.println(drawHeight);
 
 
         int x = (getWidth() - drawWidth) / 2;
         int y = (getHeight() - drawHeight) / 2;
 
-//        System.out.println(x);
-//        System.out.println(y);
+        System.out.println(x);
+        System.out.println(y);
         // Renderização com qualidade
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -88,28 +87,28 @@ public class JPanelComBackground extends JPanel {
         g2d.dispose();
         
         
-//        	 if( getLayout() instanceof MigLayout) {
-//
-//             	MigLayout layout = (MigLayout) getLayout();
-//
-//             
-//
-//             	MigLayout layoutMig = (MigLayout) getLayout();
-//
-//             	
-//
-//             	String colunas= (String) layoutMig.getColumnConstraints();
-//
-//             	int posPrimeira = colunas.indexOf("]");
-//
-//             	int posUltima = colunas.lastIndexOf("[");
-//             	if(posUltima>posPrimeira) {
-//
-//                 	String novoConstraints = "[" + a + "]"+colunas.substring(posPrimeira+1, posUltima)+"[" + a + "]";
-//
-//                 	layout.setColumnConstraints(novoConstraints); // Para definir a largura da primeira coluna
-//             		
-//             	}
+        	 if( getLayout() instanceof MigLayout) {
+
+             	MigLayout layout = (MigLayout) getLayout();
+
+             
+
+             	MigLayout layoutMig = (MigLayout) getLayout();
+
+             	
+
+             	String colunas= (String) layoutMig.getColumnConstraints();
+
+             	int posPrimeira = colunas.indexOf("]");
+
+             	int posUltima = colunas.lastIndexOf("[");
+             	if(posUltima>posPrimeira) {
+
+                 	String novoConstraints = "[" + a + "]"+colunas.substring(posPrimeira+1, posUltima)+"[" + a + "]";
+
+                 	layout.setColumnConstraints(novoConstraints); // Para definir a largura da primeira coluna
+             		
+             	}
 
 
 
@@ -131,5 +130,5 @@ public class JPanelComBackground extends JPanel {
 
     }
     
-
+}
 

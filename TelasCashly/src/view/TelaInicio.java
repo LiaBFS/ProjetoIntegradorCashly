@@ -255,10 +255,9 @@ public class TelaInicio extends JFrame {
 		
 		JPanel panel_3 = new TelaInternaInicial();
 		panel_3.setBackground(new Color(216, 178, 184));
-		panel_3.setLayout(new MigLayout("debug, fill", "[]", "[]"));
 		panelActual=panel_3;
 		panel_Central.add(panel_3, BorderLayout.CENTER);
-		
+		//panel_3.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][]", "[fill][][][][][][][][][fill]"));
 		
 		
 		
