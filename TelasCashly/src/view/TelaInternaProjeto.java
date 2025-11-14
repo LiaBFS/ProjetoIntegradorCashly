@@ -31,7 +31,7 @@ public class TelaInternaProjeto extends JPanel {
 	private JLabel lblObjetivoR;
 	
 	public static void aplicarEstilo(JTable table) {
-        // ======= CABEÇALHO =======
+      
         table.getTableHeader().setBackground(new Color(200, 200, 255)); // azul claro
         table.getTableHeader().setForeground(Color.DARK_GRAY);
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -214,6 +214,14 @@ public class TelaInternaProjeto extends JPanel {
 
 	public JButton getBtnAdicionarLancamento() {
 		return btnAdicionarLancamento;
+	}
+	
+	public JTable getTable() {
+	    return table;
+	}
+
+	public JLabel getLblObjetivoR() {
+	    return lblObjetivoR;
 	}
 
 }

@@ -17,7 +17,7 @@ public class TelaInternaLancamentos extends JDialog {
     private JButton btnCancelar;
     private JButton btnAdicionar;
     private String placeholderValorLancamento = "Valor do Lançamento";
-    private String placeholderDataLancamento = "Data do Lancamento";
+    private String placeholderDataLancamento = "Data do Lancamento (dd/MM/aaaa)";
 
     public TelaInternaLancamentos() {
         setTitle("Adicionar Lançamento");
