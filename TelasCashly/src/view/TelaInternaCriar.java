@@ -19,6 +19,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 
 public class TelaInternaCriar extends JPanel {
 
@@ -26,8 +27,14 @@ public class TelaInternaCriar extends JPanel {
 	private JButton btnCriar;
 	private String placeholderNomeProjeto = "Nome do Projeto";
 	private String placeholderDescricao = "Descrição do Projeto";
-	private String placeholderSaldo = "Saldo Atual Disponível para o Projeto";
+	private String placeholderSaldo = "Saldo Atual";
 	private String placeholderObjetivo = "Objetivo Final";
+	private String placeholderCategoria = "Categoria do Projeto";
+	private JTextField tfNomeProjeto;
+	private JTextField tfDescricaoProjeto;
+	private JTextField tfSaldo;
+	private JTextField tfObjetivo;
+	private JComboBox cbCategoria;
 
 	/**
 	 * Create the panel.
@@ -38,7 +45,7 @@ public class TelaInternaCriar extends JPanel {
 
 		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoCriarProjeto2.png");
 		add(panel, "cell 1 1,grow");
-		panel.setLayout(new MigLayout("", "[105][grow][95]", "[90px][grow][grow][grow 30]"));
+		panel.setLayout(new MigLayout("", "[94][grow][94]", "[90px][grow][grow][grow 30]"));
 
 																										
 		btnCriar = new JButton("");
@@ -55,23 +62,131 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/NomeProjetoPT2.png");
 		panel_2.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_2, "cell 0 0 3 1,grow");
+		panel_2.setLayout(new MigLayout("", "[150][][0]", "[grow][grow][grow]"));
+		
+		tfNomeProjeto = new JTextField();
+		tfNomeProjeto.setForeground(new Color(153, 131, 116));
+		tfNomeProjeto.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_2.add(tfNomeProjeto, "cell 1 1,growx");
+		tfNomeProjeto.setColumns(10);
+		tfNomeProjeto.setText(placeholderNomeProjeto);
+		tfNomeProjeto.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfNomeProjeto.getText().equals(placeholderNomeProjeto)) {
+					tfNomeProjeto.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfNomeProjeto.getText().isEmpty()) {
+					tfNomeProjeto.setText(placeholderNomeProjeto);
+				}
+			}
+		});
+		tfNomeProjeto.setOpaque(false);
+		tfNomeProjeto.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		
 		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/DescricaoProjetoPT2.png");
 		panel_3.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_3, "cell 0 1 3 1,grow");
+		panel_3.setLayout(new MigLayout("", "[150][grow][0]", "[grow][grow][grow]"));
+		
+		tfDescricaoProjeto = new JTextField();
+		tfDescricaoProjeto.setForeground(new Color(153, 131, 116));
+		tfDescricaoProjeto.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_3.add(tfDescricaoProjeto, "cell 1 1,growx");
+		tfDescricaoProjeto.setColumns(10);
+		tfDescricaoProjeto.setText(placeholderDescricao);
+		tfDescricaoProjeto.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfDescricaoProjeto.getText().equals(placeholderDescricao)) {
+					tfDescricaoProjeto.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfDescricaoProjeto.getText().isEmpty()) {
+					tfDescricaoProjeto.setText(placeholderDescricao);
+				}
+			}
+		});
+		tfDescricaoProjeto.setOpaque(false);
+		tfDescricaoProjeto.setBorder(BorderFactory.createEmptyBorder());
+		
 		
 		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/SaldoInicialPT2.png");
 		panel_4.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_4, "cell 0 2,grow");
+		panel_4.setLayout(new MigLayout("", "[150][grow][0]", "[grow][grow][grow]"));
+		
+		tfSaldo = new JTextField();
+		tfSaldo.setForeground(new Color(153, 131, 116));
+		tfSaldo.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_4.add(tfSaldo, "cell 1 1,growx");
+		tfSaldo.setColumns(10);
+		tfSaldo.setText(placeholderSaldo);
+		tfSaldo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfSaldo.getText().equals(placeholderSaldo)) {
+					tfSaldo.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfSaldo.getText().isEmpty()) {
+					tfSaldo.setText(placeholderSaldo);
+				}
+			}
+		});
+		tfSaldo.setOpaque(false);
+		tfSaldo.setBorder(BorderFactory.createEmptyBorder());
 		
 		JPanelComBackground panel_5 = new JPanelComBackground("/imgs/ObjetivoPT2.png");
 		panel_5.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_5, "cell 2 2,grow");
+		panel_5.setLayout(new MigLayout("", "[100][grow][0]", "[grow][grow][grow]"));
+
+		tfObjetivo = new JTextField();
+		tfObjetivo.setForeground(new Color(153, 131, 116));
+		tfObjetivo.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_5.add(tfObjetivo, "cell 1 1,growx");		
+		tfObjetivo.setColumns(10);
+		tfObjetivo.setText(placeholderObjetivo);
+		tfObjetivo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (tfObjetivo.getText().equals(placeholderObjetivo)) {
+					tfObjetivo.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (tfObjetivo.getText().isEmpty()) {
+					tfObjetivo.setText(placeholderObjetivo);
+				}
+			}
+		});
+		tfObjetivo.setOpaque(false);
+		tfObjetivo.setBorder(BorderFactory.createEmptyBorder());
+		
 		
 		JPanelComBackground panel_6 = new JPanelComBackground("/imgs/CategoriaProjetoPT2.png");
 		panel_6.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_6, "cell 0 3 3 1,grow");
+		panel_6.setLayout(new MigLayout("", "[150][grow][21]", "[grow][grow][grow]"));
 		
+		
+		cbCategoria = new JComboBox();
+		cbCategoria.setForeground(new Color(153, 131, 116));
+		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
+		panel_6.add(cbCategoria, "cell 1 1,growx");
+		cbCategoria.setOpaque(false);
+		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
 		
 		
 		btnCriar.setIcon(new ImageIcon(TelaInternaCriar.class.getResource("/imgs/btnCriar.png")));
@@ -85,6 +200,11 @@ public class TelaInternaCriar extends JPanel {
 	}
 	
 
+	public String getPlaceholderCategoria() {
+		return placeholderCategoria;
+	}
+
+	
 	public String getPlaceholderNomeProjeto() {
 		return placeholderNomeProjeto;
 	}
@@ -103,6 +223,9 @@ public class TelaInternaCriar extends JPanel {
 		return placeholderObjetivo;
 	}
 
+	public JComboBox getCbCategoria() {
+		return cbCategoria;
+	}
 
 	public JTextField getTfNomeProjeto() {
 		return tfNomeProjeto;
@@ -117,8 +240,8 @@ public class TelaInternaCriar extends JPanel {
 	public JTextField getTfSaldo() {
 		return tfSaldo;
 	}
-
-
+	
+	
 	public JButton getBtnCriar() {
 		return btnCriar;
 	}
