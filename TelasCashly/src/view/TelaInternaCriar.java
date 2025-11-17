@@ -186,7 +186,8 @@ public class TelaInternaCriar extends JPanel {
 		
 		
 		cbCategoria = new JComboBox();
-		cbCategoria.setBounds(158, 53, 671, 37);
+		cbCategoria.setBackground(new Color(255, 245, 234));
+		cbCategoria.setBounds(158, 53, 463, 37);
 		cbCategoria.setForeground(new Color(153, 131, 116));
 		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
 		cbCategoria.setEditable(false);

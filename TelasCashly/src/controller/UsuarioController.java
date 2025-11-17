@@ -108,9 +108,11 @@ public class UsuarioController {
         if (excluido) {
             JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso.");
             
+            Sessao.setUsuarioLogado(null);
     		TelaApresentacao tela = new TelaApresentacao(); 
             ApresentacaoController apresentacao = new ApresentacaoController(tela);
             apresentacao.iniciarApresentacao();
+            inicioController.sair();
 
             
         } else {
