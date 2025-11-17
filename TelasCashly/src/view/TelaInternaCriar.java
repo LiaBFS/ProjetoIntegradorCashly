@@ -189,6 +189,7 @@ public class TelaInternaCriar extends JPanel {
 		cbCategoria.setBounds(158, 53, 671, 37);
 		cbCategoria.setForeground(new Color(153, 131, 116));
 		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
+		cbCategoria.setEditable(false);
 		panel_6.add(cbCategoria);
 		cbCategoria.setOpaque(false);
 		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
