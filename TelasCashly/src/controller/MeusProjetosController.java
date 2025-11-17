@@ -28,16 +28,33 @@ public class MeusProjetosController {
 		this.telaInicio = telaInicio;
 		
 		// Listar e adicionar todos os projetos
+		carregarProjetos();
+	}
+	
+	/**
+	 * Método para carregar os projetos e decidir qual card mostrar
+	 */
+	public void carregarProjetos() {
 		List<Projeto> lista = projetoDAO.listarProjetos();
 		
-		for (Projeto projeto : lista) {
-			JPanel painelProjeto = telaInternaProjetos.adicionarPainelProjeto(projeto);
+		if (lista == null || lista.isEmpty()) {
+			// Não há projetos, mostrar tela vazia
+			telaInternaProjetos.mostrarTelaSemProjetos();
+		} else {
+			// Há projetos, mostrar tela com lista
+			telaInternaProjetos.resetarLinhas(); // Limpar projetos anteriores
 			
-			// Armazenar o projeto no painel usando putClientProperty
-			painelProjeto.putClientProperty("projeto", projeto);
+			for (Projeto projeto : lista) {
+				JPanel painelProjeto = telaInternaProjetos.adicionarPainelProjeto(projeto);
+				
+				// Armazenar o projeto no painel usando putClientProperty
+				painelProjeto.putClientProperty("projeto", projeto);
+				
+				// Adicionar listener para abrir o projeto ao clicar
+				buscarProjeto(painelProjeto);
+			}
 			
-			// Adicionar listener para abrir o projeto ao clicar
-			buscarProjeto(painelProjeto);
+			telaInternaProjetos.mostrarTelaComProjetos();
 		}
 	}
 	
@@ -78,14 +95,11 @@ public class MeusProjetosController {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				painelProjeto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				// Aqui você pode adicionar efeito visual quando o mouse passa
-				// Por exemplo: mudar opacidade, borda, etc.
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				painelProjeto.setCursor(Cursor.getDefaultCursor());
-				// Voltar ao estado visual original
 			}
 		};
 		

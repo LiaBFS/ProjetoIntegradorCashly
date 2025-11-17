@@ -26,7 +26,7 @@ public class TelaInternaProjeto extends JPanel {
 	private JTable table;
 	private JButton btnAdicionarLancamento;
 	private JLabel lblDescricaoProjeto;
-	private JLabel lblDataProjeto;
+	private JLabel lblTotalProjeto;
 	private JLabel lblNomeProjeto;
 	private JLabel lblObjetivoR;
 	
@@ -97,11 +97,11 @@ public class TelaInternaProjeto extends JPanel {
 		lblNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
 		panel_2.add(lblNomeProjeto, "cell 1 1");
 		
-		lblDataProjeto = new JLabel("Total R$:");
-		lblDataProjeto.setForeground(new Color(72, 53, 40));
-		lblDataProjeto.setBackground(new Color(255, 245, 234));
-		lblDataProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
-		panel_2.add(lblDataProjeto, "cell 3 1,alignx right");
+		lblTotalProjeto = new JLabel("Total R$:");
+		lblTotalProjeto.setForeground(new Color(72, 53, 40));
+		lblTotalProjeto.setBackground(new Color(255, 245, 234));
+		lblTotalProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
+		panel_2.add(lblTotalProjeto, "cell 3 1,alignx right");
 		
 		lblDescricaoProjeto = new JLabel("Descricao");
 		lblDescricaoProjeto.setForeground(new Color(255, 245, 234));
@@ -195,7 +195,7 @@ public class TelaInternaProjeto extends JPanel {
 
 
 	public JLabel getLblDataProjeto() {
-		return lblDataProjeto;
+		return lblTotalProjeto;
 	}
 
 
