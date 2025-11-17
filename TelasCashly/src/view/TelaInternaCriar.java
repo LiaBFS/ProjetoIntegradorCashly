@@ -7,6 +7,7 @@ import java.awt.Font;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
 
+import model.CategoriaDeProjeto;
 import model.ProjetoDAO;
 import model.UsuarioDAO;
 
@@ -17,6 +18,8 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -185,14 +188,18 @@ public class TelaInternaCriar extends JPanel {
 		panel_6.setLayout(null);
 		
 		
-		cbCategoria = new JComboBox();
-		cbCategoria.setBounds(158, 53, 671, 37);
+		cbCategoria = new JComboBox<CategoriaDeProjeto>();
 		cbCategoria.setForeground(new Color(153, 131, 116));
 		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
 		panel_6.add(cbCategoria);
 		cbCategoria.setOpaque(false);
 		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
 		
+for (CategoriaDeProjeto iterable_element : CategoriaDeProjeto.values()) {
+	cbCategoria.addItem(iterable_element);
+	
+}
+
 		
 		btnCriar.setIcon(new ImageIcon(TelaInternaCriar.class.getResource("/imgs/btnCriar.png")));
 		btnCriar.setOpaque(false);
