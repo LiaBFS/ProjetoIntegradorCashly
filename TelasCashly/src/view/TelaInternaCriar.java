@@ -62,12 +62,13 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/NomeProjetoPT2.png");
 		panel_2.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_2, "cell 0 0 3 1,grow");
-		panel_2.setLayout(new MigLayout("", "[150][][0]", "[grow][grow][grow]"));
+		panel_2.setLayout(null);
 		
 		tfNomeProjeto = new JTextField();
+		tfNomeProjeto.setBounds(158, 50, 613, 31);
 		tfNomeProjeto.setForeground(new Color(153, 131, 116));
 		tfNomeProjeto.setFont(new Font("Carlito", Font.PLAIN, 25));
-		panel_2.add(tfNomeProjeto, "cell 1 1,growx");
+		panel_2.add(tfNomeProjeto);
 		tfNomeProjeto.setColumns(10);
 		tfNomeProjeto.setText(placeholderNomeProjeto);
 		tfNomeProjeto.addFocusListener(new FocusAdapter() {
@@ -92,12 +93,13 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_3 = new JPanelComBackground("/imgs/DescricaoProjetoPT2.png");
 		panel_3.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_3, "cell 0 1 3 1,grow");
-		panel_3.setLayout(new MigLayout("", "[150][grow][0]", "[grow][grow][grow]"));
+		panel_3.setLayout(null);
 		
 		tfDescricaoProjeto = new JTextField();
+		tfDescricaoProjeto.setBounds(165, 49, 695, 31);
 		tfDescricaoProjeto.setForeground(new Color(153, 131, 116));
 		tfDescricaoProjeto.setFont(new Font("Carlito", Font.PLAIN, 25));
-		panel_3.add(tfDescricaoProjeto, "cell 1 1,growx");
+		panel_3.add(tfDescricaoProjeto);
 		tfDescricaoProjeto.setColumns(10);
 		tfDescricaoProjeto.setText(placeholderDescricao);
 		tfDescricaoProjeto.addFocusListener(new FocusAdapter() {
@@ -121,12 +123,13 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_4 = new JPanelComBackground("/imgs/SaldoInicialPT2.png");
 		panel_4.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_4, "cell 0 2,grow");
-		panel_4.setLayout(new MigLayout("", "[150][grow][0]", "[grow][grow][grow]"));
+		panel_4.setLayout(null);
 		
 		tfSaldo = new JTextField();
+		tfSaldo.setBounds(108, 54, 148, 31);
 		tfSaldo.setForeground(new Color(153, 131, 116));
 		tfSaldo.setFont(new Font("Carlito", Font.PLAIN, 25));
-		panel_4.add(tfSaldo, "cell 1 1,growx");
+		panel_4.add(tfSaldo);
 		tfSaldo.setColumns(10);
 		tfSaldo.setText(placeholderSaldo);
 		tfSaldo.addFocusListener(new FocusAdapter() {
@@ -149,12 +152,13 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_5 = new JPanelComBackground("/imgs/ObjetivoPT2.png");
 		panel_5.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_5, "cell 2 2,grow");
-		panel_5.setLayout(new MigLayout("", "[100][grow][0]", "[grow][grow][grow]"));
+		panel_5.setLayout(null);
 
 		tfObjetivo = new JTextField();
+		tfObjetivo.setBounds(101, 53, 175, 31);
 		tfObjetivo.setForeground(new Color(153, 131, 116));
 		tfObjetivo.setFont(new Font("Carlito", Font.PLAIN, 25));
-		panel_5.add(tfObjetivo, "cell 1 1,growx");		
+		panel_5.add(tfObjetivo);		
 		tfObjetivo.setColumns(10);
 		tfObjetivo.setText(placeholderObjetivo);
 		tfObjetivo.addFocusListener(new FocusAdapter() {
@@ -178,13 +182,14 @@ public class TelaInternaCriar extends JPanel {
 		JPanelComBackground panel_6 = new JPanelComBackground("/imgs/CategoriaProjetoPT2.png");
 		panel_6.setBackground(new Color(207, 114, 116));
 		panel_1.add(panel_6, "cell 0 3 3 1,grow");
-		panel_6.setLayout(new MigLayout("", "[150][grow][21]", "[grow][grow][grow]"));
+		panel_6.setLayout(null);
 		
 		
 		cbCategoria = new JComboBox();
+		cbCategoria.setBounds(158, 53, 671, 37);
 		cbCategoria.setForeground(new Color(153, 131, 116));
 		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
-		panel_6.add(cbCategoria, "cell 1 1,growx");
+		panel_6.add(cbCategoria);
 		cbCategoria.setOpaque(false);
 		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
 		
