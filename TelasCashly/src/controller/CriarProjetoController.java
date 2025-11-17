@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.CategoriaDeProjeto;
 import model.Projeto;
 import model.ProjetoDAO;
 import model.Sessao;
@@ -34,7 +35,9 @@ public class CriarProjetoController {
 		String descricao = telaInternaCriar.getTfDescricaoProjeto().getText().trim();
 		String saldoTexto = telaInternaCriar.getTfSaldo().getText().trim();
 		String objetivoTexto = telaInternaCriar.getTfObjetivo().getText().trim();
+		CategoriaDeProjeto categoria = (CategoriaDeProjeto) telaInternaCriar.getCbCategoria().getSelectedItem();
 
+		
 		if (nome.equals(telaInternaCriar.getPlaceholderNomeProjeto()) || descricao.equals(telaInternaCriar.getPlaceholderDescricao())
 				|| saldoTexto.equals(telaInternaCriar.getPlaceholderSaldo()) || nome.isEmpty() || descricao.isEmpty()
 				|| saldoTexto.isEmpty() || objetivoTexto.equals(telaInternaCriar.getPlaceholderObjetivo()) || objetivoTexto.isEmpty()) {
