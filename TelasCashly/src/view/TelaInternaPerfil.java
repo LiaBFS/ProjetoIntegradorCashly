@@ -135,32 +135,7 @@ public class TelaInternaPerfil extends JPanel {
 		});
 		tfNome.setOpaque(false);
 		tfNome.setBorder(BorderFactory.createEmptyBorder());
-		
-//		tfNome.setMinimumSize(new Dimension(50, 25));
-//		tfNome.setPreferredSize(new Dimension(250, 50));
-//		
-//		tfNome.addComponentListener(new ComponentAdapter() {
-//		    public void componentResized(ComponentEvent e) {
-//		        int largura = tfNome.getWidth();
-//		        int altura = tfNome.getHeight();
-//
-//		        if (largura > 0 && altura > 0) {
-//		            double proporcaoOriginal = (double) JPNomePerfil.getIconWidth() / JPNomePerfil.getIconHeight();
-//		            int novaLargura = largura;
-//		            int novaAltura = (int) (largura / proporcaoOriginal);
-//
-//		            if (novaAltura > altura) {
-//		                novaAltura = altura;
-//		                novaLargura = (int) (altura * proporcaoOriginal);
-//		            }
-//
-//		            Image img = JPNomePerfil.getImage().getScaledInstance(
-//		                novaLargura, novaAltura, Image.SCALE_SMOOTH
-//		            );
-//		            lblNomePerfil.setIcon(new ImageIcon(img));
-//		        }
-//		    }
-//		});
+
 	
 		btnEditarNome = new JButton("");
 		panel_1.add(btnEditarNome, "cell 2 3,alignx right");

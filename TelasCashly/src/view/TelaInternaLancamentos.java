@@ -43,9 +43,9 @@ public class TelaInternaLancamentos extends JDialog {
         JPanelComBackground panelValor = new JPanelComBackground("/imgs/ValorLançamento.png");
         panelValor.setBackground(new Color(255, 245, 234));
         contentPanel.add(panelValor, "cell 0 2 2 1,grow");
-        panelValor.setLayout(new MigLayout("", "[130][grow][95]", "[][][]"));
 
         txtValorDoLanamento = new JTextField();
+        txtValorDoLanamento.setBounds(144, 39, 355, 20);
         txtValorDoLanamento.setForeground(new Color(255, 245, 234));
         txtValorDoLanamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
         txtValorDoLanamento.setText(placeholderValorLancamento);
@@ -64,8 +64,9 @@ public class TelaInternaLancamentos extends JDialog {
 				}
 			}
 		});
+        panelValor.setLayout(null);
         txtValorDoLanamento.setBackground(new Color(207, 114, 116));
-        panelValor.add(txtValorDoLanamento, "cell 1 1,growx,aligny center");
+        panelValor.add(txtValorDoLanamento);
         txtValorDoLanamento.setColumns(10);
         txtValorDoLanamento.setBorder(BorderFactory.createEmptyBorder());
 
@@ -73,9 +74,9 @@ public class TelaInternaLancamentos extends JDialog {
         JPanelComBackground panelData = new JPanelComBackground("/imgs/DataLançamento.png");
         panelData.setBackground(new Color(255, 245, 234));
         contentPanel.add(panelData, "cell 0 4 2 1,grow");
-        panelData.setLayout(new MigLayout("", "[130][grow][95]", "[][][]"));
 
         txtDataDoLanamento = new JTextField();
+        txtDataDoLanamento.setBounds(144, 39, 355, 20);
         txtDataDoLanamento.setForeground(new Color(255, 245, 234));
         txtDataDoLanamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
         txtDataDoLanamento.setText(placeholderDataLancamento);
@@ -95,12 +96,13 @@ public class TelaInternaLancamentos extends JDialog {
 				}
 			}
 		});
+        panelData.setLayout(null);
         
         
         txtDataDoLanamento.setColumns(10);
         txtDataDoLanamento.setBorder(BorderFactory.createEmptyBorder());
         txtDataDoLanamento.setBackground(new Color(207, 114, 116));
-        panelData.add(txtDataDoLanamento, "cell 1 1,growx");
+        panelData.add(txtDataDoLanamento);
 
         
         btnCancelar = new JButton("");
