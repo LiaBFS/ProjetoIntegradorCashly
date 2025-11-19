@@ -18,7 +18,7 @@ public class LancamentoController {
     public LancamentoController(TelaInternaLancamentos tela, int projetoId, TelaInternaProjeto telaProjeto, ProjetoController projetoController) {
         this.tela = tela;
         this.projetoId = projetoId;
-        this.telaProjeto = telaProjeto;
+        this.telaProjeto = telaProjeto; 
         this.projetoController = projetoController;
         this.lancamentoDAO = new LancamentoFinanceiroDAO();
 

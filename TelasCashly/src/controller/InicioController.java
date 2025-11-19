@@ -32,7 +32,7 @@ public class InicioController {
         this.telaInicio.getBtnMeusProjetos().addActionListener(e -> abrirTelaMeusProjetos());
         this.telaInicio.getBtnNotificacoes().addActionListener(e -> abrirTelaNotificacoes());
         this.telaInicio.getBtnPerfil().addActionListener(e -> abrirTelaPerfil());
-        this.telaInicio.getBtnExit().addActionListener(e -> sair());
+        this.telaInicio.getBtnExit().addActionListener(e -> sair()); 
 	
 	}
 	

@@ -34,7 +34,7 @@ public class ProjetoController {
 		
 		// Carregar dados do projeto na tela
 		carregarDadosProjeto();
-		
+		 
 		// Carregar lançamentos na tabela
 		carregarLancamentosNaTabela();
 	}

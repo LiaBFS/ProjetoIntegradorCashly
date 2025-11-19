@@ -12,7 +12,7 @@ public class GraficoController {
     public GraficoController(TelaInternaEscolhaGrafico telaEscolha) {
         this.telaEscolha = telaEscolha;
         configurarEventos();
-    }
+    } 
 
     private void configurarEventos() {
 

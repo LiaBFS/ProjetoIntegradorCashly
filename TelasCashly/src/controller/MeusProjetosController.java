@@ -23,7 +23,7 @@ public class MeusProjetosController {
 	
 	public MeusProjetosController(TelaInternaProjetos telaInternaProjetos, ProjetoDAO projetoDAO, TelaInicio telaInicio) {
 		
-		this.telaInternaProjetos = telaInternaProjetos;
+		this.telaInternaProjetos = telaInternaProjetos; 
 		this.projetoDAO = projetoDAO;
 		this.telaInicio = telaInicio;
 		

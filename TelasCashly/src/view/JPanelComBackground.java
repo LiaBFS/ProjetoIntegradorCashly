@@ -60,7 +60,7 @@ public class JPanelComBackground extends JPanel {
         }
         System.out.println(getWidth());
         System.out.println(getHeight());
-        System.out.println(imgWidth);
+        System.out.println(imgWidth); 
         System.out.println(imgHeight);
         System.out.println(panelRatio);
         System.out.println(imgRatio);

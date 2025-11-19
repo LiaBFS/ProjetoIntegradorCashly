@@ -30,7 +30,7 @@ public class CriarProjetoController {
 		// Adicionar todas as categorias do enum no ComboBox
 		for (CategoriaDeProjeto categoria : CategoriaDeProjeto.values()) {
 			telaInternaCriar.getCbCategoria().addItem(categoria);
-		}
+		} 
 		
 		// Definir primeira categoria como selecionada por padrão
 		if (telaInternaCriar.getCbCategoria().getItemCount() > 0) {

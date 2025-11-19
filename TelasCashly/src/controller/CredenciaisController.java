@@ -31,7 +31,7 @@ public class CredenciaisController {
 	
 		 
         telaCadastro = new TelaInternaCadastro(this.tela);
-        telaLogin = new TelaInternaLogin(this.tela);
+        telaLogin = new TelaInternaLogin(this.tela); 
 		 
         this.tela.getPainelPrincipal().add(telaLogin, "login");
         this.tela.getPainelPrincipal().add(telaCadastro, "cadastro");
