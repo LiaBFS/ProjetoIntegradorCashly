@@ -36,7 +36,7 @@ public class TelaInicio extends JFrame {
 	
 	private JButton btnMeusProjetos;
 	private JButton btnCriarProjetos;
-	private JButton btnNotificacoes;
+	private JButton btnRelatorio;
 	//private JButton btnColaboradores;
 	private JButton btnPerfil;
 
@@ -65,7 +65,7 @@ public class TelaInicio extends JFrame {
 	    // Reseta todos os ícones
 	    btnMeusProjetos.setIcon(iconMeusProjetos);
 	    btnCriarProjetos.setIcon(iconCriarProjetos);
-	    btnNotificacoes.setIcon(iconRelatorio);
+	    btnRelatorio.setIcon(iconRelatorio);
 	    //btnColaboradores.setIcon(iconColaboradores);
 	    btnPerfil.setIcon(iconPerfil);
 
@@ -74,7 +74,7 @@ public class TelaInicio extends JFrame {
 	        botaoSelecionado.setIcon(iconMeusProjetosSel);
 	    } else if (botaoSelecionado == btnCriarProjetos) {
 	        botaoSelecionado.setIcon(iconCriarProjetosSel);
-	    } else if (botaoSelecionado == btnNotificacoes) {
+	    } else if (botaoSelecionado == btnRelatorio) {
 	        botaoSelecionado.setIcon(iconRelatorioSel);
 	    } //else if (botaoSelecionado == btnColaboradores) {
 	        //botaoSelecionado.setIcon(iconColaboradoresSel);
@@ -215,16 +215,16 @@ public class TelaInicio extends JFrame {
 		
 		
 		
-		 btnNotificacoes = new JButton("");
-		btnNotificacoes.setMargin(new Insets(2, 2, 2, 2));
+		 btnRelatorio = new JButton("");
+		btnRelatorio.setMargin(new Insets(2, 2, 2, 2));
 	
-		btnNotificacoes.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnNotificacoes.png")));
-		panelMenu_expanded.add(btnNotificacoes, "cell 0 3,growx,aligny center");
+		btnRelatorio.setIcon(new ImageIcon(TelaInicio.class.getResource("/imgs/BtnRelatorio.png")));
+		panelMenu_expanded.add(btnRelatorio, "cell 0 3,growx,aligny center");
 		
-		btnNotificacoes.setBorderPainted(false);
-		btnNotificacoes.setContentAreaFilled(false);
-		btnNotificacoes.setFocusPainted(false);
-		btnNotificacoes.setOpaque(false);
+		btnRelatorio.setBorderPainted(false);
+		btnRelatorio.setContentAreaFilled(false);
+		btnRelatorio.setFocusPainted(false);
+		btnRelatorio.setOpaque(false);
 		
 		
 		
@@ -297,8 +297,8 @@ public class TelaInicio extends JFrame {
 		return btnPerfil;
 	}
 
-	public JButton getBtnNotificacoes() {
-		return btnNotificacoes;
+	public JButton getBtnRelatorio() {
+		return btnRelatorio;
 	}
 
 	public JButton getBtnMeusProjetos() {
