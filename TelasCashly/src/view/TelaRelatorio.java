@@ -28,13 +28,13 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class TelaInternaProjeto extends JPanel {
-	public TelaInternaProjeto() {
+public class TelaRelatorio extends JPanel {
+	public TelaRelatorio() {
 		setBackground(new Color(216, 178, 184));
 		setLayout(new MigLayout("", "[][grow][]", "[][][grow][][][]"));
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/Relatorios.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaRelatorio.class.getResource("/imgs/Relatorios.png")));
 		add(lblNewLabel, "cell 1 1");
 	}
 		
