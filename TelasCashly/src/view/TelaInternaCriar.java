@@ -20,6 +20,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 public class TelaInternaCriar extends JPanel {
 
@@ -187,13 +188,33 @@ public class TelaInternaCriar extends JPanel {
 		
 		cbCategoria = new JComboBox();
 		cbCategoria.setBackground(new Color(255, 245, 234));
-		cbCategoria.setBounds(158, 53, 463, 37);
+		cbCategoria.setBounds(204, 49, 371, 41);
 		cbCategoria.setForeground(new Color(153, 131, 116));
-		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 25));
+		cbCategoria.setFont(new Font("Carlito", Font.PLAIN, 30));
+		cbCategoria.setOpaque(false);
+		cbCategoria.setFocusable(false);
+		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
 		cbCategoria.setEditable(false);
 		panel_6.add(cbCategoria);
-		cbCategoria.setOpaque(false);
+
+		// Remove totalmente a borda
 		cbCategoria.setBorder(BorderFactory.createEmptyBorder());
+
+		// Remove a borda do botão da seta usando UI personalizada
+		cbCategoria.setUI(new javax.swing.plaf.basic.BasicComboBoxUI() {
+		    @Override
+		    protected JButton createArrowButton() {
+		        JButton button = new JButton();
+		        button.setBorder(BorderFactory.createEmptyBorder());
+		        button.setBackground(new Color(255, 245, 234));
+		        return button;
+		    }
+		});
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaInternaCriar.class.getResource("/imgs/categoriaabrir.png")));
+		lblNewLabel.setBounds(576, 39, 29, 51);
+		panel_6.add(lblNewLabel);
 		
 		
 		btnCriar.setIcon(new ImageIcon(TelaInternaCriar.class.getResource("/imgs/btnCriar.png")));
@@ -257,5 +278,4 @@ public class TelaInternaCriar extends JPanel {
 	public JTextField getTfObjetivo() {
 		return tfObjetivo;
 	}
-
 }
