@@ -54,8 +54,7 @@ public class TelaInternaProjeto extends JPanel {
 		add(panel_1, "cell 1 1 3 3,grow");
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		panel_1.add(scrollPane, BorderLayout.WEST);
+
 		
 		 	Color fundoTabela = new Color(255, 245, 234);   // bege claro
 		    Color corTexto = new Color(207, 114, 116);        // marrom escuro
@@ -88,35 +87,35 @@ public class TelaInternaProjeto extends JPanel {
 		
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/FundoHeaderProjeto.png");
 		panel_1.add(panel_2, BorderLayout.NORTH);
-		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][80px]", "[grow 10][][][grow 5][][grow 10][]"));
+		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][0]", "[grow 10][][][][grow 5][][grow 10][]"));
 		panel_2.setOpaque(false);
 		
 		lblNomeProjeto = new JLabel("Nome Projeto");
 		lblNomeProjeto.setForeground(new Color(255, 245, 234));
 		lblNomeProjeto.setBackground(new Color(255, 245, 234));
 		lblNomeProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
-		panel_2.add(lblNomeProjeto, "cell 1 1");
+		panel_2.add(lblNomeProjeto, "cell 1 2");
 		
 		lblTotalProjeto = new JLabel("Total R$:");
 		lblTotalProjeto.setForeground(new Color(72, 53, 40));
 		lblTotalProjeto.setBackground(new Color(255, 245, 234));
 		lblTotalProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
-		panel_2.add(lblTotalProjeto, "cell 3 1,alignx right");
+		panel_2.add(lblTotalProjeto, "cell 3 2,alignx right");
 		
 		lblDescricaoProjeto = new JLabel("Descricao");
 		lblDescricaoProjeto.setForeground(new Color(255, 245, 234));
 		lblDescricaoProjeto.setBackground(new Color(255, 245, 234));
 		lblDescricaoProjeto.setFont(new Font("Carlito", Font.BOLD, 20));
-		panel_2.add(lblDescricaoProjeto, "cell 1 2");
+		panel_2.add(lblDescricaoProjeto, "cell 1 3");
 		
 		lblObjetivoR = new JLabel("Objetivo R$:");
 		lblObjetivoR.setForeground(new Color(72, 53, 40));
 		lblObjetivoR.setFont(new Font("Carlito", Font.BOLD, 20));
 		lblObjetivoR.setBackground(new Color(255, 245, 234));
-		panel_2.add(lblObjetivoR, "cell 3 2,alignx right");
+		panel_2.add(lblObjetivoR, "cell 3 3,alignx right");
 		
 		JLabel lblAdicionar = new JLabel("");
-		panel_2.add(lblAdicionar, "cell 1 4");
+		panel_2.add(lblAdicionar, "flowx,cell 1 5");
 		
 		btnAdicionarLancamento = new JButton("");
 		btnAdicionarLancamento.addActionListener(new ActionListener() {
@@ -127,13 +126,15 @@ public class TelaInternaProjeto extends JPanel {
 		
 		
 		btnAdicionarLancamento.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnAdicionarLancamento.png")));
-		panel_2.add(btnAdicionarLancamento, "cell 4 4,growx,aligny center");
+		panel_2.add(btnAdicionarLancamento, "cell 4 5,growx,aligny center");
 		btnAdicionarLancamento.setBorderPainted(false);
 		btnAdicionarLancamento.setContentAreaFilled(false);
 		btnAdicionarLancamento.setFocusPainted(false);
 		btnAdicionarLancamento.setOpaque(false);
 		
 		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.BOLD, 40));
+		table.setRowHeight(30);
 		panel_1.add(table, BorderLayout.CENTER);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -171,13 +172,22 @@ public class TelaInternaProjeto extends JPanel {
 			new String[] {
 				"VALOR DO LAN\u00C7AMENTO", "DATA"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		
+
 		
 		// Cabeçalho estilizado
 		
 		table.getTableHeader().setBackground(fundoTabela);
 		table.getTableHeader().setForeground(corTexto);
-		table.getTableHeader().setFont(new Font("Carlito", Font.BOLD, 13));
+		table.getTableHeader().setFont(new Font("Carlito", Font.BOLD, 30));
 		table.getTableHeader().setOpaque(true);
 		
 		table.getTableHeader().setBorder(
@@ -187,11 +197,15 @@ public class TelaInternaProjeto extends JPanel {
 		table.setDefaultRenderer(Object.class, renderer);
 		
 		table.setBackground(fundoTabela);
+		table.setFillsViewportHeight(true);
         
-        
+		JScrollPane scrollPane = new JScrollPane(table);
+		panel_1.add(scrollPane, BorderLayout.CENTER);
+		
 
 	}
 
+	
 
 
 	public JLabel getLblDataProjeto() {
