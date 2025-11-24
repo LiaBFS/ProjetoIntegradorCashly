@@ -13,7 +13,6 @@ import model.Sessao;
 import view.TelaInicio;
 import view.TelaInternaCriar;
 import view.TelaInternaInicial;
-import view.TelaInternaNotificacoes;
 import view.TelaInternaPerfil;
 import view.TelaInternaProjeto;
 import view.TelaInternaProjetos;
