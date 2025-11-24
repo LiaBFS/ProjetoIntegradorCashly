@@ -92,10 +92,7 @@ public class CredenciaisController {
 	        } else {
 	            JOptionPane.showMessageDialog(null, "E-mail e/ou senha incorretos. Tente Novamente.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
 	            
-	            
-	            
-	            this.telaLogin.resetarTxtEmail() ; 
-	            this.telaLogin.resetarTxtSenha();
+	    
 	            
 		            }
 		
@@ -142,6 +139,12 @@ public class CredenciaisController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+        
+        
+        
+        this.telaCadastro.resetarTxtEmail() ; 
+        this.telaCadastro.resetarTxtSenha();
+        this.telaCadastro.resetarTxtNome();
         
         usuarioDAO.adicionarUsuario(novoUsuario);
         

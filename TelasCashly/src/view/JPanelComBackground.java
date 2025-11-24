@@ -64,8 +64,7 @@ public class JPanelComBackground extends JPanel {
         int x = (getWidth() - drawWidth) / 2;
         int y = (getHeight() - drawHeight) / 2;
 
-        System.out.println(x);
-        System.out.println(y);
+        
         // Renderização com qualidade
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);

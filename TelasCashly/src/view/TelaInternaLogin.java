@@ -375,13 +375,5 @@ public class TelaInternaLogin extends JPanel {
 		return btnCadastrar;
 	}
 
-	public void resetarTxtEmail() {
-		txtEmail.setText(getPlaceholderEmail());		
-	}
-
-	public void resetarTxtSenha() {
-	            txtSenha.setText(getPlaceholderSenha());
-	            txtSenha.setEchoChar((char)0);
-		
-	}
+	
 }

@@ -444,4 +444,19 @@ public class TelaInternaCadastro extends JPanel {
 		return txtSenha;
 	}
 
+	public void resetarTxtNome() {
+		txtNome.setText(getPlaceholderUsuario());
+	}
+
+	public void resetarTxtSenha() {
+	            txtSenha.setText(getPlaceholderSenha());
+	            txtSenha.setEchoChar((char)0);
+		
+	}
+	
+
+	public void resetarTxtEmail() {
+		txtEmail.setText(getPlaceholderEmail());		
+	}
+
 }
