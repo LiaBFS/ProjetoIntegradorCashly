@@ -17,8 +17,10 @@ public class TelaCredenciais extends JFrame {
     private CardLayout card;
     
 
-    public TelaCredenciais(String telaInicial) { // << ADICIONADO
+    public TelaCredenciais(String telaInicial) {
         setTitle("Tela de Credenciais");
+        
+        this.setUndecorated(true);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setSize(500, 400);

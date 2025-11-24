@@ -35,6 +35,8 @@ public class TelaApresentacao extends JFrame {
 	public TelaApresentacao() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 700));
+        
+        this.setUndecorated(true);
 
         // Faz abrir em tela cheia
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
@@ -118,10 +120,10 @@ public class TelaApresentacao extends JFrame {
         btnLogin.setFocusPainted(false);
         btnLogin.setOpaque(false);
 
-        ImageIcon RecebaAvisos = new ImageIcon(
-                TelaApresentacao.class.getResource("/imgs/RecebaAvisos.png"));
+        ImageIcon EvoluaObjetivos = new ImageIcon(
+                TelaApresentacao.class.getResource("/imgs/EvoluaObjetivos.png"));
         ImageIcon iconOriginal = new ImageIcon(
-                TelaApresentacao.class.getResource("/imgs/RepresentacoesGraficas.png"));
+                TelaApresentacao.class.getResource("/imgs/RepresentacaoGrafica.png"));
         ImageIcon FacaProjetos = new ImageIcon(
                 TelaApresentacao.class.getResource("/imgs/FacaProjetos.png"));
 
@@ -188,23 +190,24 @@ public class TelaApresentacao extends JFrame {
                 int largura = btnRecebaAvisos.getWidth();
                 int altura = btnRecebaAvisos.getHeight();
                 if (largura > 0 && altura > 0) {
-                    double proporcaoOriginal = (double) RecebaAvisos.getIconWidth() / RecebaAvisos.getIconHeight();
+                    double proporcaoOriginal = (double) EvoluaObjetivos.getIconWidth() / EvoluaObjetivos.getIconHeight();
                     int novaLargura = largura;
                     int novaAltura = (int) (largura / proporcaoOriginal);
                     if (novaAltura > altura) {
                         novaAltura = altura;
                         novaLargura = (int) (altura * proporcaoOriginal);
                     }
-                    Image img = RecebaAvisos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
+                    Image img = EvoluaObjetivos.getImage().getScaledInstance(novaLargura, novaAltura, Image.SCALE_SMOOTH);
                     btnRecebaAvisos.setIcon(new ImageIcon(img));
                 }
             }
         });
 
         btnGrafica = new JButton("");
+        
         panel_1.add(btnGrafica, "cell 5 0,grow");
        
-        btnGrafica.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/VisualizeGraficos.png")));
+        btnGrafica.setIcon(new ImageIcon(TelaApresentacao.class.getResource("/imgs/RepresentacaoGrafica.png")));
         btnGrafica.setMinimumSize(new Dimension(30, 30));
         btnGrafica.setPreferredSize(new Dimension(1000, 1000));
         

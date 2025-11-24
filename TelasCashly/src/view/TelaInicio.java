@@ -113,7 +113,7 @@ public class TelaInicio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(950, 690)); 
 
-		
+        this.setUndecorated(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
         
 
