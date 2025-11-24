@@ -12,8 +12,8 @@ public class LancamentoController {
     private TelaInternaLancamentos tela;
     private LancamentoFinanceiroDAO lancamentoDAO;
     private int projetoId;
-    private TelaInternaProjeto telaProjeto; // Referência para atualizar a tabela
-    private ProjetoController projetoController; // Para chamar método de atualização
+    private TelaInternaProjeto telaProjeto; 
+    private ProjetoController projetoController; 
 
     public LancamentoController(TelaInternaLancamentos tela, int projetoId, TelaInternaProjeto telaProjeto, ProjetoController projetoController) {
         this.tela = tela;
@@ -28,7 +28,7 @@ public class LancamentoController {
 
     private void adicionarLancamento() {
         try {
-            // Validar e pegar valor
+           
             String valorTexto = tela.getTxtValorDoLanamento().getText();
             if (valorTexto.equals("Valor do Lançamento") || valorTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(tela, "Digite um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -36,27 +36,27 @@ public class LancamentoController {
             }
             double valor = Double.parseDouble(valorTexto);
 
-            // Validar e pegar data
+            
             String dataTexto = tela.getTxtDataDoLanamento().getText();
             if (dataTexto.equals("Data do Lancamento") || dataTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(tela, "Digite uma data válida.", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Converter String para Date (formato esperado: dd/MM/yyyy)
+      
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            formato.setLenient(false); // Não aceitar datas inválidas
+            formato.setLenient(false); 
             Date data = formato.parse(dataTexto);
 
-            // Criar objeto LancamentoFinanceiro
+      
             LancamentoFinanceiro novo = new LancamentoFinanceiro(0, data, valor);
 
-            // Adicionar no banco
+    
             lancamentoDAO.adicionarLancamentoFinanceiro(novo, projetoId);
 
             JOptionPane.showMessageDialog(tela, "Lançamento adicionado com sucesso!");
             
-            // Atualizar a tabela na tela do projeto
+        
             if (projetoController != null) {
                 projetoController.carregarLancamentosNaTabela();
             }
