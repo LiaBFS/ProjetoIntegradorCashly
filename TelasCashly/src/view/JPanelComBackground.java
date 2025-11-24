@@ -24,7 +24,7 @@ public class JPanelComBackground extends JPanel {
      * Create the panel.
      */
 
-    // Construtor recebendo o caminho da imagem
+  
     public JPanelComBackground(String caminhoImagem) {
         backgroundImage = new ImageIcon(getClass().getResource(caminhoImagem)).getImage();
     }
@@ -37,7 +37,7 @@ public class JPanelComBackground extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Preenche fundo com a cor desejada (#d8b2b8)
+    
         g.setColor(cor);
         g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -50,11 +50,11 @@ public class JPanelComBackground extends JPanel {
         int drawWidth, drawHeight;
 
         if (panelRatio > imgRatio) {
-            // Ajusta pela altura do painel → imagem cabe inteira
+        
             drawHeight = getHeight();
             drawWidth = (int) (imgRatio * drawHeight);
         } else {
-            // Ajusta pela largura do painel → imagem cabe inteira
+        
             drawWidth = getWidth();
             drawHeight = (int) (drawWidth / imgRatio);
         }
@@ -65,7 +65,7 @@ public class JPanelComBackground extends JPanel {
         int y = (getHeight() - drawHeight) / 2;
 
         
-        // Renderização com qualidade
+       
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -103,21 +103,6 @@ public class JPanelComBackground extends JPanel {
              	}
 
 
-
-             	
-        // Adicionando um componente com layout personalizado
-        // A primeira e a última coluna têm tamanho 'a'
-//        layout.setColumnConstraints("[][grow 20][grow 20][][][grow 70][][grow 15][][grow][" + a + "px]");
-
-     //  String currentColConstraints = layout.getLayoutConstraints().getColumnConstraints().toString();
-        
-        // Verificando se há ao menos uma coluna
-     //   if (colConstraints.length > 0) {
-     //       ColumnConstraints primeiraColuna = colConstraints[0]; // A primeira coluna
-     //       System.out.println("Primeira coluna: " + primeiraColuna);
-     //   }
-        // O MigLayout permite o uso de colunas relativas e absolutas, então esse valor pode ser ajustado para se adaptar ao layout
-     //   layout.setColumnConstraints("[" + a + "][grow 20][grow 20][][][grow 70][][grow 15][][grow][]"); // Para definir a largura da primeira coluna
         }
 
     }

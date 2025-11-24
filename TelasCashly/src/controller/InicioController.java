@@ -75,27 +75,17 @@ public class InicioController {
 
 	private void abrirTelaHome() {
 	    TelaInternaInicial tela = new TelaInternaInicial();
-	    this.telaInicio.atualizarPainel(tela);
-	    this.telaInicio.selecionarBotao(null);
-	    this.telaInicio.atualizarMenuLateral();
-
-	 
-	    ProjetoDAO projetoDAO = new ProjetoDAO();
-	    Projeto projetoRecente = projetoDAO.buscarProjetoRecente();
-
+	    InicialController inicial = new InicialController(tela);
+	    inicial.colocarProjetoRecente();
 	    
-	    if (projetoRecente != null) {
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	        String dataFormatada = sdf.format(projetoRecente.getDataCriacao());
-
-	        tela.atualizarProjetoRecente(
-	            projetoRecente.getNome(),
-	            projetoRecente.getDescricao(),
-	            dataFormatada
-	        );
-	    } else {
-	        tela.atualizarProjetoRecente("Nenhum Projeto Cadastrado...", "Crie um Projeto para desbloquear a adição de Metas e visualização de Gráficos!", "-");
-	    }
+	    this.telaInicio.atualizarPainel(tela);
+	    
+	    this.telaInicio.selecionarBotao(null);
+	    
+	    this.telaInicio.atualizarMenuLateral();
+	    
+	 
+	    
 	}
 	
 	
