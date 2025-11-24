@@ -70,7 +70,7 @@ public class UsuarioController {
 	}
 
 
-	private void excluirPerfil() {
+    private void excluirPerfil() {
         Object[] opcoes = {"Continuar", "Cancelar"};
 
         int resposta = JOptionPane.showOptionDialog(
@@ -89,34 +89,19 @@ public class UsuarioController {
             return;
         }
 
-        
-        String email = tela.getTfEmail().getText().trim();
-        if (email.isEmpty() || email.equals(tela.getPlaceholderEmail())) {
-            email = usuario.getEmail();
-        }
-
-        if (email == null || email.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Email inválido para exclusão.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        
-   
-
-        boolean excluido = usuarioDAO.excluirUsuario(email);
+    
+        boolean excluido = usuarioDAO.excluirUsuario(usuario.getId());
 
         if (excluido) {
             JOptionPane.showMessageDialog(null, "Perfil excluído com sucesso.");
             
             Sessao.setUsuarioLogado(null);
-    		TelaApresentacao tela = new TelaApresentacao(); 
+            TelaApresentacao tela = new TelaApresentacao(); 
             ApresentacaoController apresentacao = new ApresentacaoController(tela);
             apresentacao.iniciarApresentacao();
             inicioController.sair();
-
-            
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir perfil. Verifique se o email está correto.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao excluir perfil.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
