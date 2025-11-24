@@ -15,6 +15,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
+import java.awt.Toolkit;
 
 public class TelaApresentacao extends JFrame {
 
@@ -33,17 +34,12 @@ public class TelaApresentacao extends JFrame {
 
 
 	public TelaApresentacao() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaApresentacao.class.getResource("/imgs/CashlyIcon.png")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 700));
         
-        this.setUndecorated(true);
-
-        // Faz abrir em tela cheia
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
-        // setUndecorated(true); // Opcional: sem bordas e barra de título
-        // setSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize()); // Opcional: força resolução exata
-
-        setBounds(100, 100, 1280, 800); // fallback caso tela cheia não funcione
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setBounds(100, 100, 1280, 800);
 
         contentPane = new JPanel();
         contentPane.setBackground(new Color(216, 178, 184));

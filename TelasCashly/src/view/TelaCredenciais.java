@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.UsuarioDAO;
+import java.awt.Toolkit;
 
 public class TelaCredenciais extends JFrame {
     private JPanel painelPrincipal;
@@ -18,9 +19,9 @@ public class TelaCredenciais extends JFrame {
     
 
     public TelaCredenciais(String telaInicial) {
-        setTitle("Tela de Credenciais");
-        
-        this.setUndecorated(true);
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCredenciais.class.getResource("/imgs/CashlyIcon.png")));
+
+       
         
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setSize(500, 400);
@@ -35,7 +36,7 @@ public class TelaCredenciais extends JFrame {
        
 
       
-        add(painelPrincipal);
+        getContentPane().add(painelPrincipal);
 
         // Mostra a tela inicial passada no construtor
     }
