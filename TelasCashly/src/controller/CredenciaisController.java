@@ -9,6 +9,7 @@ import model.ProjetoDAO;
 import model.Sessao;
 import model.Usuario;
 import model.UsuarioDAO;
+import view.LoginIncorreto;
 import view.TelaApresentacao;
 import view.TelaCredenciais;
 import view.TelaInicio;
@@ -63,7 +64,9 @@ public class CredenciaisController {
 	        if (email.isEmpty() || email.equals(this.telaLogin.getPlaceholderEmail()) ||
 	            senha.isEmpty() || senha.equals(this.telaLogin.getPlaceholderSenha())) {
 	            
-	        	JOptionPane.showMessageDialog(null, "Todos os campos do Login são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+//	        	JOptionPane.showMessageDialog(null, "Todos os campos do Login são obrigatórios.", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+	        	LoginIncorreto IDL = new LoginIncorreto();
+	        	IDL.setVisible(true);
 	            return;
 	        }
 
