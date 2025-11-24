@@ -11,13 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class LoginIncorreto extends JFrame {
+public class CamposObrigatoriosLogin extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public LoginIncorreto() {
-        setTitle("Login Incorreto");
+    public CamposObrigatoriosLogin() {
+        setTitle("Campos Obrigatórios");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 380, 120);
@@ -25,23 +25,23 @@ public class LoginIncorreto extends JFrame {
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
-        this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+        this.getRootPane().setBorder(BorderFactory.createLineBorder(new Color(255, 165, 0), 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblTitulo = new JLabel("Login Incorreto");
+        JLabel lblTitulo = new JLabel("Campos Obrigatórios");
         lblTitulo.setFont(new Font("Carlito", Font.BOLD | Font.ITALIC, 20));
-        lblTitulo.setBounds(115, 25, 290, 28);
+        lblTitulo.setBounds(107, 27, 290, 28);
         contentPane.add(lblTitulo);
         
-        JLabel lblMensagem = new JLabel("E-mail e/ou senha incorretos");
+        JLabel lblMensagem = new JLabel("Preencha todos os campos do Login");
         lblMensagem.setFont(new Font("Carlito", Font.PLAIN, 15));
-        lblMensagem.setBounds(115, 50, 290, 28);
+        lblMensagem.setBounds(107, 53, 290, 28);
         contentPane.add(lblMensagem);
 
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(LoginIncorreto.class.getResource("/imgs/EmailInvalido.png")));
+        lblIcone.setIcon(new ImageIcon(CamposObrigatoriosLogin.class.getResource("/imgs/EmailInvalido.png")));
         lblIcone.setBounds(23, 11, 63, 70);
         contentPane.add(lblIcone);
 
@@ -57,7 +57,7 @@ public class LoginIncorreto extends JFrame {
     }
     
     public static void mostrar() {
-        LoginIncorreto frame = new LoginIncorreto();
+        CamposObrigatoriosLogin frame = new CamposObrigatoriosLogin();
         frame.setVisible(true);
     }
 }

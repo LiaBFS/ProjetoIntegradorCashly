@@ -11,16 +11,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class LoginIncorreto extends JFrame {
+public class SenhaInvalida extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public LoginIncorreto() {
-        setTitle("Login Incorreto");
+    public SenhaInvalida() {
+        setTitle("Senha Inválida");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-        setBounds(100, 100, 380, 120);
+        setBounds(100, 100, 420, 120);
         setLocationRelativeTo(null);
         
         contentPane = new JPanel();
@@ -30,19 +30,19 @@ public class LoginIncorreto extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblTitulo = new JLabel("Login Incorreto");
+        JLabel lblTitulo = new JLabel("Senha Inválida");
         lblTitulo.setFont(new Font("Carlito", Font.BOLD | Font.ITALIC, 20));
-        lblTitulo.setBounds(115, 25, 290, 28);
+        lblTitulo.setBounds(122, 24, 330, 28);
         contentPane.add(lblTitulo);
         
-        JLabel lblMensagem = new JLabel("E-mail e/ou senha incorretos");
+        JLabel lblMensagem = new JLabel("A senha deve conter de 8 a 30 dígitos");
         lblMensagem.setFont(new Font("Carlito", Font.PLAIN, 15));
-        lblMensagem.setBounds(115, 50, 290, 28);
+        lblMensagem.setBounds(122, 49, 330, 28);
         contentPane.add(lblMensagem);
 
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(LoginIncorreto.class.getResource("/imgs/EmailInvalido.png")));
-        lblIcone.setBounds(23, 11, 63, 70);
+        lblIcone.setIcon(new ImageIcon(SenhaInvalida.class.getResource("/imgs/EmailInvalido.png")));
+        lblIcone.setBounds(29, 11, 63, 70);
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");
@@ -52,12 +52,12 @@ public class LoginIncorreto extends JFrame {
             }
         });
         btnOK.setBackground(new Color(207, 114, 116));
-        btnOK.setBounds(160, 85, 53, 28);
+        btnOK.setBounds(180, 85, 53, 28);
         contentPane.add(btnOK);
     }
     
     public static void mostrar() {
-        LoginIncorreto frame = new LoginIncorreto();
+        SenhaInvalida frame = new SenhaInvalida();
         frame.setVisible(true);
     }
 }
