@@ -58,14 +58,7 @@ public class JPanelComBackground extends JPanel {
             drawWidth = getWidth();
             drawHeight = (int) (drawWidth / imgRatio);
         }
-        System.out.println(getWidth());
-        System.out.println(getHeight());
-        System.out.println(imgWidth); 
-        System.out.println(imgHeight);
-        System.out.println(panelRatio);
-        System.out.println(imgRatio);
-        System.out.println(drawWidth);
-        System.out.println(drawHeight);
+        
 
 
         int x = (getWidth() - drawWidth) / 2;
