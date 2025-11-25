@@ -41,8 +41,8 @@ public class ProjetoCriado extends JFrame {
         contentPane.add(lblMensagem);
 
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(ProjetoCriado.class.getResource("/imgs/EmailInvalido.png")));
-        lblIcone.setBounds(23, 11, 63, 70);
+        lblIcone.setIcon(new ImageIcon(ProjetoCriado.class.getResource("/imgs/JFrameCorreto.png")));
+        lblIcone.setBounds(25, 12, 68, 70);
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");

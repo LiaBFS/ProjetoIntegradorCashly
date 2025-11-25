@@ -39,8 +39,8 @@ public class LancamentoAdicionadoSucesso extends JFrame {
         contentPane.add(lblMensagem);
 
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(LancamentoAdicionadoSucesso.class.getResource("/imgs/EmailInvalido.png")));
-        lblIcone.setBounds(24, 11, 63, 70);
+        lblIcone.setIcon(new ImageIcon(LancamentoAdicionadoSucesso.class.getResource("/imgs/JFrameCorreto.png")));
+        lblIcone.setBounds(24, 11, 76, 70);
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");

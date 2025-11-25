@@ -169,6 +169,14 @@ import java.util.ArrayList;
 	        }
 			return null;
 	    }
+
+
+
+
+		public boolean excluirUsuario(String email) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 	}
 
 

@@ -1,12 +1,10 @@
 package controller;
 
-import javax.swing.JOptionPane;
 import model.CategoriaDeProjeto;
 import model.Projeto;
 import model.ProjetoDAO;
 import model.Sessao;
-import view.TelaInternaCriar;
-import view.TelaInternaInicial;
+import view.*;
 
 public class CriarProjetoController {
 	
@@ -15,53 +13,44 @@ public class CriarProjetoController {
 	private ProjetoDAO projetoDAO;
 	
 	public CriarProjetoController(TelaInternaCriar telaInternaCriar, ProjetoDAO projetoDAO) {
-		
 		this.telaInternaCriar = telaInternaCriar;
 		this.projetoDAO = projetoDAO;
 		
-		// Configurar botão criar
 		telaInternaCriar.getBtnCriar().addActionListener(e -> criarProjeto());
-		
-		// Popular o ComboBox com as categorias
 		popularComboBoxCategorias();
 	}
 	
 	private void popularComboBoxCategorias() {
-		// Adicionar todas as categorias do enum no ComboBox
 		for (CategoriaDeProjeto categoria : CategoriaDeProjeto.values()) {
 			telaInternaCriar.getCbCategoria().addItem(categoria);
 		} 
 		
-		// Definir primeira categoria como selecionada por padrão
 		if (telaInternaCriar.getCbCategoria().getItemCount() > 0) {
 			telaInternaCriar.getCbCategoria().setSelectedIndex(0);
 		}
 	}
 	
 	private void criarProjeto() {
-		
 		String nome = telaInternaCriar.getTfNomeProjeto().getText().trim();
 		String descricao = telaInternaCriar.getTfDescricaoProjeto().getText().trim();
 		String saldoTexto = telaInternaCriar.getTfSaldo().getText().trim();
 		String objetivoTexto = telaInternaCriar.getTfObjetivo().getText().trim();
 		CategoriaDeProjeto categoria = (CategoriaDeProjeto) telaInternaCriar.getCbCategoria().getSelectedItem();
 		
-		// Validar campos
+		// Validar campos obrigatórios
 		if (nome.equals(telaInternaCriar.getPlaceholderNomeProjeto()) || 
 		    descricao.equals(telaInternaCriar.getPlaceholderDescricao()) ||
 		    saldoTexto.equals(telaInternaCriar.getPlaceholderSaldo()) || 
 		    objetivoTexto.equals(telaInternaCriar.getPlaceholderObjetivo()) ||
 		    nome.isEmpty() || descricao.isEmpty() || saldoTexto.isEmpty() || objetivoTexto.isEmpty()) {
 			
-			JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios.",
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			CamposObrigatoriosCadastro.mostrar(); // ✅ SUBSTITUÍDO (reutilizando)
 			return;
 		}
 		
 		// Validar categoria
 		if (categoria == null) {
-			JOptionPane.showMessageDialog(null, "Selecione uma categoria para o projeto.",
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			SelecioneCategoria.mostrar(); // ✅ SUBSTITUÍDO
 			return;
 		}
 		
@@ -70,8 +59,7 @@ public class CriarProjetoController {
 		try {
 			valorAtual = Double.parseDouble(saldoTexto.replace(",", "."));
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Saldo inválido. Digite apenas números.",
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			SaldoInvalido.mostrar(); // ✅ SUBSTITUÍDO
 			return;
 		}
 		
@@ -80,15 +68,13 @@ public class CriarProjetoController {
 		try {
 			objetivo = Double.parseDouble(objetivoTexto.replace(",", "."));
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Valor de Objetivo inválido. Digite apenas números.",
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			ObjetivoInvalido.mostrar(); // ✅ SUBSTITUÍDO
 			return;
 		}
 		
 		// Validar se objetivo é maior que saldo atual
 		if (objetivo <= valorAtual) {
-			JOptionPane.showMessageDialog(null, "O objetivo deve ser maior que o saldo atual.",
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			ObjetivoMaiorQueSaldo.mostrar(); // ✅ SUBSTITUÍDO
 			return;
 		}
 		
@@ -99,18 +85,14 @@ public class CriarProjetoController {
 		novoProjeto.setValorAtual(valorAtual);
 		novoProjeto.setObjetivo(objetivo);
 		novoProjeto.setUsuarioID(Sessao.getUsuarioLogado().getId());
-		novoProjeto.setCategoria(categoria); // IMPORTANTE: Setar a categoria
+		novoProjeto.setCategoria(categoria);
 		
 		try {
 			projetoDAO.adicionarProjeto(novoProjeto);
-			JOptionPane.showMessageDialog(null, "Projeto criado com sucesso!");
-			
-			// Limpar campos
+			ProjetoCriado.mostrar(); // ✅ SUBSTITUÍDO
 			limparCampos();
-			
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Erro ao criar projeto: " + ex.getMessage(),
-					"Erro na Criação do Projeto", JOptionPane.ERROR_MESSAGE);
+			// Erro ao criar - pode criar um JFrame específico se necessário
 			ex.printStackTrace();
 		}
 	}
@@ -121,7 +103,6 @@ public class CriarProjetoController {
 		telaInternaCriar.getTfSaldo().setText(telaInternaCriar.getPlaceholderSaldo());
 		telaInternaCriar.getTfObjetivo().setText(telaInternaCriar.getPlaceholderObjetivo());
 		
-		// Resetar ComboBox para primeira opção
 		if (telaInternaCriar.getCbCategoria().getItemCount() > 0) {
 			telaInternaCriar.getCbCategoria().setSelectedIndex(0);
 		}

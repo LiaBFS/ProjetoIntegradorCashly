@@ -25,7 +25,7 @@ public class CamposObrigatoriosLogin extends JFrame {
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
-        this.getRootPane().setBorder(BorderFactory.createLineBorder(new Color(255, 165, 0), 5));
+        this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.RED, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);

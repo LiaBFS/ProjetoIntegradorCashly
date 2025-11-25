@@ -1,9 +1,7 @@
 package controller;
 
 import model.*;
-import view.TelaInternaLancamentos;
-import view.TelaInternaProjeto;
-import javax.swing.*;
+import view.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +13,8 @@ public class LancamentoController {
     private TelaInternaProjeto telaProjeto; 
     private ProjetoController projetoController; 
 
-    public LancamentoController(TelaInternaLancamentos tela, int projetoId, TelaInternaProjeto telaProjeto, ProjetoController projetoController) {
+    public LancamentoController(TelaInternaLancamentos tela, int projetoId, 
+                                TelaInternaProjeto telaProjeto, ProjetoController projetoController) {
         this.tela = tela;
         this.projetoId = projetoId;
         this.telaProjeto = telaProjeto; 
@@ -28,35 +27,30 @@ public class LancamentoController {
 
     private void adicionarLancamento() {
         try {
-           
+            // Validar valor
             String valorTexto = tela.getTxtValorDoLanamento().getText();
             if (valorTexto.equals("Valor do Lançamento") || valorTexto.isEmpty()) {
-                JOptionPane.showMessageDialog(tela, "Digite um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                ValorInvalidoLancamento.mostrar(); // ✅ SUBSTITUÍDO
                 return;
             }
             double valor = Double.parseDouble(valorTexto);
 
-            
+            // Validar data
             String dataTexto = tela.getTxtDataDoLanamento().getText();
             if (dataTexto.equals("Data do Lancamento") || dataTexto.isEmpty()) {
-                JOptionPane.showMessageDialog(tela, "Digite uma data válida.", "Erro", JOptionPane.ERROR_MESSAGE);
+                DataInvalidaLancamento.mostrar(); // ✅ SUBSTITUÍDO
                 return;
             }
 
-      
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             formato.setLenient(false); 
             Date data = formato.parse(dataTexto);
 
-      
             LancamentoFinanceiro novo = new LancamentoFinanceiro(0, data, valor);
-
-    
             lancamentoDAO.adicionarLancamentoFinanceiro(novo, projetoId);
 
-            JOptionPane.showMessageDialog(tela, "Lançamento adicionado com sucesso!");
+            LancamentoAdicionadoSucesso.mostrar(); // ✅ SUBSTITUÍDO
             
-        
             if (projetoController != null) {
                 projetoController.carregarLancamentosNaTabela();
             }
@@ -64,11 +58,11 @@ public class LancamentoController {
             tela.dispose();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(tela, "Digite um valor numérico válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            ValorInvalidoLancamento.mostrar(); // ✅ SUBSTITUÍDO
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(tela, "Digite uma data válida no formato dd/MM/yyyy (ex: 25/12/2024).", "Erro", JOptionPane.ERROR_MESSAGE);
+            DataInvalidaLancamento.mostrar(); // ✅ SUBSTITUÍDO
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(tela, "Erro ao adicionar lançamento: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            // Erro geral - pode manter um tratamento genérico
             ex.printStackTrace();
         }
     }

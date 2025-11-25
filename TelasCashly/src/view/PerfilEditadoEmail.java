@@ -41,8 +41,8 @@ public class PerfilEditadoEmail extends JFrame {
         contentPane.add(lblMensagem);
 
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(PerfilEditadoEmail.class.getResource("/imgs/EmailInvalido.png")));
-        lblIcone.setBounds(23, 11, 63, 70);
+        lblIcone.setIcon(new ImageIcon(PerfilEditadoEmail.class.getResource("/imgs/JFrameCorreto.png")));
+        lblIcone.setBounds(23, 11, 73, 70);
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");

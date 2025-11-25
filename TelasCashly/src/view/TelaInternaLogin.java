@@ -375,5 +375,15 @@ public class TelaInternaLogin extends JPanel {
 		return btnCadastrar;
 	}
 
+	public void resetarTxtEmail() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void resetarTxtSenha() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
