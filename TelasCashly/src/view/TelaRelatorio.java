@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Map;
+
 import net.miginfocom.swing.MigLayout;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -19,6 +21,8 @@ public class TelaRelatorio extends JPanel {
 
     private JPanel panelGrafico;
     private JPanel panelInfo;
+    private JLabel lblTotal;  
+
 
     public TelaRelatorio() {
         setBackground(new Color(216, 178, 184));
@@ -37,6 +41,8 @@ public class TelaRelatorio extends JPanel {
         // Painel de informações (à esquerda)
         panelInfo = criarPainelInfo();
         panelBranco.add(panelInfo, "cell 0 0,grow");
+        lblTotal = new JLabel("Total: R$");
+
 
         // Painel do gráfico (à direita)
         panelGrafico = new JPanel(new BorderLayout());
@@ -103,13 +109,64 @@ public class TelaRelatorio extends JPanel {
         circulo.setPreferredSize(new Dimension(16, 16));
         circulo.setBorder(BorderFactory.createLineBorder(cor));
         
-        JLabel label = new JLabel(texto);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        label.setForeground(new Color(60, 30, 30));
+     // Total (usa o lblTotal da classe e não cria outro)
+        lblTotal = new JLabel("Total: R$");
+        lblTotal.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        lblTotal.setForeground(new Color(80, 40, 40));
+        panel.add(lblTotal, "cell 0 2");
+
         
-        panel.add(circulo, "cell " + col + " " + row + ",aligny center");
-        panel.add(label, "cell " + col + " " + row + ",aligny center");
+
     }
+    
+ // --- MÉTODOS PARA O CONTROLLER ---
+
+    public void atualizarGrafico(Map<String, Double> dadosCategorias, Map<String, Color> cores) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        dadosCategorias.forEach(dataset::setValue);
+
+        JFreeChart chart = ChartFactory.createPieChart(null, dataset, false, false, false);
+        PiePlot plot = (PiePlot) chart.getPlot();
+
+        // Aplica cores personalizadas
+        if (cores != null) {
+            cores.forEach((categoria, cor) -> {
+                plot.setSectionPaint(categoria, cor);
+            });
+        }
+
+        // Configurações visuais iguais às suas...
+        plot.setOutlineVisible(false);
+        plot.setShadowPaint(null);
+        plot.setBackgroundPaint(new Color(0,0,0,0));
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setOpaque(false);
+        chartPanel.setPopupMenu(null);
+
+        panelGrafico.removeAll();
+        panelGrafico.add(chartPanel, BorderLayout.CENTER);
+        panelGrafico.revalidate();
+        panelGrafico.repaint();
+    }
+    
+    
+
+    public void atualizarGrafico(Map<String, Double> dados) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        for (String categoria : dados.keySet()) {
+            dataset.setValue(categoria, dados.get(categoria));
+        }
+
+    }
+
+    public void atualizarTotal(double total) {
+    	lblTotal = new JLabel("Total: R$");
+    }
+
+  
+
 
     private void adicionarGrafico() {
         DefaultPieDataset dataset = new DefaultPieDataset();
