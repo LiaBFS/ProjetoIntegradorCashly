@@ -21,6 +21,15 @@ public class MeusProjetosController {
 	private TelaInternaInicial telaInternaInicial;
 	private ProjetoDAO projetoDAO;
 	
+	
+	public MeusProjetosController(ProjetoDAO projetoDAO, TelaInicio telaInicio) {
+		
+		this.projetoDAO = projetoDAO;
+		this.telaInicio = telaInicio;
+		
+		
+	}
+	
 	public MeusProjetosController(TelaInternaProjetos telaInternaProjetos, ProjetoDAO projetoDAO, TelaInicio telaInicio) {
 		
 		this.telaInternaProjetos = telaInternaProjetos; 
@@ -38,19 +47,17 @@ public class MeusProjetosController {
 		List<Projeto> lista = projetoDAO.listarProjetos();
 		
 		if (lista == null || lista.isEmpty()) {
-			// Não há projetos, mostrar tela vazia
+			
 			telaInternaProjetos.mostrarTelaSemProjetos();
 		} else {
-			// Há projetos, mostrar tela com lista
-			telaInternaProjetos.resetarLinhas(); // Limpar projetos anteriores
+		
+			telaInternaProjetos.resetarLinhas(); 
 			
 			for (Projeto projeto : lista) {
 				JPanel painelProjeto = telaInternaProjetos.adicionarPainelProjeto(projeto);
 				
-				// Armazenar o projeto no painel usando putClientProperty
 				painelProjeto.putClientProperty("projeto", projeto);
 				
-				// Adicionar listener para abrir o projeto ao clicar
 				buscarProjeto(painelProjeto);
 			}
 			
@@ -103,7 +110,6 @@ public class MeusProjetosController {
 			}
 		};
 		
-		// Adicionar listener recursivamente em todos os componentes do painel
 		addMouseListenerRecursively(painelProjeto, listener);
 	}
 }

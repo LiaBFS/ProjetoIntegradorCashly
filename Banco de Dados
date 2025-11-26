@@ -40,3 +40,13 @@ CREATE TABLE LancamentoFinanceiro (
     FOREIGN KEY (projeto_id) REFERENCES Projeto(id)
    
 );
+
+ALTER TABLE projeto 
+DROP FOREIGN KEY projeto_ibfk_1;
+
+
+ALTER TABLE projeto
+ADD CONSTRAINT projeto_ibfk_1 
+FOREIGN KEY (usuario_id) 
+REFERENCES usuario(id) 
+ON DELETE CASCADE;

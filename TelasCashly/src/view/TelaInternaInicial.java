@@ -20,6 +20,7 @@ public class TelaInternaInicial extends JPanel {
 	private JButton btnNomeProjeto;
 	private JButton btnDescrição;
 	private JButton btnData;
+	private JPanelComBackground panel;
 
 	/**
 	 * Create the panel.
@@ -55,7 +56,7 @@ public class TelaInternaInicial extends JPanel {
             }
         });
 		
-		JPanelComBackground panel = new JPanelComBackground("/imgs/FundoBtn.png");
+		panel = new JPanelComBackground("/imgs/FundoBtn.png");
 		add(panel, "cell 1 3 3 1,grow");
 		panel.setLayout(new MigLayout("","[][grow 20][grow 20][][][grow 70][][grow 15][][grow][]", "[grow 25][][grow 10][][][][grow 25]"));
 		
@@ -156,6 +157,10 @@ public class TelaInternaInicial extends JPanel {
 		JPanelComBackground panel_1 = new JPanelComBackground("/imgs/BemVindoDeVolta.png");
 		add(panel_1, "cell 1 5 3 1,grow");
 
+	}
+
+	public JPanelComBackground getPanel() {
+		return panel;
 	}
 
 	public JButton getBtnData() {
