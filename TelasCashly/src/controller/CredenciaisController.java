@@ -60,7 +60,7 @@ public class CredenciaisController {
             Sessao.setUsuarioLogado(usuarioAutenticado);
             abrirTelaInicial();
         } else {
-            LoginIncorreto.mostrar(); // ✅ SUBSTITUÍDO
+            LoginIncorreto.mostrar(); 
             this.telaLogin.resetarTxtEmail(); 
             this.telaLogin.resetarTxtSenha();
         }

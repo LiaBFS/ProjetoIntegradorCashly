@@ -104,7 +104,7 @@ public class ProjetoDAO {
 	}
 	
 	public Projeto buscarProjetoRecente() {
-		String sql = "SELECT * FROM projeto WHERE usuario_id=? ORDER BY dataCriacao DESC LIMIT 1";
+		String sql = "SELECT * FROM projeto WHERE usuario_id=? ORDER BY id DESC LIMIT 1";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;

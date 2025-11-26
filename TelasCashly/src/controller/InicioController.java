@@ -64,7 +64,7 @@ public class InicioController {
 	private void abrirTelaMeusProjetos() {
 		TelaInternaProjetos tela = new TelaInternaProjetos();
 		ProjetoDAO P = new ProjetoDAO();
-		MeusProjetosController projetosController = new MeusProjetosController(tela, P, telaInicio);
+		
 
 		this.telaInicio.atualizarPainel(tela);
 		
@@ -74,11 +74,14 @@ public class InicioController {
 	}
 
 	private void abrirTelaHome() {
-	    TelaInternaInicial tela = new TelaInternaInicial();
-	    InicialController inicial = new InicialController(tela);
+		TelaInternaProjetos tela = new TelaInternaProjetos();
+		ProjetoDAO P = new ProjetoDAO();
+		MeusProjetosController projetosController = new MeusProjetosController(tela, P, telaInicio);
+	    TelaInternaInicial telaInicial = new TelaInternaInicial();
+	    InicialController inicial = new InicialController(telaInicial, projetosController);
 	    inicial.colocarProjetoRecente();
 	    
-	    this.telaInicio.atualizarPainel(tela);
+	    this.telaInicio.atualizarPainel(telaInicial);
 	    
 	    this.telaInicio.selecionarBotao(null);
 	    
