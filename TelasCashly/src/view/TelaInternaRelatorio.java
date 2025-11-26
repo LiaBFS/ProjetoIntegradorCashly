@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 import net.miginfocom.swing.MigLayout;
@@ -17,20 +18,20 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-public class TelaRelatorio extends JPanel {
+public class TelaInternaRelatorio extends JPanel {
 
     private JPanel panelGrafico;
     private JPanel panelInfo;
     private JLabel lblTotal;  
+    private DecimalFormat formatoMoeda = new DecimalFormat("#,##0.00");
 
-
-    public TelaRelatorio() {
+    public TelaInternaRelatorio() {
         setBackground(new Color(216, 178, 184));
         setLayout(new MigLayout("", "[grow]", "[116px][grow]"));
 
         // Adiciona ícone no topo
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(TelaRelatorio.class.getResource("/imgs/Relatorios.png")));
+        lblNewLabel.setIcon(new ImageIcon(TelaInternaRelatorio.class.getResource("/imgs/Relatorios.png")));
         add(lblNewLabel, "cell 0 0,growx,aligny top");
 
         // Painel com bordas arredondadas ao fundo
@@ -41,8 +42,6 @@ public class TelaRelatorio extends JPanel {
         // Painel de informações (à esquerda)
         panelInfo = criarPainelInfo();
         panelBranco.add(panelInfo, "cell 0 0,grow");
-        lblTotal = new JLabel("Total: R$");
-
 
         // Painel do gráfico (à direita)
         panelGrafico = new JPanel(new BorderLayout());
@@ -51,7 +50,7 @@ public class TelaRelatorio extends JPanel {
 
         add(panelBranco, "cell 0 1,grow,gap 30 30 30 30");
 
-        // Adiciona o gráfico
+        // Adiciona o gráfico inicial
         adicionarGrafico();
     }
 
@@ -73,8 +72,8 @@ public class TelaRelatorio extends JPanel {
         lblDescricao.setForeground(new Color(60, 30, 30));
         panel.add(lblDescricao, "cell 0 1");
 
-        // Total
-        JLabel lblTotal = new JLabel("Total: R$");
+        // Total (INICIALIZA AQUI E SÓ AQUI)
+        lblTotal = new JLabel("Total: R$ 0,00");
         lblTotal.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTotal.setForeground(new Color(80, 40, 40));
         panel.add(lblTotal, "cell 0 2");
@@ -82,7 +81,7 @@ public class TelaRelatorio extends JPanel {
         JLabel lblProjetos = new JLabel("para seus Projetos.");
         lblProjetos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblProjetos.setForeground(new Color(60, 30, 30));
-        panel.add(lblProjetos, "cell 0 2,gaptop 5");
+        panel.add(lblProjetos, "cell 0 3,gaptop 5");
 
         // Legendas
         JPanel panelLegendas = new JPanel(new MigLayout("insets 0", "[]20[]", "[]10[]10[]"));
@@ -94,11 +93,11 @@ public class TelaRelatorio extends JPanel {
         adicionarLegenda(panelLegendas, new Color(165, 51, 46), "Reserva Financeira", 0, 2);
 
         // Coluna 2
-        adicionarLegenda(panelLegendas, new Color(165, 51, 46), "Educação", 1, 0);
+        adicionarLegenda(panelLegendas, new Color(193, 31, 35), "Educação", 1, 0);
         adicionarLegenda(panelLegendas, new Color(242, 151, 151), "Eventos", 1, 1);
         adicionarLegenda(panelLegendas, new Color(202, 196, 190), "Saúde e Bem-Estar", 1, 2);
 
-        panel.add(panelLegendas, "cell 0 3");
+        panel.add(panelLegendas, "cell 0 4");
 
         return panel;
     }
@@ -108,20 +107,25 @@ public class TelaRelatorio extends JPanel {
         circulo.setBackground(cor);
         circulo.setPreferredSize(new Dimension(16, 16));
         circulo.setBorder(BorderFactory.createLineBorder(cor));
-        
-     // Total (usa o lblTotal da classe e não cria outro)
-        lblTotal = new JLabel("Total: R$");
-        lblTotal.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        lblTotal.setForeground(new Color(80, 40, 40));
-        panel.add(lblTotal, "cell 0 2");
+        panel.add(circulo, "cell " + col + " " + row);
 
-        
-
+        JLabel label = new JLabel(texto);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        label.setForeground(new Color(60, 30, 30));
+        panel.add(label, "cell " + col + " " + row);
     }
     
- // --- MÉTODOS PARA O CONTROLLER ---
+    // --- MÉTODOS PÚBLICOS PARA O CONTROLLER ---
 
+    /**
+     * Atualiza o gráfico com novos dados e cores personalizadas
+     */
     public void atualizarGrafico(Map<String, Double> dadosCategorias, Map<String, Color> cores) {
+        if (dadosCategorias == null || dadosCategorias.isEmpty()) {
+            System.err.println("Nenhum dado para exibir no gráfico");
+            return;
+        }
+
         DefaultPieDataset dataset = new DefaultPieDataset();
         dadosCategorias.forEach(dataset::setValue);
 
@@ -131,14 +135,27 @@ public class TelaRelatorio extends JPanel {
         // Aplica cores personalizadas
         if (cores != null) {
             cores.forEach((categoria, cor) -> {
-                plot.setSectionPaint(categoria, cor);
+                if (dadosCategorias.containsKey(categoria)) {
+                    plot.setSectionPaint(categoria, cor);
+                }
             });
         }
 
-        // Configurações visuais iguais às suas...
+        // Configurações visuais
+        chart.setBackgroundPaint(new Color(0, 0, 0, 0));
+        plot.setBackgroundPaint(new Color(0, 0, 0, 0));
         plot.setOutlineVisible(false);
         plot.setShadowPaint(null);
-        plot.setBackgroundPaint(new Color(0,0,0,0));
+
+        // Configuração dos rótulos (porcentagens)
+        plot.setLabelFont(new Font("Segoe UI", Font.BOLD, 14));
+        plot.setLabelPaint(new Color(60, 30, 30));
+        plot.setLabelBackgroundPaint(null);
+        plot.setLabelOutlinePaint(null);
+        plot.setLabelShadowPaint(null);
+        plot.setSimpleLabels(false);
+        plot.setLabelGap(0.05);
+        plot.setLabelGenerator(new org.jfree.chart.labels.StandardPieSectionLabelGenerator("{2}"));
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setOpaque(false);
@@ -149,24 +166,15 @@ public class TelaRelatorio extends JPanel {
         panelGrafico.revalidate();
         panelGrafico.repaint();
     }
-    
-    
 
-    public void atualizarGrafico(Map<String, Double> dados) {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-
-        for (String categoria : dados.keySet()) {
-            dataset.setValue(categoria, dados.get(categoria));
-        }
-
-    }
-
+    /**
+     * Atualiza o valor total exibido
+     */
     public void atualizarTotal(double total) {
-    	lblTotal = new JLabel("Total: R$");
+        if (lblTotal != null) {
+            lblTotal.setText("Total: R$ " + formatoMoeda.format(total));
+        }
     }
-
-  
-
 
     private void adicionarGrafico() {
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -186,27 +194,21 @@ public class TelaRelatorio extends JPanel {
         plot.setSectionPaint("Categoria 2", new Color(165, 51, 46));
         plot.setSectionPaint("Categoria 3", new Color(202, 196, 190));
         plot.setSectionPaint("Categoria 4", new Color(207, 114, 116));
-        plot.setSectionPaint("Categoria 5", new Color(242, 151, 151));
+        plot.setSectionPaint("Categoria 5", new Color(193, 31, 35));
         plot.setSectionPaint("Categoria 6", new Color(229, 175, 177));
 
-        // Remove fundo
         chart.setBackgroundPaint(new Color(0, 0, 0, 0));
         plot.setBackgroundPaint(new Color(0, 0, 0, 0));
-
-        // Remove sombras e bordas
         plot.setOutlineVisible(false);
         plot.setShadowPaint(null);
 
-        // Adiciona as porcentagens ao redor do gráfico (fora das fatias)
         plot.setLabelFont(new Font("Segoe UI", Font.BOLD, 14));
         plot.setLabelPaint(new Color(60, 30, 30));
         plot.setLabelBackgroundPaint(null);
         plot.setLabelOutlinePaint(null);
         plot.setLabelShadowPaint(null);
         plot.setSimpleLabels(false);
-        plot.setLabelGap(0.05); // Distância das fatias
-        
-        // Formato para mostrar apenas a porcentagem
+        plot.setLabelGap(0.05);
         plot.setLabelGenerator(new org.jfree.chart.labels.StandardPieSectionLabelGenerator("{2}"));
 
         ChartPanel chartPanel = new ChartPanel(chart);

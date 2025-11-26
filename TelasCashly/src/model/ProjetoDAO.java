@@ -142,4 +142,62 @@ public class ProjetoDAO {
 		}
 		return projeto;
 	}
+	public java.util.Map<String, Double> buscarValoresPorCategoria(int usuarioId) {
+        java.util.Map<String, Double> mapa = new java.util.HashMap<>();
+
+        String sql = """
+            SELECT categoria, SUM(valorAtual) AS total
+            FROM Projeto
+            WHERE usuario_id = ?
+            GROUP BY categoria
+        """;
+
+        try (Connection conexao = BancoDeDados.conectar();
+             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+
+            pstm.setInt(1, usuarioId);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                String categoria = rs.getString("categoria");
+                double total = rs.getDouble("total");
+
+                // Tratar categoria nula ou vazia
+                if (categoria == null || categoria.isEmpty()) {
+                    categoria = "Sem Categoria";
+                }
+
+                mapa.put(categoria, total);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mapa;
+    }
+
+
+    /**
+     * Retorna a soma total de todos os valores (valorAtual) dos projetos do usuário.
+     * Usado na TelaRelatorio.
+     */
+    public double buscarTotalGeral(int usuarioId) {
+        String sql = "SELECT SUM(valorAtual) AS total FROM Projeto WHERE usuario_id = ?";
+
+        try (Connection conexao = BancoDeDados.conectar();
+             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+
+            pstm.setInt(1, usuarioId);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("total"); // retorna 0 se for NULL
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0.0;
+    }
 }
