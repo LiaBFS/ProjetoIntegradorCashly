@@ -24,7 +24,7 @@ public class DataInvalidaLancamento extends JFrame {
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
-        this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+        this.getRootPane().setBorder(BorderFactory.createLineBorder(new Color(207, 114, 116), 3));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
@@ -44,13 +44,15 @@ public class DataInvalidaLancamento extends JFrame {
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");
+        btnOK.setForeground(new Color(255, 245, 234));
         btnOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
         btnOK.setBackground(new Color(207, 114, 116));
-        btnOK.setBounds(180, 85, 53, 28);
+        btnOK.setBounds(183, 81, 53, 28);
+        btnOK.setFocusPainted(false);
         contentPane.add(btnOK);
     }
     

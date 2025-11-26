@@ -46,13 +46,15 @@ public class ProjetoCriado extends JFrame {
         contentPane.add(lblIcone);
 
         JButton btnOK = new JButton("OK");
+        btnOK.setForeground(new Color(255, 245, 234));
         btnOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        	}
         });
         btnOK.setBackground(new Color(34, 139, 34));
-        btnOK.setBounds(145, 85, 53, 28);
+        btnOK.setBounds(148, 81, 53, 28);
+        btnOK.setFocusPainted(false);
         contentPane.add(btnOK);
     }
     
