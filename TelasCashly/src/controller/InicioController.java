@@ -16,7 +16,8 @@ import view.TelaInternaInicial;
 import view.TelaInternaPerfil;
 import view.TelaInternaProjeto;
 import view.TelaInternaProjetos;
-import view.TelaRelatorio;
+import view.TelaInternaRelatorio;
+
 
 public class InicioController {
 	
@@ -41,7 +42,7 @@ public class InicioController {
 		telaInicio.dispose();
 	}
 
-
+ 
 	private void abrirTelaPerfil() {
 		TelaInternaPerfil tela = new TelaInternaPerfil();
 		UsuarioController usuarioController = new UsuarioController(tela, Sessao.getUsuarioLogado(), this);
@@ -52,12 +53,15 @@ public class InicioController {
 	}
 	
 	private void abrirTelaRelatorio() {
-		TelaRelatorio tela = new TelaRelatorio();
-		this.telaInicio.atualizarPainel(tela);
-		
-		this.telaInicio.selecionarBotao(telaInicio.getBtnRelatorio());
-		
-		this.telaInicio.atualizarMenuLateral();
+	    TelaInternaRelatorio tela = new TelaInternaRelatorio();
+	    
+	    // ✅ Cria o controller e carrega os dados do banco
+	    RelatorioController relatorioController = new RelatorioController(tela);
+	    relatorioController.carregarDadosDoRelatorio();
+	    
+	    this.telaInicio.atualizarPainel(tela);
+	    this.telaInicio.selecionarBotao(telaInicio.getBtnRelatorio());
+	    this.telaInicio.atualizarMenuLateral();
 	}
 	
 	
