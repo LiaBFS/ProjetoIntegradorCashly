@@ -21,7 +21,7 @@ public class ProjetoDAO {
 			
 			pstm.setString(1, projeto.getNome());
 			pstm.setString(2, projeto.getDescricao());
-			pstm.setDouble(3, projeto.getValorAtual());
+			pstm.setDouble(3, 0.0); // Sempre começa com 0, será atualizado pelo lançamento
 			
 			// Pega a data atual do sistema
 			java.sql.Date dataAtual = new java.sql.Date(System.currentTimeMillis());
@@ -41,6 +41,11 @@ public class ProjetoDAO {
 			if (rs.next()) {
 				int curId = rs.getInt(1);
 				projeto.setId(curId);
+				
+				// *** CRIAR LANÇAMENTO INICIAL se valorAtual > 0 ***
+				if (projeto.getValorAtual() > 0) {
+					criarLancamentoInicial(conexao, curId, projeto.getValorAtual(), dataAtual);
+				}
 			}
 			
 		} catch (Exception e) {
@@ -51,6 +56,41 @@ public class ProjetoDAO {
 				if (pstm != null) pstm.close();
 				if (conexao != null) conexao.close();
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	// *** NOVO MÉTODO: Cria lançamento inicial e atualiza valorAtual automaticamente ***
+	private void criarLancamentoInicial(Connection conexao, int projetoId, double valorInicial, java.sql.Date data) {
+		String sqlLancamento = "INSERT INTO LancamentoFinanceiro (data, valor, projeto_id) VALUES (?, ?, ?)";
+		String sqlUpdate = "UPDATE Projeto SET valorAtual = (SELECT COALESCE(SUM(valor), 0) FROM LancamentoFinanceiro WHERE projeto_id = ?) WHERE id = ?";
+		PreparedStatement pstm = null;
+		
+		try {
+			// Inserir o lançamento inicial
+			pstm = conexao.prepareStatement(sqlLancamento);
+			pstm.setDate(1, data);
+			pstm.setDouble(2, valorInicial);
+			pstm.setInt(3, projetoId);
+			pstm.executeUpdate();
+			pstm.close();
+			
+			// Atualizar o valorAtual do projeto
+			pstm = conexao.prepareStatement(sqlUpdate);
+			pstm.setInt(1, projetoId);
+			pstm.setInt(2, projetoId);
+			pstm.executeUpdate();
+			
+			System.out.println("Lançamento inicial criado: R$ " + valorInicial + " para projeto ID " + projetoId);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao criar lançamento inicial: " + e.getMessage());
+		} finally {
+			try {
+				if (pstm != null) pstm.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -142,62 +182,62 @@ public class ProjetoDAO {
 		}
 		return projeto;
 	}
+	
 	public java.util.Map<String, Double> buscarValoresPorCategoria(int usuarioId) {
-        java.util.Map<String, Double> mapa = new java.util.HashMap<>();
+		java.util.Map<String, Double> mapa = new java.util.HashMap<>();
 
-        String sql = """
-            SELECT categoria, SUM(valorAtual) AS total
-            FROM Projeto
-            WHERE usuario_id = ?
-            GROUP BY categoria
-        """;
+		String sql = """
+			SELECT categoria, SUM(valorAtual) AS total
+			FROM Projeto
+			WHERE usuario_id = ?
+			GROUP BY categoria
+		""";
 
-        try (Connection conexao = BancoDeDados.conectar();
-             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+		try (Connection conexao = BancoDeDados.conectar();
+			 PreparedStatement pstm = conexao.prepareStatement(sql)) {
 
-            pstm.setInt(1, usuarioId);
-            ResultSet rs = pstm.executeQuery();
+			pstm.setInt(1, usuarioId);
+			ResultSet rs = pstm.executeQuery();
 
-            while (rs.next()) {
-                String categoria = rs.getString("categoria");
-                double total = rs.getDouble("total");
+			while (rs.next()) {
+				String categoria = rs.getString("categoria");
+				double total = rs.getDouble("total");
 
-                // Tratar categoria nula ou vazia
-                if (categoria == null || categoria.isEmpty()) {
-                    categoria = "Sem Categoria";
-                }
+				// Tratar categoria nula ou vazia
+				if (categoria == null || categoria.isEmpty()) {
+					categoria = "Sem Categoria";
+				}
 
-                mapa.put(categoria, total);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+				mapa.put(categoria, total);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return mapa;
-    }
+		return mapa;
+	}
 
+	/**
+	 * Retorna a soma total de todos os valores (valorAtual) dos projetos do usuário.
+	 * Usado na TelaRelatorio.
+	 */
+	public double buscarTotalGeral(int usuarioId) {
+		String sql = "SELECT SUM(valorAtual) AS total FROM Projeto WHERE usuario_id = ?";
 
-    /**
-     * Retorna a soma total de todos os valores (valorAtual) dos projetos do usuário.
-     * Usado na TelaRelatorio.
-     */
-    public double buscarTotalGeral(int usuarioId) {
-        String sql = "SELECT SUM(valorAtual) AS total FROM Projeto WHERE usuario_id = ?";
+		try (Connection conexao = BancoDeDados.conectar();
+			 PreparedStatement pstm = conexao.prepareStatement(sql)) {
 
-        try (Connection conexao = BancoDeDados.conectar();
-             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+			pstm.setInt(1, usuarioId);
+			ResultSet rs = pstm.executeQuery();
 
-            pstm.setInt(1, usuarioId);
-            ResultSet rs = pstm.executeQuery();
+			if (rs.next()) {
+				return rs.getDouble("total"); // retorna 0 se for NULL
+			}
 
-            if (rs.next()) {
-                return rs.getDouble("total"); // retorna 0 se for NULL
-            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return 0.0;
-    }
+		return 0.0;
+	}
 }
