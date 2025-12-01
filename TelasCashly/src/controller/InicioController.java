@@ -23,6 +23,7 @@ public class InicioController {
 	
 	TelaInicio telaInicio;
 	
+	
 	public InicioController(TelaInicio telaInicio) {
 		this.telaInicio = telaInicio;
 
@@ -68,6 +69,9 @@ public class InicioController {
 	private void abrirTelaMeusProjetos() {
 		TelaInternaProjetos tela = new TelaInternaProjetos();
 		ProjetoDAO P = new ProjetoDAO();
+		MeusProjetosController controller = new MeusProjetosController(tela, P, this.telaInicio);
+		controller.carregarProjetos();
+		
 		
 
 		this.telaInicio.atualizarPainel(tela);

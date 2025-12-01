@@ -73,14 +73,15 @@ public class TelaInternaProjetos extends JPanel {
 		telaSemProjetos.add(lblSemProjetos, BorderLayout.CENTER);
 		
 		// Adicionar os cards ao cardPanel
-		cardPanel.add(telaSemProjetos, CARD_SEM_PROJETOS);
 		cardPanel.add(telaComProjetos, CARD_COM_PROJETOS);
+		cardPanel.add(telaSemProjetos, CARD_SEM_PROJETOS);
+		
 		
 		// Adicionar cardPanel ao painel principal
 		add(cardPanel, BorderLayout.CENTER);
 		
 		// Inicialmente mostrar a tela sem projetos
-		mostrarCard(CARD_SEM_PROJETOS);
+		//mostrarCard(CARD_SEM_PROJETOS);
 	}
 
 	/**
