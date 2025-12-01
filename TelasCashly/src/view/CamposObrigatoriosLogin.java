@@ -2,26 +2,27 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CamposObrigatoriosLogin extends JFrame {
+public class CamposObrigatoriosLogin extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public CamposObrigatoriosLogin() {
+    public CamposObrigatoriosLogin(Window owner) {
+        super(owner);
         setTitle("Campos Obrigatórios");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 380, 120);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+        setModal(true);
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
@@ -47,18 +48,20 @@ public class CamposObrigatoriosLogin extends JFrame {
 
         JButton btnOK = new JButton("OK");
         btnOK.setForeground(new Color(255, 245, 234));
-        btnOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        btnOK.addActionListener(e -> dispose());
         btnOK.setBackground(new Color(207, 114, 116));
         btnOK.setBounds(163, 81, 53, 28);
         btnOK.setFocusPainted(false);
         contentPane.add(btnOK);
     }
+    
     public static void mostrar() {
-        CamposObrigatoriosLogin frame = new CamposObrigatoriosLogin();
-        frame.setVisible(true);
+        CamposObrigatoriosLogin dialog = new CamposObrigatoriosLogin(null);
+        dialog.setVisible(true);
+    }
+    
+    public static void mostrar(Window owner) {
+        CamposObrigatoriosLogin dialog = new CamposObrigatoriosLogin(owner);
+        dialog.setVisible(true);
     }
 }

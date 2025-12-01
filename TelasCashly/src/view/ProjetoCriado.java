@@ -2,26 +2,27 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ProjetoCriado extends JFrame {
+public class ProjetoCriado extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public ProjetoCriado() {
+    public ProjetoCriado(Window owner) {
+        super(owner);
         setTitle("Projeto Criado");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 350, 120);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+        setModal(true);
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
@@ -47,11 +48,7 @@ public class ProjetoCriado extends JFrame {
 
         JButton btnOK = new JButton("OK");
         btnOK.setForeground(new Color(255, 245, 234));
-        btnOK.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		dispose();
-        	}
-        });
+        btnOK.addActionListener(e -> dispose());
         btnOK.setBackground(new Color(34, 139, 34));
         btnOK.setBounds(148, 81, 53, 28);
         btnOK.setFocusPainted(false);
@@ -59,7 +56,12 @@ public class ProjetoCriado extends JFrame {
     }
     
     public static void mostrar() {
-        ProjetoCriado frame = new ProjetoCriado();
-        frame.setVisible(true);
+        ProjetoCriado dialog = new ProjetoCriado(null);
+        dialog.setVisible(true);
+    }
+    
+    public static void mostrar(Window owner) {
+        ProjetoCriado dialog = new ProjetoCriado(owner);
+        dialog.setVisible(true);
     }
 }

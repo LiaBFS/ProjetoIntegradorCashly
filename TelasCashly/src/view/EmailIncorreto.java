@@ -2,27 +2,27 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-public class EmailIncorreto extends JFrame {
+public class EmailIncorreto extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public EmailIncorreto() {
+    public EmailIncorreto(Window owner) {
+        super(owner);
         setTitle("Email Inválido");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 420, 120);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+        setModal(true);
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
@@ -48,11 +48,7 @@ public class EmailIncorreto extends JFrame {
 
         JButton btnOK = new JButton("OK");
         btnOK.setForeground(new Color(255, 245, 234));
-        btnOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        btnOK.addActionListener(e -> dispose());
         btnOK.setBackground(new Color(207, 114, 116));
         btnOK.setBounds(183, 81, 53, 28);
         btnOK.setFocusPainted(false);
@@ -60,7 +56,12 @@ public class EmailIncorreto extends JFrame {
     }
     
     public static void mostrar() {
-        EmailIncorreto frame = new EmailIncorreto();
-        frame.setVisible(true);
+        EmailIncorreto dialog = new EmailIncorreto(null);
+        dialog.setVisible(true);
+    }
+    
+    public static void mostrar(Window owner) {
+        EmailIncorreto dialog = new EmailIncorreto(owner);
+        dialog.setVisible(true);
     }
 }
