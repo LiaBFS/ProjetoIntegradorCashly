@@ -30,7 +30,7 @@ public class LancamentoController {
             // Validar valor
             String valorTexto = tela.getTxtValorDoLanamento().getText();
             if (valorTexto.equals("Valor do Lançamento") || valorTexto.isEmpty()) {
-                ValorInvalidoLancamento.mostrar(); // ✅ SUBSTITUÍDO
+                ValorInvalidoLancamento.mostrar(tela);
                 return;
             }
             double valor = Double.parseDouble(valorTexto);
@@ -38,7 +38,7 @@ public class LancamentoController {
             // Validar data
             String dataTexto = tela.getTxtDataDoLanamento().getText();
             if (dataTexto.equals("Data do Lancamento") || dataTexto.isEmpty()) {
-                DataInvalidaLancamento.mostrar(); // ✅ SUBSTITUÍDO
+                DataInvalidaLancamento.mostrar(tela);
                 return;
             }
 
@@ -49,7 +49,7 @@ public class LancamentoController {
             LancamentoFinanceiro novo = new LancamentoFinanceiro(0, data, valor);
             lancamentoDAO.adicionarLancamentoFinanceiro(novo, projetoId);
 
-            LancamentoAdicionadoSucesso.mostrar(); // ✅ SUBSTITUÍDO
+            LancamentoAdicionadoSucesso.mostrar(tela);
             
             if (projetoController != null) {
                 projetoController.carregarLancamentosNaTabela();
@@ -58,11 +58,10 @@ public class LancamentoController {
             tela.dispose();
 
         } catch (NumberFormatException ex) {
-            ValorInvalidoLancamento.mostrar(); // ✅ SUBSTITUÍDO
+            ValorInvalidoLancamento.mostrar(tela);
         } catch (ParseException ex) {
-            DataInvalidaLancamento.mostrar(); // ✅ SUBSTITUÍDO
+            DataInvalidaLancamento.mostrar(tela);
         } catch (Exception ex) {
-            // Erro geral - pode manter um tratamento genérico
             ex.printStackTrace();
         }
     }

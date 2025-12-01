@@ -56,7 +56,7 @@ public class DataInvalidaLancamento extends JFrame {
         contentPane.add(btnOK);
     }
     
-    public static void mostrar() {
+    public static void mostrar(TelaInternaLancamentos tela) {
         DataInvalidaLancamento frame = new DataInvalidaLancamento();
         frame.setVisible(true);
     }

@@ -2,25 +2,28 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class LancamentoAdicionadoSucesso extends JFrame {
+public class LancamentoAdicionadoSucesso extends JDialog {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public LancamentoAdicionadoSucesso() {
+    public LancamentoAdicionadoSucesso(Window owner) {
+        super(owner);
         setTitle("Sucesso");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 420, 120);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+        setModal(true);
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 245, 234));
@@ -46,9 +49,9 @@ public class LancamentoAdicionadoSucesso extends JFrame {
         JButton btnOK = new JButton("OK");
         btnOK.setForeground(new Color(255, 245, 234));
         btnOK.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		dispose();
-        	}
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
         });
         btnOK.setBackground(new Color(34, 139, 34));
         btnOK.setBounds(183, 81, 53, 28);
@@ -56,8 +59,8 @@ public class LancamentoAdicionadoSucesso extends JFrame {
         contentPane.add(btnOK);
     }
     
-    public static void mostrar() {
-        LancamentoAdicionadoSucesso frame = new LancamentoAdicionadoSucesso();
-        frame.setVisible(true);
+    public static void mostrar(Window owner) {
+        LancamentoAdicionadoSucesso dialog = new LancamentoAdicionadoSucesso(owner);
+        dialog.setVisible(true);
     }
 }
