@@ -5,10 +5,15 @@ import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import model.Projeto;
 import model.ProjetoDAO;
+import view.ConfirmacaoExclusao;
+import view.ProjetoExcluido;
 import view.TelaInicio;
 import view.TelaInternaInicial;
 import view.TelaInternaProjeto;
@@ -23,20 +28,15 @@ public class MeusProjetosController {
 	
 	
 	public MeusProjetosController(ProjetoDAO projetoDAO, TelaInicio telaInicio) {
-		
 		this.projetoDAO = projetoDAO;
 		this.telaInicio = telaInicio;
-		
-		
 	}
 	
 	public MeusProjetosController(TelaInternaProjetos telaInternaProjetos, ProjetoDAO projetoDAO, TelaInicio telaInicio) {
-		
 		this.telaInternaProjetos = telaInternaProjetos; 
 		this.projetoDAO = projetoDAO;
 		this.telaInicio = telaInicio;
 		
-		// Listar e adicionar todos os projetos
 		carregarProjetos();
 	}
 	
@@ -47,10 +47,8 @@ public class MeusProjetosController {
 		List<Projeto> lista = projetoDAO.listarProjetos();
 		
 		if (lista == null || lista.isEmpty()) {
-			
 			telaInternaProjetos.mostrarTelaSemProjetos();
 		} else {
-		
 			telaInternaProjetos.resetarLinhas(); 
 			
 			for (Projeto projeto : lista) {
@@ -59,9 +57,58 @@ public class MeusProjetosController {
 				painelProjeto.putClientProperty("projeto", projeto);
 				
 				buscarProjeto(painelProjeto);
+				configurarBotaoExcluir(painelProjeto, projeto);
 			}
 			
 			telaInternaProjetos.mostrarTelaComProjetos();
+		}
+	}
+	
+	/**
+	 * Configura o botão de excluir do painel do projeto
+	 */
+	private void configurarBotaoExcluir(JPanel painelProjeto, Projeto projeto) {
+		JButton btnExcluir = telaInternaProjetos.getBtnExcluirDoPainel(painelProjeto);
+		
+		if (btnExcluir != null) {
+			// Remove listeners antigos para evitar duplicação
+			for (var listener : btnExcluir.getActionListeners()) {
+				btnExcluir.removeActionListener(listener);
+			}
+			
+			btnExcluir.addActionListener(e -> {
+				excluirProjeto(projeto);
+			});
+		}
+	}
+	
+	/**
+	 * Método para excluir um projeto
+	 */
+	private void excluirProjeto(Projeto projeto) {
+		JFrame frameParent = (JFrame) SwingUtilities.getWindowAncestor(telaInternaProjetos);
+		
+		// Mostrar diálogo de confirmação personalizado
+		boolean confirmado = ConfirmacaoExclusao.mostrar(frameParent, projeto.getNome());
+		
+		if (!confirmado) {
+			return;
+		}
+		
+		boolean excluido = projetoDAO.excluirProjeto(projeto.getId());
+		
+		if (excluido) {
+			ProjetoExcluido.mostrar(frameParent);
+			
+			// Recarregar a lista de projetos
+			carregarProjetos();
+		} else {
+			JOptionPane.showMessageDialog(
+					telaInternaProjetos,
+					"Erro ao excluir o projeto. Tente novamente.",
+					"Erro",
+					JOptionPane.ERROR_MESSAGE
+			);
 		}
 	}
 	
@@ -84,11 +131,18 @@ public class MeusProjetosController {
 	}
 	
 	public void buscarProjeto(JPanel painelProjeto) {
-		
 		MouseAdapter listener = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// Recuperar o projeto armazenado no painel
+				// Verificar se o clique foi no botão de excluir
+				Component componenteClicado = e.getComponent();
+				JButton btnExcluir = telaInternaProjetos.getBtnExcluirDoPainel(painelProjeto);
+				
+				// Se clicou no botão de excluir ou em seus componentes, não abrir o projeto
+				if (componenteClicado == btnExcluir || SwingUtilities.isDescendingFrom(componenteClicado, btnExcluir)) {
+					return;
+				}
+				
 				Projeto projetoClicado = (Projeto) painelProjeto.getClientProperty("projeto");
 				
 				if (projetoClicado != null) {

@@ -21,28 +21,23 @@ public class ProjetoDAO {
 			
 			pstm.setString(1, projeto.getNome());
 			pstm.setString(2, projeto.getDescricao());
-			pstm.setDouble(3, 0.0); // Sempre começa com 0, será atualizado pelo lançamento
+			pstm.setDouble(3, 0.0);
 			
-			// Pega a data atual do sistema
 			java.sql.Date dataAtual = new java.sql.Date(System.currentTimeMillis());
 			pstm.setDate(4, dataAtual);
 			
 			pstm.setDouble(5, projeto.getObjetivo());
 			pstm.setInt(6, projeto.getUsuarioID());
 			
-			// Salvar a categoria (name() retorna o nome da constante do enum)
 			pstm.setString(7, projeto.getCategoria() != null ? projeto.getCategoria().name() : null);
 			
-			// IMPORTANTE: executeUpdate() deve vir DEPOIS de setar todos os parâmetros
 			pstm.executeUpdate();
 			
-			// Recuperar o ID gerado
 			ResultSet rs = pstm.getGeneratedKeys();
 			if (rs.next()) {
 				int curId = rs.getInt(1);
 				projeto.setId(curId);
 				
-				// *** CRIAR LANÇAMENTO INICIAL se valorAtual > 0 ***
 				if (projeto.getValorAtual() > 0) {
 					criarLancamentoInicial(conexao, curId, projeto.getValorAtual(), dataAtual);
 				}
@@ -61,14 +56,12 @@ public class ProjetoDAO {
 		}
 	}
 	
-	// *** NOVO MÉTODO: Cria lançamento inicial e atualiza valorAtual automaticamente ***
 	private void criarLancamentoInicial(Connection conexao, int projetoId, double valorInicial, java.sql.Date data) {
 		String sqlLancamento = "INSERT INTO LancamentoFinanceiro (data, valor, projeto_id) VALUES (?, ?, ?)";
 		String sqlUpdate = "UPDATE Projeto SET valorAtual = (SELECT COALESCE(SUM(valor), 0) FROM LancamentoFinanceiro WHERE projeto_id = ?) WHERE id = ?";
 		PreparedStatement pstm = null;
 		
 		try {
-			// Inserir o lançamento inicial
 			pstm = conexao.prepareStatement(sqlLancamento);
 			pstm.setDate(1, data);
 			pstm.setDouble(2, valorInicial);
@@ -76,7 +69,6 @@ public class ProjetoDAO {
 			pstm.executeUpdate();
 			pstm.close();
 			
-			// Atualizar o valorAtual do projeto
 			pstm = conexao.prepareStatement(sqlUpdate);
 			pstm.setInt(1, projetoId);
 			pstm.setInt(2, projetoId);
@@ -96,7 +88,6 @@ public class ProjetoDAO {
 		}
 	}
 	
-	// READ - Listar todos os projetos
 	public List<Projeto> listarProjetos() {
 		String sql = "SELECT * FROM Projeto WHERE usuario_id=? ORDER BY dataCriacao DESC";
 		List<Projeto> projetos = new ArrayList<>();
@@ -122,7 +113,6 @@ public class ProjetoDAO {
 				projeto.setDescricao(rset.getString("descricao"));
 				projeto.setUsuarioID(rset.getInt("usuario_id"));
 				
-				// Converter String do banco para Enum
 				String categoriaStr = rset.getString("categoria");
 				if (categoriaStr != null && !categoriaStr.isEmpty()) {
 					try {
@@ -165,7 +155,6 @@ public class ProjetoDAO {
 				projeto.setValorAtual(rset.getDouble("valorAtual"));
 				projeto.setObjetivo(rset.getDouble("objetivo"));
 				
-				// Recuperar categoria
 				String categoriaStr = rset.getString("categoria");
 				if (categoriaStr != null && !categoriaStr.isEmpty()) {
 					try {
@@ -203,7 +192,6 @@ public class ProjetoDAO {
 				String categoria = rs.getString("categoria");
 				double total = rs.getDouble("total");
 
-				// Tratar categoria nula ou vazia
 				if (categoria == null || categoria.isEmpty()) {
 					categoria = "Sem Categoria";
 				}
@@ -217,10 +205,6 @@ public class ProjetoDAO {
 		return mapa;
 	}
 
-	/**
-	 * Retorna a soma total de todos os valores (valorAtual) dos projetos do usuário.
-	 * Usado na TelaRelatorio.
-	 */
 	public double buscarTotalGeral(int usuarioId) {
 		String sql = "SELECT SUM(valorAtual) AS total FROM Projeto WHERE usuario_id = ?";
 
@@ -231,7 +215,7 @@ public class ProjetoDAO {
 			ResultSet rs = pstm.executeQuery();
 
 			if (rs.next()) {
-				return rs.getDouble("total"); // retorna 0 se for NULL
+				return rs.getDouble("total");
 			}
 
 		} catch (SQLException e) {
@@ -239,5 +223,61 @@ public class ProjetoDAO {
 		}
 
 		return 0.0;
+	}
+	
+	/**
+	 * Método para excluir um projeto pelo ID
+	 * CORRIGIDO: Deleta os lançamentos primeiro, depois o projeto
+	 */
+	public boolean excluirProjeto(int projetoId) {
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			conexao = BancoDeDados.conectar();
+			
+			// Desabilitar autocommit para usar transação
+			conexao.setAutoCommit(false);
+			
+			// 1. Primeiro deletar todos os lançamentos do projeto
+			String sqlLancamentos = "DELETE FROM LancamentoFinanceiro WHERE projeto_id = ?";
+			pstm = conexao.prepareStatement(sqlLancamentos);
+			pstm.setInt(1, projetoId);
+			pstm.executeUpdate();
+			pstm.close();
+			
+			// 2. Depois deletar o projeto
+			String sqlProjeto = "DELETE FROM Projeto WHERE id = ?";
+			pstm = conexao.prepareStatement(sqlProjeto);
+			pstm.setInt(1, projetoId);
+			int linhasAfetadas = pstm.executeUpdate();
+			
+			// Confirmar a transação
+			conexao.commit();
+			
+			return linhasAfetadas > 0;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// Em caso de erro, reverter a transação
+			if (conexao != null) {
+				try {
+					conexao.rollback();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+			return false;
+		} finally {
+			try {
+				if (pstm != null) pstm.close();
+				if (conexao != null) {
+					conexao.setAutoCommit(true); // Restaurar autocommit
+					conexao.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -109,9 +109,13 @@ public class CredenciaisController {
         
         usuarioDAO.adicionarUsuario(novoUsuario);
         
-        UsuarioCadastrado.mostrar(); // ✅ SUBSTITUÍDO
+        UsuarioCadastrado.mostrar();
         
         mostrarTela("login");
+        this.telaCadastro.getTxtEmail().setText(this.telaCadastro.getPlaceholderEmail());
+        this.telaCadastro.getTxtSenha().setText(this.telaCadastro.getPlaceholderSenha());
+        this.telaCadastro.getTxtNome().setText(this.telaCadastro.getPlaceholderUsuario());
+        
 	}
 	
 	public void iniciarLogin() {

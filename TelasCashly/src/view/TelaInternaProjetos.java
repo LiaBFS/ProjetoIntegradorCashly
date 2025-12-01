@@ -11,7 +11,7 @@ import model.Projeto;
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
@@ -23,7 +23,7 @@ public class TelaInternaProjetos extends JPanel {
 	private JPanel panel_content;
 	private JButton btnNomeProjeto1;
 	private JButton btnData;
-	private AbstractButton btnDescrição;
+	private AbstractButton btnDescricao;
 	
 	// CardLayout components
 	private CardLayout cardLayout;
@@ -60,11 +60,11 @@ public class TelaInternaProjetos extends JPanel {
 		
 		telaComProjetos.add(scroll_pane, BorderLayout.CENTER);
 		
-		// Criar tela SEM projetos (vazia por enquanto para design futuro)
+		// Criar tela SEM projetos
 		telaSemProjetos = new JPanel();
 		telaSemProjetos.setBackground(new Color(216, 178, 184));
 		telaSemProjetos.setLayout(new BorderLayout());
-		// Você pode adicionar componentes aqui no futuro
+		
 		JLabel lblSemProjetos = new JLabel("");
 		lblSemProjetos.setIcon(new ImageIcon(TelaInternaProjetos.class.getResource("/imgs/OPS2.png")));
 		lblSemProjetos.setFont(new Font("Carlito", Font.BOLD, 30));
@@ -76,12 +76,8 @@ public class TelaInternaProjetos extends JPanel {
 		cardPanel.add(telaComProjetos, CARD_COM_PROJETOS);
 		cardPanel.add(telaSemProjetos, CARD_SEM_PROJETOS);
 		
-		
 		// Adicionar cardPanel ao painel principal
 		add(cardPanel, BorderLayout.CENTER);
-		
-		// Inicialmente mostrar a tela sem projetos
-		//mostrarCard(CARD_SEM_PROJETOS);
 	}
 
 	/**
@@ -128,14 +124,26 @@ public class TelaInternaProjetos extends JPanel {
 		btnData.setContentAreaFilled(false);
 		btnData.setBorderPainted(false);
 
-		btnDescrição = new JButton(p.getDescricao());
-		panel_4.add(btnDescrição, "cell 4 2");
-		btnDescrição.setOpaque(false);
-		btnDescrição.setForeground(new Color(255, 245, 234));
-		btnDescrição.setFont(new Font("Carlito", Font.PLAIN, 25));
-		btnDescrição.setFocusPainted(false);
-		btnDescrição.setContentAreaFilled(false);
-		btnDescrição.setBorderPainted(false);
+		btnDescricao = new JButton(p.getDescricao());
+		panel_4.add(btnDescricao, "cell 4 2");
+		btnDescricao.setOpaque(false);
+		btnDescricao.setForeground(new Color(255, 245, 234));
+		btnDescricao.setFont(new Font("Carlito", Font.PLAIN, 25));
+		btnDescricao.setFocusPainted(false);
+		btnDescricao.setContentAreaFilled(false);
+		btnDescricao.setBorderPainted(false);
+		
+		JButton btnExcluir = new JButton("EXCLUIR PROJETO");
+		panel_4.add(btnExcluir, "cell 15 2");
+		btnExcluir.setOpaque(false);
+		btnExcluir.setForeground(new Color(165, 051, 046));
+		btnExcluir.setFont(new Font("Carlito", Font.BOLD, 30));
+		btnExcluir.setFocusPainted(false);
+		btnExcluir.setContentAreaFilled(false);
+		btnExcluir.setBorderPainted(false);
+		
+		// CORREÇÃO: Armazenar o botão de excluir como propriedade do painel
+		panel_4.putClientProperty("btnExcluir", btnExcluir);
 
 		panel_content.add(panel_4, "cell 0 "+linha+",grow");
 		linha++;
@@ -150,5 +158,47 @@ public class TelaInternaProjetos extends JPanel {
 		panel_content.removeAll();
 		panel_content.revalidate();
 		panel_content.repaint();
+	}
+
+	/**
+	 * CORREÇÃO: Buscar o botão de excluir que foi armazenado no painel
+	 */
+	public JButton getBtnExcluirDoPainel(JPanel painelProjeto) {
+		if (painelProjeto == null) {
+			return null;
+		}
+		
+		// Recuperar o botão que foi armazenado como propriedade do painel
+		Object btnObj = painelProjeto.getClientProperty("btnExcluir");
+		
+		if (btnObj instanceof JButton) {
+			return (JButton) btnObj;
+		}
+		
+		// Fallback: buscar recursivamente por um JButton com o texto "EXCLUIR PROJETO"
+		return encontrarBotaoExcluir(painelProjeto);
+	}
+	
+	/**
+	 * Método auxiliar para buscar o botão de excluir recursivamente
+	 */
+	private JButton encontrarBotaoExcluir(Component comp) {
+		if (comp instanceof JButton) {
+			JButton btn = (JButton) comp;
+			if ("EXCLUIR PROJETO".equals(btn.getText())) {
+				return btn;
+			}
+		}
+		
+		if (comp instanceof java.awt.Container) {
+			for (Component child : ((java.awt.Container) comp).getComponents()) {
+				JButton resultado = encontrarBotaoExcluir(child);
+				if (resultado != null) {
+					return resultado;
+				}
+			}
+		}
+		
+		return null;
 	}
 }
