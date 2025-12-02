@@ -37,7 +37,7 @@ public class ObjetivoJaAlcancado extends JDialog {
 
         // Ícone de informação
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(ObjetivoJaAlcancado.class.getResource("/imgs/JFrameCorreto.png")));
+        lblIcone.setIcon(new ImageIcon(ObjetivoJaAlcancado.class.getResource("/imgs/CC.png")));
         lblIcone.setBounds(20, 25, 76, 70);
         contentPane.add(lblIcone);
 

@@ -87,7 +87,7 @@ public class TelaInternaProjeto extends JPanel {
 		
 		JPanelComBackground panel_2 = new JPanelComBackground("/imgs/FundoHeaderProjeto.png");
 		panel_1.add(panel_2, BorderLayout.NORTH);
-		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][0]", "[grow 10][][][][grow 5][][grow 10][]"));
+		panel_2.setLayout(new MigLayout("insets 35 10 30 10", "[0][][grow][][0]", "[grow 10][][][][grow 5][][][grow 10][]"));
 		panel_2.setOpaque(false);
 		
 		lblNomeProjeto = new JLabel("Nome Projeto");
@@ -126,7 +126,7 @@ public class TelaInternaProjeto extends JPanel {
 		
 		
 		btnAdicionarLancamento.setIcon(new ImageIcon(TelaInternaProjeto.class.getResource("/imgs/BtnAdicionarLancamento.png")));
-		panel_2.add(btnAdicionarLancamento, "cell 4 5,growx,aligny center");
+		panel_2.add(btnAdicionarLancamento, "cell 4 6,growx,aligny center");
 		btnAdicionarLancamento.setBorderPainted(false);
 		btnAdicionarLancamento.setContentAreaFilled(false);
 		btnAdicionarLancamento.setFocusPainted(false);

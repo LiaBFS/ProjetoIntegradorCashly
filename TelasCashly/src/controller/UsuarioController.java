@@ -71,11 +71,11 @@ public class UsuarioController {
         }
 
         if (email == null || email.isEmpty()) {
-            EmailIncorreto.mostrar(); // ✅ SUBSTITUÍDO (email inválido)
+            EmailIncorreto.mostrar(); 
             return;
         }
 
-        boolean excluido = usuarioDAO.excluirUsuario(email);
+        boolean excluido = usuarioDAO.excluirUsuario(usuario.getId());
 
         if (excluido) {
             Sessao.setUsuarioLogado(null);
@@ -84,7 +84,7 @@ public class UsuarioController {
             apresentacao.iniciarApresentacao();
             inicioController.sair();
         } else {
-            EmailIncorreto.mostrar(); // ✅ SUBSTITUÍDO (erro ao excluir)
+            EmailIncorreto.mostrar();
         }
     }
     
@@ -92,12 +92,12 @@ public class UsuarioController {
         String novoNome = tela.getTfNome().getText().trim();
 
         if (novoNome.isEmpty()) {
-            UsuarioMinimo.mostrar(); // ✅ SUBSTITUÍDO
+            UsuarioMinimo.mostrar();
             return;
         }
 
         if (novoNome.length() < 3) {
-            UsuarioMinimo.mostrar(); // ✅ SUBSTITUÍDO
+            UsuarioMinimo.mostrar(); 
             tela.getTfNome().setText(usuario.getNome()); 
             return;
         }
@@ -105,19 +105,19 @@ public class UsuarioController {
         usuario.setNome(novoNome);
         usuarioDAO.atualizarNomeUsuario(usuario);
 
-        PerfilEditadoNome.mostrar(); // ✅ SUBSTITUÍDO
+        PerfilEditadoNome.mostrar(); 
     }
 
     private void editarEmail() {
         String novoEmail = tela.getTfEmail().getText().trim();
 
         if (novoEmail.isEmpty()) {
-            EmailIncorreto.mostrar(); // ✅ SUBSTITUÍDO
+            EmailIncorreto.mostrar(); 
             return;
         }
 
         if (!novoEmail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-            EmailIncorreto.mostrar(); // ✅ SUBSTITUÍDO
+            EmailIncorreto.mostrar(); 
             tela.getTfEmail().setText(usuario.getEmail()); 
             return;
         }
@@ -125,6 +125,6 @@ public class UsuarioController {
         usuario.setEmail(novoEmail);
         usuarioDAO.atualizarEmailUsuario(usuario);
 
-        PerfilEditadoEmail.mostrar(); // ✅ SUBSTITUÍDO
+        PerfilEditadoEmail.mostrar(); 
     }
 }

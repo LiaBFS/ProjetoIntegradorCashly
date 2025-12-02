@@ -120,19 +120,68 @@ import java.util.ArrayList;
 
 
 	    // DELETE
-	    public boolean excluirUsuario(int id) {
-	        String sql = "DELETE FROM usuario WHERE id = ?";
-	        
-	        try (Connection conexao = BancoDeDados.conectar();
-	             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+	    public boolean excluirUsuario(int usuarioId) {
+	        String sqlDeleteLancamentos = "DELETE lf FROM lancamentofinanceiro lf "
+	                + "JOIN projeto p ON lf.projeto_id = p.id "
+	                + "WHERE p.usuario_id = ?";
 
-	            pstm.setInt(1, id);
-	            int linhasAfetadas = pstm.executeUpdate();
+	        String sqlDeleteProjetos = "DELETE FROM projeto WHERE usuario_id = ?";
+	        String sqlDeleteUsuario  = "DELETE FROM usuario WHERE id = ?";
+
+	        Connection conexao = null;
+	        PreparedStatement pstLanc = null;
+	        PreparedStatement pstProj = null;
+	        PreparedStatement pstUser = null;
+
+	        try {
+	            conexao = BancoDeDados.conectar();
+	            if (conexao == null) {
+	                System.err.println("Falha ao conectar ao banco.");
+	                return false;
+	            }
+
+	            conexao.setAutoCommit(false); 
+
+	     
+	            pstLanc = conexao.prepareStatement(sqlDeleteLancamentos);
+	            pstLanc.setInt(1, usuarioId);
+	            pstLanc.executeUpdate();
+
+	         
+	            pstProj = conexao.prepareStatement(sqlDeleteProjetos);
+	            pstProj.setInt(1, usuarioId);
+	            pstProj.executeUpdate();
+
+	       
+	            pstUser = conexao.prepareStatement(sqlDeleteUsuario);
+	            pstUser.setInt(1, usuarioId);
+	            int linhasAfetadas = pstUser.executeUpdate();
+
+	            conexao.commit();
 	            return linhasAfetadas > 0;
 
 	        } catch (SQLException e) {
+	          
+	            if (conexao != null) {
+	                try {
+	                    conexao.rollback();
+	                } catch (SQLException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
 	            e.printStackTrace();
 	            return false;
+	        } finally {
+	        	
+	            try { if (pstLanc != null) pstLanc.close(); } catch (SQLException ignored) {}
+	            try { if (pstProj != null) pstProj.close(); } catch (SQLException ignored) {}
+	            try { if (pstUser != null) pstUser.close(); } catch (SQLException ignored) {}
+	            try {
+	                if (conexao != null) {
+	                    conexao.setAutoCommit(true);
+	                    conexao.close();
+	                }
+	            } catch (SQLException ignored) {}
 	        }
 	    }
 	    
