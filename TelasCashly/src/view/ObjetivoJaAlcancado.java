@@ -10,19 +10,19 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ObjetivoAlcancado extends JDialog {
+public class ObjetivoJaAlcancado extends JDialog {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     
-    // Cores personalizadas para o tema de sucesso/objetivo
+    // Cores personalizadas
     private static final Color COR_FUNDO = new Color(255, 245, 234);
-    private static final Color COR_BORDA = new Color(207, 114, 116); // Amarelo/Dourado
-    private static final Color COR_BOTAO = new Color(207, 114, 116); // Amarelo/Dourado
+    private static final Color COR_BORDA = new Color(207, 114, 116);
+    private static final Color COR_BOTAO = new Color(207, 114, 116);
     private static final Color COR_TEXTO_BOTAO = new Color(255, 255, 255);
 
-    public ObjetivoAlcancado(Window owner) {
+    public ObjetivoJaAlcancado(Window owner) {
         super(owner);
-        setTitle("Parabéns!");
+        setTitle("Objetivo Já Alcançado");
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setBounds(100, 100, 400, 149);
@@ -35,21 +35,21 @@ public class ObjetivoAlcancado extends JDialog {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // Ícone de sucesso
+        // Ícone de informação
         JLabel lblIcone = new JLabel("");
-        lblIcone.setIcon(new ImageIcon(ObjetivoAlcancado.class.getResource("/imgs/CC.png")));
+        lblIcone.setIcon(new ImageIcon(ObjetivoJaAlcancado.class.getResource("/imgs/JFrameCorreto.png")));
         lblIcone.setBounds(20, 25, 76, 70);
         contentPane.add(lblIcone);
 
         // Título
-        JLabel lblTitulo = new JLabel("Parabéns! Objetivo Alcançado!");
+        JLabel lblTitulo = new JLabel("Objetivo Já Alcançado");
         lblTitulo.setFont(new Font("Carlito", Font.BOLD, 20));
         lblTitulo.setForeground(new Color(72, 53, 40));
         lblTitulo.setBounds(110, 25, 380, 30);
         contentPane.add(lblTitulo);
         
         // Mensagem
-        JLabel lblMensagem = new JLabel("Você atingiu o objetivo do seu projeto!");
+        JLabel lblMensagem = new JLabel("Este projeto já atingiu seu objetivo.");
         lblMensagem.setFont(new Font("Carlito", Font.PLAIN, 15));
         lblMensagem.setForeground(new Color(72, 53, 40));
         lblMensagem.setBounds(110, 55, 380, 25);
@@ -74,10 +74,10 @@ public class ObjetivoAlcancado extends JDialog {
     }
     
     /**
-     * Mostra o diálogo de objetivo alcançado
+     * Mostra o diálogo de objetivo já alcançado (mensagem simples)
      */
     public static void mostrar(Window owner) {
-        ObjetivoAlcancado dialog = new ObjetivoAlcancado(owner);
+        ObjetivoJaAlcancado dialog = new ObjetivoJaAlcancado(owner);
         dialog.setVisible(true);
     }
 }

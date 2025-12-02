@@ -11,6 +11,7 @@ import model.LancamentoFinanceiroDAO;
 import model.Projeto;
 import model.ProjetoDAO;
 import view.ObjetivoAlcancado;
+import view.ObjetivoJaAlcancado;
 import view.TelaInternaInicial;
 import view.TelaInternaLancamentos;
 import view.TelaInternaProjeto;
@@ -23,6 +24,9 @@ public class ProjetoController {
 	private LancamentoFinanceiroDAO lancamentoDAO;
 	private Projeto projetoAtual;
 	
+	// Flag para controlar se o objetivo acabou de ser alcançado
+	private boolean objetivoRecemAlcancado = false;
+	
 	public ProjetoController(TelaInternaProjeto tela, ProjetoDAO projetoDAO, Projeto projeto) {
 		
 		this.tela = tela;
@@ -34,6 +38,22 @@ public class ProjetoController {
 		
 		carregarDadosProjeto();
 		carregarLancamentosNaTabela();
+		
+		// Verificar se o objetivo já foi alcançado ao abrir a tela
+		verificarObjetivoInicial();
+	}
+	
+	/**
+	 * Verifica se o objetivo já estava alcançado ao abrir a tela
+	 */
+	private void verificarObjetivoInicial() {
+		double valorAtual = lancamentoDAO.obterValorTotalProjeto(projetoAtual.getId());
+		double objetivo = projetoAtual.getObjetivo();
+		
+		// Se já estava alcançado, não é "recém alcançado"
+		if (valorAtual >= objetivo) {
+			objetivoRecemAlcancado = false;
+		}
 	}
 	
 	private void carregarDadosProjeto() {
@@ -50,6 +70,9 @@ public class ProjetoController {
 	public void carregarLancamentosNaTabela() {
 		if (projetoAtual == null) return;
 		
+		// Verificar se o objetivo ACABOU de ser alcançado (antes não estava, agora está)
+		double valorAnterior = lancamentoDAO.obterValorTotalProjeto(projetoAtual.getId());
+		
 		List<LancamentoFinanceiro> lancamentos = lancamentoDAO.listarLancamentosPorProjeto(projetoAtual.getId());
 		
 		DefaultTableModel modelo = (DefaultTableModel) tela.getTable().getModel();
@@ -65,6 +88,15 @@ public class ProjetoController {
 		}
 		
 		carregarDadosProjeto();
+		
+		// Verificar se o objetivo foi alcançado após adicionar lançamento
+		double valorAtual = lancamentoDAO.obterValorTotalProjeto(projetoAtual.getId());
+		double objetivo = projetoAtual.getObjetivo();
+		
+		// Se alcançou o objetivo e não tinha alcançado antes, marcar como recém alcançado
+		if (valorAtual >= objetivo && valorAnterior < objetivo) {
+			objetivoRecemAlcancado = true;
+		}
 	}
 	
 	private void abrirPopUpLancamento() {
@@ -73,9 +105,16 @@ public class ProjetoController {
 		double objetivo = projetoAtual.getObjetivo();
 		
 		if (valorAtual >= objetivo) {
-			// Objetivo alcançado - mostrar aviso
 			JFrame frameParent = (JFrame) SwingUtilities.getWindowAncestor(tela);
-			ObjetivoAlcancado.mostrar(frameParent);
+			
+			// Se acabou de alcançar, mostra mensagem de parabéns
+			if (objetivoRecemAlcancado) {
+				ObjetivoAlcancado.mostrar(frameParent);
+				objetivoRecemAlcancado = false; // Marca que já mostrou a mensagem
+			} else {
+				// Se já tinha alcançado antes, mostra mensagem simples
+				ObjetivoJaAlcancado.mostrar(frameParent);
+			}
 		} else {
 			// Objetivo não alcançado - abrir tela de lançamento normalmente
 			TelaInternaLancamentos telaLancamento = new TelaInternaLancamentos();
